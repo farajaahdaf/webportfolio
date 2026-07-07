@@ -19,23 +19,31 @@ import { Button } from "@/components/ui/button";
 import { fadeUp, stagger } from "@/lib/motion";
 import { isValidUrl } from "@/lib/utils";
 import type { Project } from "@/lib/types";
+import { dictionary, type Locale } from "@/lib/i18n";
 
-export function Projects({ projects }: { projects: Project[] }) {
+export function Projects({
+  projects,
+  locale = "en",
+}: {
+  projects: Project[];
+  locale?: Locale;
+}) {
   const [active, setActive] = useState<Project | null>(null);
   const featured = projects.filter((p) => p.featured && p.status === "published");
+  const t = dictionary[locale];
 
   return (
     <section id="projects" className="relative py-32">
       <div className="container-prose">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <SectionHeader
-            eyebrow="Featured Projects"
-            title="Selected work that ships."
-            description="A snapshot of recent builds, from AI research to production systems and admin platforms."
-          />
+            <SectionHeader
+              eyebrow={t.projects.eyebrow}
+              title={t.projects.title}
+              description={t.projects.description}
+            />
           <Button asChild variant="outline" className="rounded-full self-start md:self-end">
             <Link href="/projects">
-              View all projects
+              {t.projects.viewAll}
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -72,7 +80,7 @@ export function Projects({ projects }: { projects: Project[] }) {
                       {p.featured && (
                         <Badge variant="default" className="gap-1">
                           <Sparkles className="h-3 w-3" />
-                          Featured
+                          {t.projects.featured}
                         </Badge>
                       )}
                     </div>
@@ -117,6 +125,7 @@ export function Projects({ projects }: { projects: Project[] }) {
 
       <ProjectDialog
         project={active}
+        locale={locale}
         onOpenChange={(o) => !o && setActive(null)}
       />
     </section>
@@ -125,17 +134,21 @@ export function Projects({ projects }: { projects: Project[] }) {
 
 function ProjectDialog({
   project,
+  locale,
   onOpenChange,
 }: {
   project: Project | null;
+  locale: Locale;
   onOpenChange: (o: boolean) => void;
 }) {
+  const t = dictionary[locale];
+
   return (
     <Dialog open={!!project} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] max-w-3xl gap-0 overflow-y-auto overflow-x-hidden p-0 sm:max-h-[calc(100dvh-3rem)] sm:w-full">
+      <DialogContent className="grid max-h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] max-w-4xl grid-rows-[auto_minmax(0,1fr)] gap-0 overflow-hidden p-0 sm:max-h-[calc(100dvh-3rem)] sm:w-full">
         {project && (
           <>
-            <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden sm:aspect-[16/8]">
+            <div className="relative aspect-[16/10] max-h-[36dvh] w-full shrink-0 overflow-hidden bg-secondary sm:aspect-[16/8] sm:max-h-[42dvh]">
               <Image
                 src={project.thumbnail}
                 alt={project.title}
@@ -145,7 +158,7 @@ function ProjectDialog({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
             </div>
-            <div className="p-5 sm:p-6 md:p-8">
+            <div className="overflow-y-auto border-t border-border bg-card p-6 sm:p-7 md:p-9">
               <DialogHeader>
                 <div className="flex items-center gap-2">
                   <Badge variant="glass">{project.category}</Badge>
@@ -193,7 +206,7 @@ function ProjectDialog({
                   <Button asChild variant="gradient" className="w-full rounded-full sm:w-auto">
                     <Link href={project.liveUrl!} target="_blank" rel="noreferrer">
                       <ExternalLink className="h-4 w-4" />
-                      Live demo
+                      {t.projects.liveDemo}
                     </Link>
                   </Button>
                 )}
@@ -201,13 +214,13 @@ function ProjectDialog({
                   <Button asChild variant="outline" className="w-full rounded-full sm:w-auto">
                     <Link href={project.githubUrl!} target="_blank" rel="noreferrer">
                       <Github className="h-4 w-4" />
-                      Source code
+                      {t.projects.sourceCode}
                     </Link>
                   </Button>
                 )}
                 <Button asChild variant="ghost" className="w-full rounded-full sm:w-auto">
                   <Link href={`/projects/${project.slug}`}>
-                    Read case study
+                    {t.projects.readCaseStudy}
                     <ArrowUpRight className="h-4 w-4" />
                   </Link>
                 </Button>

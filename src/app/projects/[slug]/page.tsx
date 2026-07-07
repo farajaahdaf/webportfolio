@@ -13,6 +13,8 @@ import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { getProjectBySlug, getPublishedProjects, getSocials } from "@/lib/data";
 import { getSettings } from "@/lib/settings";
 import { isValidUrl } from "@/lib/utils";
+import { getLocale } from "@/lib/locale";
+import { dictionary, localizeProject, localizeSettings } from "@/lib/i18n";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -41,17 +43,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectDetail({ params }: Props) {
   const { slug } = await params;
+  const locale = await getLocale();
   const [project, settings, socials] = await Promise.all([
     getProjectBySlug(slug),
     getSettings(),
     getSocials(),
   ]);
   if (!project || project.status !== "published") notFound();
+  const localizedProject = localizeProject(project, locale);
+  const localizedSettings = localizeSettings(settings, locale);
+  const t = dictionary[locale];
 
   return (
     <>
       <GridBackground />
-      <Navbar settings={settings} />
+      <Navbar settings={localizedSettings} locale={locale} />
       <main className="relative pt-32 md:pt-40">
         <article className="container-prose pb-24">
           <Link
@@ -59,37 +65,37 @@ export default async function ProjectDetail({ params }: Props) {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            All projects
+            {t.projects.back}
           </Link>
 
           <div className="mt-6 max-w-3xl">
             <div className="flex items-center gap-2">
-              <Badge variant="glass">{project.category}</Badge>
+              <Badge variant="glass">{localizedProject.category}</Badge>
               <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                {project.status}
+                {localizedProject.status}
               </span>
             </div>
             <h1 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
-              {project.title}
+              {localizedProject.title}
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-              {project.tagline}
+              {localizedProject.tagline}
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-2">
-              {isValidUrl(project.liveUrl) && (
+              {isValidUrl(localizedProject.liveUrl) && (
                 <Button asChild variant="gradient" className="rounded-full">
-                  <Link href={project.liveUrl!} target="_blank" rel="noreferrer">
+                  <Link href={localizedProject.liveUrl!} target="_blank" rel="noreferrer">
                     <ExternalLink className="h-4 w-4" />
-                    Live demo
+                    {t.projects.liveDemo}
                   </Link>
                 </Button>
               )}
-              {isValidUrl(project.githubUrl) && (
+              {isValidUrl(localizedProject.githubUrl) && (
                 <Button asChild variant="outline" className="rounded-full">
-                  <Link href={project.githubUrl!} target="_blank" rel="noreferrer">
+                  <Link href={localizedProject.githubUrl!} target="_blank" rel="noreferrer">
                     <Github className="h-4 w-4" />
-                    Source code
+                    {t.projects.sourceCode}
                   </Link>
                 </Button>
               )}
@@ -98,8 +104,8 @@ export default async function ProjectDetail({ params }: Props) {
 
           <div className="relative mt-12 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border">
             <Image
-              src={project.thumbnail}
-              alt={project.title}
+              src={localizedProject.thumbnail}
+              alt={localizedProject.title}
               fill
               sizes="(min-width: 1024px) 1024px, 100vw"
               priority
@@ -108,9 +114,9 @@ export default async function ProjectDetail({ params }: Props) {
             <div className="absolute inset-0 ring-1 ring-inset ring-foreground/10" />
           </div>
 
-          {project.metrics && project.metrics.length > 0 && (
+          {localizedProject.metrics && localizedProject.metrics.length > 0 && (
             <div className="mt-10 grid grid-cols-2 gap-3 rounded-2xl border border-border bg-card p-6 shadow-sm md:grid-cols-4">
-              {project.metrics.map((m) => (
+              {localizedProject.metrics.map((m) => (
                 <div key={m.label} className="text-center">
                   <div className="font-display text-2xl font-semibold text-gradient-static md:text-3xl">
                     {m.value}
@@ -125,15 +131,15 @@ export default async function ProjectDetail({ params }: Props) {
 
           <div className="prose mt-12 max-w-3xl prose-headings:font-display prose-headings:tracking-tight prose-a:text-primary prose-code:rounded prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:text-foreground prose-pre:rounded-xl dark:prose-invert">
             <p className="lead text-lg text-foreground/90">
-              {project.description}
+              {localizedProject.description}
             </p>
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {project.content}
+              {localizedProject.content}
             </ReactMarkdown>
           </div>
 
           <div className="mt-10 flex flex-wrap gap-1.5">
-            {project.tech.map((t) => (
+            {localizedProject.tech.map((t) => (
               <Badge
                 key={t}
                 variant="outline"
@@ -145,7 +151,7 @@ export default async function ProjectDetail({ params }: Props) {
           </div>
         </article>
       </main>
-      <Footer settings={settings} socials={socials} />
+      <Footer settings={localizedSettings} socials={socials} locale={locale} />
     </>
   );
 }

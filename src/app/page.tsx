@@ -19,11 +19,21 @@ import {
 } from "@/lib/data";
 import { getSettings } from "@/lib/settings";
 import { isSectionVisible } from "@/lib/sections";
+import { getLocale } from "@/lib/locale";
+import {
+  localizeCertificate,
+  localizeExperience,
+  localizePost,
+  localizeProject,
+  localizeSettings,
+  localizeSkill,
+} from "@/lib/i18n";
 
 // Always render from Neon at request time so deployed CMS edits are visible immediately.
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
+  const locale = await getLocale();
   const [projects, posts, skills, experience, certificates, socials, settings] =
     await Promise.all([
       getPublishedProjects(),
@@ -34,33 +44,40 @@ export default async function HomePage() {
       getSocials(),
       getSettings(),
     ]);
+  const localizedSettings = localizeSettings(settings, locale);
+  const localizedProjects = projects.map((project) => localizeProject(project, locale));
+  const localizedPosts = posts.map((post) => localizePost(post, locale));
+  const localizedSkills = skills.map((skill) => localizeSkill(skill, locale));
+  const localizedExperience = experience.map((item) => localizeExperience(item, locale));
+  const localizedCertificates = certificates.map((item) => localizeCertificate(item, locale));
 
-  const completedProjectsCount = projects.length;
-  const technologiesCount = skills.length;
+  const completedProjectsCount = localizedProjects.length;
+  const technologiesCount = localizedSkills.length;
 
   return (
     <>
       <GridBackground />
-      <Navbar settings={settings} />
+      <Navbar settings={localizedSettings} locale={locale} />
       <main className="relative">
-        <Hero settings={settings} />
-        {isSectionVisible(settings, "about") && (
+        <Hero settings={localizedSettings} locale={locale} />
+        {isSectionVisible(localizedSettings, "about") && (
           <About
-            settings={settings}
+            settings={localizedSettings}
+            locale={locale}
             completedProjectsCount={completedProjectsCount}
             technologiesCount={technologiesCount}
           />
         )}
-        {isSectionVisible(settings, "skills") && <Skills skills={skills} />}
-        {isSectionVisible(settings, "projects") && <Projects projects={projects} />}
-        {isSectionVisible(settings, "experience") && <Experience items={experience} />}
-        {isSectionVisible(settings, "certificates") && <Certificates items={certificates} />}
-        {isSectionVisible(settings, "blog") && <BlogPreview posts={posts} />}
-        {isSectionVisible(settings, "contact") && (
-          <Contact settings={settings} socials={socials} />
+        {isSectionVisible(localizedSettings, "skills") && <Skills skills={localizedSkills} locale={locale} />}
+        {isSectionVisible(localizedSettings, "projects") && <Projects projects={localizedProjects} locale={locale} />}
+        {isSectionVisible(localizedSettings, "experience") && <Experience items={localizedExperience} locale={locale} />}
+        {isSectionVisible(localizedSettings, "certificates") && <Certificates items={localizedCertificates} locale={locale} />}
+        {isSectionVisible(localizedSettings, "blog") && <BlogPreview posts={localizedPosts} locale={locale} />}
+        {isSectionVisible(localizedSettings, "contact") && (
+          <Contact settings={localizedSettings} socials={socials} locale={locale} />
         )}
       </main>
-      <Footer settings={settings} socials={socials} />
+      <Footer settings={localizedSettings} socials={socials} locale={locale} />
     </>
   );
 }

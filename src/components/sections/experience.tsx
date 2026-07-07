@@ -6,6 +6,7 @@ import { SectionHeader } from "@/components/site/section-header";
 import { Briefcase, GraduationCap, FlaskConical, FolderGit2 } from "lucide-react";
 import type { Experience as Exp } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
+import { dictionary, type Locale } from "@/lib/i18n";
 
 const typeIcon = {
   Work: Briefcase,
@@ -14,7 +15,8 @@ const typeIcon = {
   Project: FolderGit2,
 } as const;
 
-export function Experience({ items }: { items: Exp[] }) {
+export function Experience({ items, locale = "en" }: { items: Exp[]; locale?: Locale }) {
+  const t = dictionary[locale];
   const sorted = [...items].sort(
     (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
   );
@@ -23,9 +25,9 @@ export function Experience({ items }: { items: Exp[] }) {
     <section id="experience" className="relative py-32">
       <div className="container-prose">
         <SectionHeader
-          eyebrow="Experience"
-          title="A path of practical work."
-          description="Where I've built, taught, researched, and shipped."
+          eyebrow={t.experience.eyebrow}
+          title={t.experience.title}
+          description={t.experience.description}
         />
 
         <div className="relative mt-16">
@@ -71,8 +73,8 @@ export function Experience({ items }: { items: Exp[] }) {
                       {exp.location && ` · ${exp.location}`}
                     </p>
                     <p className="mt-1 font-mono text-xs text-muted-foreground">
-                      {formatDate(exp.startDate)} -{" "}
-                      {exp.current ? "Present" : exp.endDate ? formatDate(exp.endDate) : ""}
+                      {formatDate(exp.startDate, locale)} -{" "}
+                      {exp.current ? t.experience.present : exp.endDate ? formatDate(exp.endDate, locale) : ""}
                     </p>
                   </div>
 

@@ -6,8 +6,9 @@ import { SectionHeader } from "@/components/site/section-header";
 import { TechIcon } from "@/components/site/tech-icon";
 import { fadeUp, stagger } from "@/lib/motion";
 import type { Skill } from "@/lib/types";
+import { dictionary, type Locale } from "@/lib/i18n";
 
-type Props = { skills: Skill[] };
+type Props = { skills: Skill[]; locale?: Locale };
 
 const categories: Skill["category"][] = [
   "Frontend",
@@ -18,7 +19,8 @@ const categories: Skill["category"][] = [
   "Tools",
 ];
 
-export function Skills({ skills }: Props) {
+export function Skills({ skills, locale = "en" }: Props) {
+  const t = dictionary[locale];
   const grouped: Record<string, Skill[]> = Object.fromEntries(
     categories.map((c) => [c, skills.filter((s) => s.category === c)])
   );
@@ -27,30 +29,30 @@ export function Skills({ skills }: Props) {
     <section id="skills" className="relative py-32">
       <div className="container-prose">
         <SectionHeader
-          eyebrow="Skills"
-          title="A toolkit, not a stack."
-          description="Curated technologies I reach for, chosen for clarity, reliability, and a tight feedback loop."
+          eyebrow={t.skills.eyebrow}
+          title={t.skills.title}
+          description={t.skills.description}
         />
 
         <div className="mt-14">
           <Tabs defaultValue="All" className="w-full">
-            <TabsList className="mx-auto flex flex-wrap justify-center gap-1 rounded-2xl">
-              <TabsTrigger value="All" className="rounded-xl">
-                All
+            <TabsList className="mx-auto flex h-auto w-full max-w-5xl flex-wrap justify-center gap-2 rounded-2xl p-2">
+              <TabsTrigger value="All" className="rounded-xl px-5 py-2.5 text-base">
+                {t.skills.all}
               </TabsTrigger>
               {categories.map((c) => (
-                <TabsTrigger key={c} value={c} className="rounded-xl">
+                <TabsTrigger key={c} value={c} className="rounded-xl px-5 py-2.5 text-base">
                   {c}
                 </TabsTrigger>
               ))}
             </TabsList>
 
             <TabsContent value="All" className="mt-10">
-              <SkillGrid items={skills} />
+              <SkillGrid items={skills} emptyLabel={t.skills.empty} />
             </TabsContent>
             {categories.map((c) => (
               <TabsContent key={c} value={c} className="mt-10">
-                <SkillGrid items={grouped[c]} />
+                <SkillGrid items={grouped[c]} emptyLabel={t.skills.empty} />
               </TabsContent>
             ))}
           </Tabs>
@@ -60,11 +62,11 @@ export function Skills({ skills }: Props) {
   );
 }
 
-function SkillGrid({ items }: { items: Skill[] }) {
+function SkillGrid({ items, emptyLabel = dictionary.en.skills.empty }: { items: Skill[]; emptyLabel?: string }) {
   if (!items?.length) {
     return (
       <p className="py-16 text-center text-sm text-muted-foreground">
-        No skills in this category yet.
+        {emptyLabel}
       </p>
     );
   }

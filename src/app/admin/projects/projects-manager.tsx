@@ -155,6 +155,82 @@ export function ProjectsManager() {
               onChange={(v) => setState((s) => ({ ...s, content: v }))}
             />
 
+            <div className="rounded-2xl border border-border bg-secondary/40 p-4">
+              <div className="mb-4">
+                <h3 className="font-display text-sm font-semibold tracking-tight">
+                  Indonesian translation
+                </h3>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Optional. Used when visitors choose Bahasa Indonesia. Empty fields fall back to the default content.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div className="space-y-1.5">
+                  <Label>Title ID</Label>
+                  <Input
+                    value={state.translations?.id?.title || ""}
+                    onChange={(e) =>
+                      setState((s) => ({
+                        ...s,
+                        translations: {
+                          ...s.translations,
+                          id: { ...s.translations?.id, title: e.target.value },
+                        },
+                      }))
+                    }
+                    placeholder="Judul proyek"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Tagline ID</Label>
+                  <Input
+                    value={state.translations?.id?.tagline || ""}
+                    onChange={(e) =>
+                      setState((s) => ({
+                        ...s,
+                        translations: {
+                          ...s.translations,
+                          id: { ...s.translations?.id, tagline: e.target.value },
+                        },
+                      }))
+                    }
+                    placeholder="Deskripsi satu baris"
+                  />
+                </div>
+              </div>
+              <div className="mt-4 space-y-1.5">
+                <Label>Short description ID</Label>
+                <Textarea
+                  rows={3}
+                  value={state.translations?.id?.description || ""}
+                  onChange={(e) =>
+                    setState((s) => ({
+                      ...s,
+                      translations: {
+                        ...s.translations,
+                        id: { ...s.translations?.id, description: e.target.value },
+                      },
+                    }))
+                  }
+                />
+              </div>
+              <div className="mt-4">
+                <MarkdownEditor
+                  label="Case study ID"
+                  value={state.translations?.id?.content || ""}
+                  onChange={(v) =>
+                    setState((s) => ({
+                      ...s,
+                      translations: {
+                        ...s.translations,
+                        id: { ...s.translations?.id, content: v },
+                      },
+                    }))
+                  }
+                />
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               <div className="space-y-1.5">
                 <Label>Category</Label>

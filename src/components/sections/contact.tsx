@@ -22,6 +22,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { SiteSettings, Social } from "@/lib/types";
+import { dictionary, type Locale } from "@/lib/i18n";
 
 const iconMap: Record<string, LucideIcon> = {
   github: Github,
@@ -41,15 +42,18 @@ function iconFor(platform: string): LucideIcon {
 export function Contact({
   settings,
   socials,
+  locale = "en",
 }: {
   settings?: SiteSettings;
   socials?: Social[];
+  locale?: Locale;
 }) {
   const [busy, setBusy] = useState(false);
+  const t = dictionary[locale];
 
   const blurb =
     settings?.contact.blurb ||
-    "Have a project in mind, an idea worth exploring, or just want to say hi? My inbox is open.";
+    t.contact.fallbackBlurb;
 
   const channels = (socials || []).filter((s) => s.visible);
 
@@ -64,10 +68,10 @@ export function Contact({
         body: JSON.stringify(Object.fromEntries(fd)),
       });
       if (!res.ok) throw new Error("Failed");
-      toast.success("Message received, I'll reply within 24 hours.");
+      toast.success(t.contact.success);
       (e.target as HTMLFormElement).reset();
     } catch {
-      toast.error("Couldn't send right now, try email instead.");
+      toast.error(t.contact.error);
     } finally {
       setBusy(false);
     }
@@ -77,8 +81,8 @@ export function Contact({
     <section id="contact" className="relative py-32">
       <div className="container-prose">
         <SectionHeader
-          eyebrow="Contact"
-          title="Let's build something."
+          eyebrow={t.contact.eyebrow}
+          title={t.contact.title}
           description={blurb}
           align="center"
         />
@@ -128,7 +132,7 @@ export function Contact({
                 </div>
                 {settings.profile.location && (
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                    Based in {settings.profile.location}, working globally.
+                    {t.contact.basedIn} {settings.profile.location}, {t.contact.workingGlobally}
                   </p>
                 )}
               </div>
@@ -145,11 +149,11 @@ export function Contact({
           >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-1.5">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" name="name" placeholder="Your name" required />
+                <Label htmlFor="name">{t.contact.name}</Label>
+                <Input id="name" name="name" placeholder={t.contact.namePlaceholder} required />
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t.contact.email}</Label>
                 <Input
                   id="email"
                   name="email"
@@ -160,27 +164,27 @@ export function Contact({
               </div>
             </div>
             <div className="mt-4 space-y-1.5">
-              <Label htmlFor="subject">Subject</Label>
+              <Label htmlFor="subject">{t.contact.subject}</Label>
               <Input
                 id="subject"
                 name="subject"
-                placeholder="What's this about?"
+                placeholder={t.contact.subjectPlaceholder}
                 required
               />
             </div>
             <div className="mt-4 space-y-1.5">
-              <Label htmlFor="message">Message</Label>
+              <Label htmlFor="message">{t.contact.message}</Label>
               <Textarea
                 id="message"
                 name="message"
-                placeholder="Tell me a bit about your project, timeline, and goals."
+                placeholder={t.contact.messagePlaceholder}
                 rows={6}
                 required
               />
             </div>
             <div className="mt-6 flex items-center justify-between gap-3">
               <p className="text-xs text-muted-foreground">
-                I&apos;ll reply within 24 hours.
+                {t.contact.reply}
               </p>
               <Button
                 type="submit"
@@ -192,12 +196,12 @@ export function Contact({
                 {busy ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" />
-                    Sending
+                    {t.contact.sending}
                   </>
                 ) : (
                   <>
                     <Send className="h-4 w-4" />
-                    Send message
+                    {t.contact.send}
                   </>
                 )}
               </Button>

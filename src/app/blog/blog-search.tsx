@@ -10,14 +10,18 @@ import { Badge } from "@/components/ui/badge";
 import { formatDate, readingTime } from "@/lib/utils";
 import { fadeUp, stagger } from "@/lib/motion";
 import type { Post } from "@/lib/types";
+import { dictionary, type Locale } from "@/lib/i18n";
 
 export function BlogSearch({
   posts,
   categories,
+  locale = "en",
 }: {
   posts: Post[];
   categories: string[];
+  locale?: Locale;
 }) {
+  const t = dictionary[locale];
   const [q, setQ] = useState("");
   const [cat, setCat] = useState<string | null>(null);
 
@@ -42,7 +46,7 @@ export function BlogSearch({
           <Input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Search posts, tags, ideas…"
+            placeholder={t.blog.searchPlaceholder}
             className="pl-9"
           />
         </div>
@@ -56,7 +60,7 @@ export function BlogSearch({
                 : "border-border text-muted-foreground hover:text-foreground"
             }`}
           >
-            All
+            {t.skills.all}
           </button>
           {categories.map((c) => (
             <button
@@ -77,7 +81,7 @@ export function BlogSearch({
 
       {filtered.length === 0 ? (
         <p className="mt-16 text-center text-sm text-muted-foreground">
-          No posts match that search.
+          {t.blog.empty}
         </p>
       ) : (
         <motion.ul
@@ -117,11 +121,11 @@ export function BlogSearch({
                   <div className="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
                     <span className="inline-flex items-center gap-1.5">
                       <Calendar className="h-3 w-3" />
-                      {formatDate(p.publishedAt || p.createdAt)}
+                      {formatDate(p.publishedAt || p.createdAt, locale)}
                     </span>
                     <span className="inline-flex items-center gap-1.5">
                       <Clock className="h-3 w-3" />
-                      {readingTime(p.content)} min
+                      {readingTime(p.content)} {t.blog.min}
                     </span>
                   </div>
                   {p.tags.length > 0 && (

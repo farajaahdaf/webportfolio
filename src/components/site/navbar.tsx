@@ -9,18 +9,28 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import type { SiteSettings } from "@/lib/types";
 import { isSectionVisible, type SectionKey } from "@/lib/sections";
+import { LanguageSwitcher } from "@/components/site/language-switcher";
+import { dictionary, type Locale } from "@/lib/i18n";
 
-const links: Array<{ href: string; label: string; section: SectionKey }> = [
-  { href: "/#about", label: "About", section: "about" },
-  { href: "/#skills", label: "Skills", section: "skills" },
-  { href: "/#projects", label: "Projects", section: "projects" },
-  { href: "/#experience", label: "Experience", section: "experience" },
-  { href: "/blog", label: "Blog", section: "blog" },
+const links: Array<{ href: string; labelKey: keyof typeof dictionary.en.nav; section: SectionKey }> = [
+  { href: "/#about", labelKey: "about", section: "about" },
+  { href: "/#skills", labelKey: "skills", section: "skills" },
+  { href: "/#projects", labelKey: "projects", section: "projects" },
+  { href: "/#experience", labelKey: "experience", section: "experience" },
+  { href: "/#certificates", labelKey: "certificates", section: "certificates" },
+  { href: "/blog", labelKey: "blog", section: "blog" },
 ];
 
-export function Navbar({ settings }: { settings?: SiteSettings }) {
+export function Navbar({
+  settings,
+  locale = "en",
+}: {
+  settings?: SiteSettings;
+  locale?: Locale;
+}) {
   const name = settings?.profile.name || "Faraja Ahdaf";
   const initial = name.charAt(0).toUpperCase();
+  const t = dictionary[locale];
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -70,30 +80,33 @@ export function Navbar({ settings }: { settings?: SiteSettings }) {
             </span>
           </Link>
 
-          <ul className="hidden items-center gap-1 md:flex">
+          <ul className="hidden items-center gap-1 lg:flex">
             {visibleLinks.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
                   className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                 >
-                  {l.label}
+                  {t.nav[l.labelKey]}
                 </Link>
               </li>
             ))}
           </ul>
 
           <div className="flex items-center gap-2">
+            <div className="hidden sm:block">
+              <LanguageSwitcher locale={locale} label={t.nav.language} compact />
+            </div>
             {showContact && (
               <Button
                 asChild
                 variant="gradient"
                 size="sm"
-                className="hidden h-9 rounded-full px-4 sm:inline-flex"
+                className="hidden h-9 rounded-full px-4 lg:inline-flex"
               >
                 <Link href="/#contact">
                   <Sparkles className="h-3.5 w-3.5" />
-                  Contact
+                  {t.nav.contact}
                 </Link>
               </Button>
             )}
@@ -101,7 +114,7 @@ export function Navbar({ settings }: { settings?: SiteSettings }) {
               type="button"
               aria-label="Toggle menu"
               onClick={() => setOpen((v) => !v)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card shadow-sm md:hidden cursor-pointer"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card shadow-sm lg:hidden cursor-pointer"
             >
               {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </button>
@@ -116,25 +129,27 @@ export function Navbar({ settings }: { settings?: SiteSettings }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-4 top-20 z-40 rounded-2xl border border-border bg-card p-4 shadow-xl md:hidden"
+            className="fixed inset-x-4 top-20 z-40 rounded-2xl border border-border bg-card p-4 shadow-xl lg:hidden"
           >
             <ul className="flex flex-col gap-1">
               {visibleLinks.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
+                    onClick={() => setOpen(false)}
                     className="block rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                   >
-                    {l.label}
+                    {t.nav[l.labelKey]}
                   </Link>
                 </li>
               ))}
               <li className="mt-2 flex items-center justify-between gap-2 border-t border-border pt-3">
+                <LanguageSwitcher locale={locale} label={t.nav.language} />
                 {showContact && (
                   <Button asChild variant="gradient" size="sm" className="rounded-full">
-                    <Link href="/#contact">
+                    <Link href="/#contact" onClick={() => setOpen(false)}>
                       <Sparkles className="h-3.5 w-3.5" />
-                      Contact
+                      {t.nav.contact}
                     </Link>
                   </Button>
                 )}

@@ -10,8 +10,10 @@ import { SectionHeader } from "@/components/site/section-header";
 import { fadeUp, stagger } from "@/lib/motion";
 import { formatDate, readingTime } from "@/lib/utils";
 import type { Post } from "@/lib/types";
+import { dictionary, type Locale } from "@/lib/i18n";
 
-export function BlogPreview({ posts }: { posts: Post[] }) {
+export function BlogPreview({ posts, locale = "en" }: { posts: Post[]; locale?: Locale }) {
+  const t = dictionary[locale];
   const published = posts
     .filter((p) => p.status === "published")
     .sort(
@@ -26,13 +28,13 @@ export function BlogPreview({ posts }: { posts: Post[] }) {
       <div className="container-prose">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <SectionHeader
-            eyebrow="Writing"
-            title="Notes from the field."
-            description="Field notes on engineering, AI research, and craft."
+            eyebrow={t.blog.eyebrow}
+            title={t.blog.title}
+            description={t.blog.description}
           />
           <Button asChild variant="outline" className="rounded-full self-start md:self-end">
             <Link href="/blog">
-              All posts <ArrowUpRight className="h-4 w-4" />
+              {t.blog.allPosts} <ArrowUpRight className="h-4 w-4" />
             </Link>
           </Button>
         </div>
@@ -76,11 +78,11 @@ export function BlogPreview({ posts }: { posts: Post[] }) {
                   <div className="mt-4 flex items-center gap-4 text-xs text-muted-foreground">
                     <span className="inline-flex items-center gap-1.5">
                       <Calendar className="h-3 w-3" />
-                      {formatDate(p.publishedAt || p.createdAt)}
+                      {formatDate(p.publishedAt || p.createdAt, locale)}
                     </span>
                     <span className="inline-flex items-center gap-1.5">
                       <Clock className="h-3 w-3" />
-                      {readingTime(p.content)} min read
+                      {readingTime(p.content)} {t.blog.minRead}
                     </span>
                   </div>
                 </div>

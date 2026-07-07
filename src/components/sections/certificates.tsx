@@ -13,9 +13,11 @@ import { SectionHeader } from "@/components/site/section-header";
 import { fadeUp, stagger } from "@/lib/motion";
 import { formatDate, isValidUrl } from "@/lib/utils";
 import type { Certificate } from "@/lib/types";
+import { dictionary, type Locale } from "@/lib/i18n";
 
-export function Certificates({ items }: { items: Certificate[] }) {
+export function Certificates({ items, locale = "en" }: { items: Certificate[]; locale?: Locale }) {
   if (!items?.length) return null;
+  const t = dictionary[locale];
 
   const sorted = [...items].sort(
     (a, b) => new Date(b.issueDate).getTime() - new Date(a.issueDate).getTime()
@@ -25,9 +27,9 @@ export function Certificates({ items }: { items: Certificate[] }) {
     <section id="certificates" className="relative py-32">
       <div className="container-prose">
         <SectionHeader
-          eyebrow="Certificates"
-          title="Verified credentials."
-          description="Issued certificates and credentials, with downloadable PDFs."
+          eyebrow={t.certificates.eyebrow}
+          title={t.certificates.title}
+          description={t.certificates.description}
         />
 
         <motion.div
@@ -61,7 +63,7 @@ export function Certificates({ items }: { items: Certificate[] }) {
                   {c.title}
                 </h3>
                 <p className="mt-1 text-xs text-muted-foreground">
-                  {c.issuer} · {formatDate(c.issueDate)}
+                  {c.issuer} · {formatDate(c.issueDate, locale)}
                 </p>
 
                 {c.skills.length > 0 && (
@@ -87,7 +89,7 @@ export function Certificates({ items }: { items: Certificate[] }) {
                       className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-foreground/30 hover:text-primary"
                     >
                       <Download className="h-3 w-3" />
-                      View PDF
+                      {t.certificates.viewPdf}
                     </Link>
                   )}
                   {isValidUrl(c.credentialUrl) && (
@@ -98,12 +100,12 @@ export function Certificates({ items }: { items: Certificate[] }) {
                       className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground"
                     >
                       <ExternalLink className="h-3 w-3" />
-                      Verify
+                      {t.certificates.verify}
                     </Link>
                   )}
                   {!isValidUrl(c.pdfUrl) && !isValidUrl(c.credentialUrl) && (
                     <span className="text-xs text-muted-foreground">
-                      No public link
+                      {t.certificates.noPublicLink}
                     </span>
                   )}
                 </div>

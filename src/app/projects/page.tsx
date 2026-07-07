@@ -8,6 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
 import { getPublishedProjects, getSocials } from "@/lib/data";
 import { getSettings } from "@/lib/settings";
+import { getLocale } from "@/lib/locale";
+import { dictionary, localizeProject, localizeSettings } from "@/lib/i18n";
 import type { Metadata } from "next";
 
 // Always render from Neon at request time so deployed CMS edits are visible immediately.
@@ -19,26 +21,30 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjectsIndex() {
+  const locale = await getLocale();
   const [projects, settings, socials] = await Promise.all([
     getPublishedProjects(),
     getSettings(),
     getSocials(),
   ]);
+  const t = dictionary[locale];
+  const localizedSettings = localizeSettings(settings, locale);
+  const localizedProjects = projects.map((project) => localizeProject(project, locale));
 
   return (
     <>
       <GridBackground />
-      <Navbar settings={settings} />
+      <Navbar settings={localizedSettings} locale={locale} />
       <main className="relative pt-32 md:pt-40">
         <div className="container-prose pb-24">
           <SectionHeader
-            eyebrow="All projects"
-            title="A complete index."
-            description="Every published build, sorted by recency. Hover for highlights, click for the case study."
+            eyebrow={t.projects.allEyebrow}
+            title={t.projects.allTitle}
+            description={t.projects.allDescription}
           />
 
           <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((p) => (
+            {localizedProjects.map((p) => (
               <Link
                 key={p.id}
                 href={`/projects/${p.slug}`}
@@ -84,7 +90,7 @@ export default async function ProjectsIndex() {
           </div>
         </div>
       </main>
-      <Footer settings={settings} socials={socials} />
+      <Footer settings={localizedSettings} socials={socials} locale={locale} />
     </>
   );
 }

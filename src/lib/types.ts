@@ -1,3 +1,13 @@
+import type { Locale } from "./i18n";
+
+type DeepPartial<T> = T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends object
+    ? { [K in keyof T]?: DeepPartial<T[K]> }
+    : T;
+
+type Translations<T> = Partial<Record<Locale, DeepPartial<Omit<T, "translations">>>>;
+
 export type Project = {
   id: string;
   slug: string;
@@ -16,6 +26,7 @@ export type Project = {
   metrics?: { label: string; value: string }[];
   createdAt: string;
   updatedAt: string;
+  translations?: Translations<Project>;
 };
 
 export type Post = {
@@ -34,6 +45,7 @@ export type Post = {
   createdAt: string;
   updatedAt: string;
   publishedAt?: string;
+  translations?: Translations<Post>;
 };
 
 export type Skill = {
@@ -46,6 +58,7 @@ export type Skill = {
   /** Optional accent hex without #, e.g. "FF2D20" for Laravel */
   color?: string;
   years?: number;
+  translations?: Translations<Skill>;
 };
 
 export type Experience = {
@@ -60,6 +73,7 @@ export type Experience = {
   description: string;
   achievements: string[];
   tech?: string[];
+  translations?: Translations<Experience>;
 };
 
 export type Certificate = {
@@ -71,6 +85,7 @@ export type Certificate = {
   pdfUrl?: string;
   image?: string;
   skills: string[];
+  translations?: Translations<Certificate>;
 };
 
 export type Social = {
@@ -133,6 +148,7 @@ export type SiteSettings = {
     blog: boolean;
     contact: boolean;
   };
+  translations?: Translations<SiteSettings>;
 };
 
 export type DbSchema = {

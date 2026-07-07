@@ -21,6 +21,7 @@ import { SectionHeader } from "@/components/site/section-header";
 import { Counter } from "@/components/site/counter";
 import { fadeUp, stagger } from "@/lib/motion";
 import type { SiteSettings } from "@/lib/types";
+import { dictionary, type Locale } from "@/lib/i18n";
 
 const iconMap: Record<string, LucideIcon> = {
   Code2,
@@ -42,18 +43,21 @@ export function About({
   settings,
   completedProjectsCount,
   technologiesCount,
+  locale = "en",
 }: {
   settings: SiteSettings;
   completedProjectsCount: number;
   technologiesCount: number;
+  locale?: Locale;
 }) {
   const { about } = settings;
+  const t = dictionary[locale];
 
   const stats = [
-    { label: "Years experience", value: about.stats.yearsExperience, suffix: "+" },
-    { label: "Projects completed", value: completedProjectsCount, suffix: "" },
-    { label: "Technologies mastered", value: technologiesCount, suffix: "" },
-    { label: "Research & experiments", value: about.stats.researchCount, suffix: "" },
+    { label: t.about.yearsExperience, value: about.stats.yearsExperience, suffix: "+" },
+    { label: t.about.projectsCompleted, value: completedProjectsCount, suffix: "" },
+    { label: t.about.technologiesMastered, value: technologiesCount, suffix: "" },
+    { label: t.about.researchExperiments, value: about.stats.researchCount, suffix: "" },
   ];
 
   return (

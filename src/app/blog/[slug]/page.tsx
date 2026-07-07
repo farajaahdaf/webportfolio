@@ -14,6 +14,8 @@ import { getPostBySlug, getPublishedPosts, getSocials } from "@/lib/data";
 import { getSettings } from "@/lib/settings";
 import { formatDate, readingTime } from "@/lib/utils";
 import { isSectionVisible } from "@/lib/sections";
+import { getLocale } from "@/lib/locale";
+import { dictionary, localizePost, localizeSettings } from "@/lib/i18n";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -43,18 +45,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PostDetail({ params }: Props) {
   const { slug } = await params;
+  const locale = await getLocale();
   const [post, settings, socials] = await Promise.all([
     getPostBySlug(slug),
     getSettings(),
     getSocials(),
   ]);
-  if (!isSectionVisible(settings, "blog")) notFound();
+  const localizedSettings = localizeSettings(settings, locale);
+  const t = dictionary[locale];
+  if (!isSectionVisible(localizedSettings, "blog")) notFound();
   if (!post || post.status !== "published") notFound();
+  const localizedPost = localizePost(post, locale);
 
   return (
     <>
       <GridBackground />
-      <Navbar settings={settings} />
+      <Navbar settings={localizedSettings} locale={locale} />
       <main className="relative pt-32 md:pt-40">
         <article className="container-prose pb-24">
           <Link
@@ -62,34 +68,34 @@ export default async function PostDetail({ params }: Props) {
             className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            All posts
+            {t.blog.back}
           </Link>
 
           <div className="mt-6 max-w-3xl">
             <div className="flex items-center gap-2">
-              <Badge variant="glass">{post.category}</Badge>
+              <Badge variant="glass">{localizedPost.category}</Badge>
               <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-muted-foreground">
                 <Calendar className="h-3 w-3" />
-                {formatDate(post.publishedAt || post.createdAt)}
+                {formatDate(localizedPost.publishedAt || localizedPost.createdAt, locale)}
               </span>
               <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-muted-foreground">
                 <Clock className="h-3 w-3" />
-                {readingTime(post.content)} min
+                {readingTime(localizedPost.content)} {t.blog.min}
               </span>
             </div>
             <h1 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
-              {post.title}
+              {localizedPost.title}
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-              {post.excerpt}
+              {localizedPost.excerpt}
             </p>
           </div>
 
-          {post.cover && (
+          {localizedPost.cover && (
             <div className="relative mt-12 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border">
               <Image
-                src={post.cover}
-                alt={post.title}
+                src={localizedPost.cover}
+                alt={localizedPost.title}
                 fill
                 sizes="(min-width: 1024px) 1024px, 100vw"
                 priority
@@ -104,13 +110,13 @@ export default async function PostDetail({ params }: Props) {
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeHighlight]}
             >
-              {post.content}
+              {localizedPost.content}
             </ReactMarkdown>
           </div>
 
-          {post.tags.length > 0 && (
+          {localizedPost.tags.length > 0 && (
             <div className="mt-10 flex flex-wrap gap-1.5">
-              {post.tags.map((t) => (
+              {localizedPost.tags.map((t) => (
                 <Badge
                   key={t}
                   variant="outline"
@@ -123,7 +129,7 @@ export default async function PostDetail({ params }: Props) {
           )}
         </article>
       </main>
-      <Footer settings={settings} socials={socials} />
+      <Footer settings={localizedSettings} socials={socials} locale={locale} />
     </>
   );
 }

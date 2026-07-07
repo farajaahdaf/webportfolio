@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/site/magnetic";
 import type { SiteSettings } from "@/lib/types";
+import { dictionary, type Locale } from "@/lib/i18n";
 
 const techIcons = [
   { Icon: Brain, label: "AI", style: "top-[10%] left-[8%]", delay: 0 },
@@ -31,8 +32,15 @@ const iconForCta = (label: string) => {
   return ArrowRight;
 };
 
-export function Hero({ settings }: { settings: SiteSettings }) {
+export function Hero({
+  settings,
+  locale = "en",
+}: {
+  settings: SiteSettings;
+  locale?: Locale;
+}) {
   const { profile, hero } = settings;
+  const t = dictionary[locale];
   const titleSegments = profile.title.split("·").map((s) => s.trim()).filter(Boolean);
   const Primary = iconForCta(hero.primaryCta.label);
   const Secondary = iconForCta(hero.secondaryCta.label);
@@ -159,7 +167,7 @@ export function Hero({ settings }: { settings: SiteSettings }) {
               className="relative mx-auto mt-20 max-w-3xl"
             >
               <p className="mb-4 text-center text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">
-                Working with
+                {t.hero.workingWith}
               </p>
               <div className="relative overflow-hidden mask-fade-r">
                 <div className="flex animate-marquee gap-12 whitespace-nowrap">
@@ -184,7 +192,7 @@ export function Hero({ settings }: { settings: SiteSettings }) {
           className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 md:flex flex-col items-center gap-2"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            Scroll
+            {t.hero.scroll}
           </span>
           <div className="h-10 w-px overflow-hidden bg-border">
             <motion.div

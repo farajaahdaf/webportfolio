@@ -5,6 +5,8 @@ import { SectionHeader } from "@/components/site/section-header";
 import { BlogSearch } from "./blog-search";
 import { getPublishedPosts, getSocials } from "@/lib/data";
 import { getSettings } from "@/lib/settings";
+import { getLocale } from "@/lib/locale";
+import { dictionary, localizePost, localizeSettings } from "@/lib/i18n";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isSectionVisible } from "@/lib/sections";
@@ -18,30 +20,34 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogIndex() {
+  const locale = await getLocale();
   const [posts, settings, socials] = await Promise.all([
     getPublishedPosts(),
     getSettings(),
     getSocials(),
   ]);
-  if (!isSectionVisible(settings, "blog")) notFound();
-  const categories = Array.from(new Set(posts.map((p) => p.category)));
+  const localizedSettings = localizeSettings(settings, locale);
+  const localizedPosts = posts.map((post) => localizePost(post, locale));
+  const t = dictionary[locale];
+  if (!isSectionVisible(localizedSettings, "blog")) notFound();
+  const categories = Array.from(new Set(localizedPosts.map((p) => p.category)));
 
   return (
     <>
       <GridBackground />
-      <Navbar settings={settings} />
+      <Navbar settings={localizedSettings} locale={locale} />
       <main className="relative pt-32 md:pt-40">
         <div className="container-prose pb-24">
           <SectionHeader
-            eyebrow="Writing"
-            title="Field notes."
-            description="Essays and short notes on engineering, AI research, and craft."
+            eyebrow={t.blog.eyebrow}
+            title={t.blog.indexTitle}
+            description={t.blog.description}
           />
 
-          <BlogSearch posts={posts} categories={categories} />
+          <BlogSearch posts={localizedPosts} categories={categories} locale={locale} />
         </div>
       </main>
-      <Footer settings={settings} socials={socials} />
+      <Footer settings={localizedSettings} socials={socials} locale={locale} />
     </>
   );
 }

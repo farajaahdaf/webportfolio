@@ -31,6 +31,7 @@ const sectionOptions: Array<{
 export function SettingsManager({ initial }: { initial: SiteSettings }) {
   const [s, setS] = useState<SiteSettings>(initial);
   const [saving, setSaving] = useState(false);
+  const idSettings = s.translations?.id;
 
   async function save() {
     setSaving(true);
@@ -70,6 +71,7 @@ export function SettingsManager({ initial }: { initial: SiteSettings }) {
           <TabsTrigger value="about" className="rounded-xl">About</TabsTrigger>
           <TabsTrigger value="stats" className="rounded-xl">Stats</TabsTrigger>
           <TabsTrigger value="contact" className="rounded-xl">Contact</TabsTrigger>
+          <TabsTrigger value="indonesian" className="rounded-xl">Indonesian</TabsTrigger>
           <TabsTrigger value="sections" className="rounded-xl">Sections</TabsTrigger>
         </TabsList>
 
@@ -383,6 +385,289 @@ export function SettingsManager({ initial }: { initial: SiteSettings }) {
                 value={s.footer.tagline}
                 onChange={(e) =>
                   setS({ ...s, footer: { ...s.footer, tagline: e.target.value } })
+                }
+              />
+            </Field>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="indonesian" className="mt-6">
+          <Card title="Indonesian profile text">
+            <p className="mb-4 text-xs text-muted-foreground">
+              Optional Bahasa Indonesia copy for the public homepage. Empty fields fall back to the default English content.
+            </p>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <Field label="Title ID">
+                <Input
+                  value={idSettings?.profile?.title || ""}
+                  onChange={(e) =>
+                    setS((prev) => ({
+                      ...prev,
+                      translations: {
+                        ...prev.translations,
+                        id: {
+                          ...prev.translations?.id,
+                          profile: {
+                            ...prev.translations?.id?.profile,
+                            title: e.target.value,
+                          },
+                        },
+                      },
+                    }))
+                  }
+                  placeholder="AI & Machine Learning · Analisis Data"
+                />
+              </Field>
+              <Field label="Availability ID">
+                <Input
+                  value={idSettings?.profile?.availability || ""}
+                  onChange={(e) =>
+                    setS((prev) => ({
+                      ...prev,
+                      translations: {
+                        ...prev.translations,
+                        id: {
+                          ...prev.translations?.id,
+                          profile: {
+                            ...prev.translations?.id?.profile,
+                            availability: e.target.value,
+                          },
+                        },
+                      },
+                    }))
+                  }
+                  placeholder="Terbuka untuk kolaborasi terpilih"
+                />
+              </Field>
+            </div>
+            <Field label="Tagline ID" className="mt-4">
+              <Textarea
+                rows={2}
+                value={idSettings?.profile?.tagline || ""}
+                onChange={(e) =>
+                  setS((prev) => ({
+                    ...prev,
+                    translations: {
+                      ...prev.translations,
+                      id: {
+                        ...prev.translations?.id,
+                        profile: {
+                          ...prev.translations?.id?.profile,
+                          tagline: e.target.value,
+                        },
+                      },
+                    },
+                  }))
+                }
+              />
+            </Field>
+            <Field label="Short description ID" className="mt-4">
+              <Textarea
+                rows={3}
+                value={idSettings?.profile?.description || ""}
+                onChange={(e) =>
+                  setS((prev) => ({
+                    ...prev,
+                    translations: {
+                      ...prev.translations,
+                      id: {
+                        ...prev.translations?.id,
+                        profile: {
+                          ...prev.translations?.id?.profile,
+                          description: e.target.value,
+                        },
+                      },
+                    },
+                  }))
+                }
+              />
+            </Field>
+          </Card>
+
+          <Card title="Indonesian hero CTAs" className="mt-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <Field label="Primary CTA ID">
+                <Input
+                  value={idSettings?.hero?.primaryCta?.label || ""}
+                  onChange={(e) =>
+                    setS((prev) => ({
+                      ...prev,
+                      translations: {
+                        ...prev.translations,
+                        id: {
+                          ...prev.translations?.id,
+                          hero: {
+                            ...prev.translations?.id?.hero,
+                            primaryCta: {
+                              ...prev.translations?.id?.hero?.primaryCta,
+                              label: e.target.value,
+                            },
+                          },
+                        },
+                      },
+                    }))
+                  }
+                  placeholder="Lihat Proyek"
+                />
+              </Field>
+              <Field label="Secondary CTA ID">
+                <Input
+                  value={idSettings?.hero?.secondaryCta?.label || ""}
+                  onChange={(e) =>
+                    setS((prev) => ({
+                      ...prev,
+                      translations: {
+                        ...prev.translations,
+                        id: {
+                          ...prev.translations?.id,
+                          hero: {
+                            ...prev.translations?.id?.hero,
+                            secondaryCta: {
+                              ...prev.translations?.id?.hero?.secondaryCta,
+                              label: e.target.value,
+                            },
+                          },
+                        },
+                      },
+                    }))
+                  }
+                  placeholder="Unduh Resume"
+                />
+              </Field>
+              <Field label="Tertiary CTA ID">
+                <Input
+                  value={idSettings?.hero?.tertiaryCta?.label || ""}
+                  onChange={(e) =>
+                    setS((prev) => ({
+                      ...prev,
+                      translations: {
+                        ...prev.translations,
+                        id: {
+                          ...prev.translations?.id,
+                          hero: {
+                            ...prev.translations?.id?.hero,
+                            tertiaryCta: {
+                              ...prev.translations?.id?.hero?.tertiaryCta,
+                              label: e.target.value,
+                            },
+                          },
+                        },
+                      },
+                    }))
+                  }
+                  placeholder="Hubungi Saya"
+                />
+              </Field>
+            </div>
+          </Card>
+
+          <Card title="Indonesian about text" className="mt-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <Field label="Eyebrow ID">
+                <Input
+                  value={idSettings?.about?.eyebrow || ""}
+                  onChange={(e) =>
+                    setS((prev) => ({
+                      ...prev,
+                      translations: {
+                        ...prev.translations,
+                        id: {
+                          ...prev.translations?.id,
+                          about: {
+                            ...prev.translations?.id?.about,
+                            eyebrow: e.target.value,
+                          },
+                        },
+                      },
+                    }))
+                  }
+                  placeholder="Tentang"
+                />
+              </Field>
+              <Field label="Section title ID" className="md:col-span-2">
+                <Input
+                  value={idSettings?.about?.title || ""}
+                  onChange={(e) =>
+                    setS((prev) => ({
+                      ...prev,
+                      translations: {
+                        ...prev.translations,
+                        id: {
+                          ...prev.translations?.id,
+                          about: {
+                            ...prev.translations?.id?.about,
+                            title: e.target.value,
+                          },
+                        },
+                      },
+                    }))
+                  }
+                />
+              </Field>
+            </div>
+            <Field label="Description ID" className="mt-4">
+              <Textarea
+                rows={3}
+                value={idSettings?.about?.description || ""}
+                onChange={(e) =>
+                  setS((prev) => ({
+                    ...prev,
+                    translations: {
+                      ...prev.translations,
+                      id: {
+                        ...prev.translations?.id,
+                        about: {
+                          ...prev.translations?.id?.about,
+                          description: e.target.value,
+                        },
+                      },
+                    },
+                  }))
+                }
+              />
+            </Field>
+          </Card>
+
+          <Card title="Indonesian contact & footer" className="mt-4">
+            <Field label="Contact blurb ID">
+              <Textarea
+                rows={3}
+                value={idSettings?.contact?.blurb || ""}
+                onChange={(e) =>
+                  setS((prev) => ({
+                    ...prev,
+                    translations: {
+                      ...prev.translations,
+                      id: {
+                        ...prev.translations?.id,
+                        contact: {
+                          ...prev.translations?.id?.contact,
+                          blurb: e.target.value,
+                        },
+                      },
+                    },
+                  }))
+                }
+              />
+            </Field>
+            <Field label="Footer tagline ID" className="mt-4">
+              <Textarea
+                rows={3}
+                value={idSettings?.footer?.tagline || ""}
+                onChange={(e) =>
+                  setS((prev) => ({
+                    ...prev,
+                    translations: {
+                      ...prev.translations,
+                      id: {
+                        ...prev.translations?.id,
+                        footer: {
+                          ...prev.translations?.id?.footer,
+                          tagline: e.target.value,
+                        },
+                      },
+                    },
+                  }))
                 }
               />
             </Field>

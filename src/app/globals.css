@@ -158,6 +158,15 @@
   }
 }
 
+@keyframes language-progress {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

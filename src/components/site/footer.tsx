@@ -3,6 +3,7 @@ import { Github, Linkedin, Mail, Instagram, Twitter, Youtube, Globe, ArrowUpRigh
 import type { SiteSettings, Social } from "@/lib/types";
 import { isValidUrl } from "@/lib/utils";
 import { isSectionVisible, type SectionKey } from "@/lib/sections";
+import { dictionary, type Locale } from "@/lib/i18n";
 
 const socialIconMap: Record<string, LucideIcon> = {
   github: Github,
@@ -22,10 +23,13 @@ function iconFor(platform: string): LucideIcon {
 export function Footer({
   settings,
   socials,
+  locale = "en",
 }: {
   settings?: SiteSettings;
   socials?: Social[];
+  locale?: Locale;
 }) {
+  const t = dictionary[locale];
   const year = new Date().getFullYear();
   const name = settings?.profile.name || "Faraja Ahdaf";
   const initial = name.charAt(0).toUpperCase();
@@ -34,19 +38,20 @@ export function Footer({
   const visibleSocials = (socials || []).filter((s) => s.visible);
 
   const navItems: Array<{ label: string; href: string; section: SectionKey }> = [
-    { label: "About", href: "/#about", section: "about" },
-    { label: "Projects", href: "/#projects", section: "projects" },
-    { label: "Experience", href: "/#experience", section: "experience" },
-    { label: "Blog", href: "/blog", section: "blog" },
+    { label: t.nav.about, href: "/#about", section: "about" },
+    { label: t.nav.projects, href: "/#projects", section: "projects" },
+    { label: t.nav.experience, href: "/#experience", section: "experience" },
+    { label: t.nav.certificates, href: "/#certificates", section: "certificates" },
+    { label: t.nav.blog, href: "/blog", section: "blog" },
   ];
 
   const navGroups = [
     {
-      title: "Navigate",
+      title: t.footer.navigate,
       items: navItems.filter((item) => isSectionVisible(settings, item.section)),
     },
     {
-      title: "Connect",
+      title: t.footer.connect,
       items: visibleSocials.map((s) => ({
         label: s.platform,
         href: s.url,
@@ -54,12 +59,12 @@ export function Footer({
       })),
     },
     {
-      title: "Resources",
+      title: t.footer.resources,
       items: [
         ...(isValidUrl(resume)
-          ? [{ label: "Resume", href: resume!, external: true }]
+          ? [{ label: t.footer.resume, href: resume!, external: true }]
           : []),
-        { label: "Admin", href: "/admin" },
+        { label: t.footer.admin, href: "/admin" },
       ],
     },
   ];
@@ -134,10 +139,10 @@ export function Footer({
 
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground md:flex-row md:items-center">
           <p>
-            © {year} {name}. All rights reserved.
+            © {year} {name}. {t.footer.rights}
           </p>
           <p className="font-mono">
-            Built with <span className="text-foreground">Next.js</span> &amp;{" "}
+            {t.footer.builtWith} <span className="text-foreground">Next.js</span> &amp;{" "}
             <span className="text-foreground">Tailwind CSS</span>
           </p>
         </div>
