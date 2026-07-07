@@ -1,6 +1,30 @@
 [
-  { "id": "soc_github", "platform": "GitHub", "url": "https://github.com/farajaahdaf", "handle": "farajaahdaf", "visible": true },
-  { "id": "soc_linkedin", "platform": "LinkedIn", "url": "https://linkedin.com/in/farajaahdaf", "handle": "farajaahdaf", "visible": true },
-  { "id": "soc_email", "platform": "Email", "url": "mailto:farajaahdaf@gmail.com", "handle": "farajaahdaf@gmail.com", "visible": true },
-  { "id": "soc_instagram", "platform": "Instagram", "url": "https://instagram.com/farajaahdaf", "handle": "@farajaahdaf", "visible": true }
+  {
+    "id": "soc_github",
+    "url": "https://github.com/farajaahdaf",
+    "handle": "farajaahdaf",
+    "visible": true,
+    "platform": "GitHub"
+  },
+  {
+    "id": "soc_linkedin",
+    "url": "https://linkedin.com/in/farajaahdaf",
+    "handle": "farajaahdaf",
+    "visible": true,
+    "platform": "LinkedIn"
+  },
+  {
+    "id": "soc_email",
+    "url": "mailto:farajaahdaf@gmail.com",
+    "handle": "farajaahdaf@gmail.com",
+    "visible": true,
+    "platform": "Email"
+  },
+  {
+    "id": "soc_instagram",
+    "url": "https://instagram.com/farajaahdaf",
+    "handle": "@farajaahdaf",
+    "visible": true,
+    "platform": "Instagram"
+  }
 ]

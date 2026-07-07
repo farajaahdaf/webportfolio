@@ -2,66 +2,87 @@
   {
     "id": "exp_telkomuni",
     "role": "B.Eng., Informatics",
-    "organization": "Telkom University",
+    "tech": [
+      "Python",
+      "TensorFlow",
+      "Laravel",
+      "Next.js"
+    ],
     "type": "Education",
+    "current": true,
+    "endDate": "2026-07-31",
     "location": "Bandung, Indonesia",
     "startDate": "2022-08-01",
-    "endDate": "2026-07-31",
-    "current": true,
     "description": "Concentration in software engineering and machine learning. Active in AI research lab.",
     "achievements": [
       "Top-decile cohort GPA",
       "AI lab research assistant, Indonesian NLP",
       "Mentor for first-year web development cohort"
     ],
-    "tech": ["Python", "TensorFlow", "Laravel", "Next.js"]
+    "organization": "Telkom University"
   },
   {
     "id": "exp_fullstack",
     "role": "Freelance Web Developer",
-    "organization": "Independent / Client work",
+    "tech": [
+      "Laravel",
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Docker"
+    ],
     "type": "Work",
+    "current": true,
     "location": "Remote",
     "startDate": "2023-01-01",
-    "current": true,
     "description": "Building production web platforms as a side practice alongside university and AI research. Projects range from event ticketing to wellness platforms.",
     "achievements": [
       "Delivered Evoria (event ticketing) and Selaras Diri (wellness) to production",
       "Built reusable admin panel shared across client projects",
       "Ship with Docker, CI/CD, and cloud-first deployment patterns"
     ],
-    "tech": ["Laravel", "Next.js", "TypeScript", "PostgreSQL", "Docker"]
+    "organization": "Independent / Client work"
   },
   {
     "id": "exp_airesearch",
     "role": "AI Research Assistant",
-    "organization": "Telkom University · NLP Lab",
+    "tech": [
+      "Python",
+      "PyTorch",
+      "Transformers",
+      "Weights & Biases"
+    ],
     "type": "Research",
+    "current": true,
     "location": "Bandung, Indonesia",
     "startDate": "2024-03-01",
-    "current": true,
     "description": "Applied NLP research focused on Indonesian-language understanding and benchmarking modern transformer architectures.",
     "achievements": [
       "Benchmarked transformer models across 5 sentiment datasets",
       "Co-authored two internal whitepapers",
       "Built a reproducible training harness adopted by the lab"
     ],
-    "tech": ["Python", "PyTorch", "Transformers", "Weights & Biases"]
+    "organization": "Telkom University · NLP Lab"
   },
   {
     "id": "exp_devops",
     "role": "Cloud & DevOps Practice",
-    "organization": "Self-directed",
+    "tech": [
+      "Azure",
+      "Docker",
+      "GitHub Actions",
+      "Terraform"
+    ],
     "type": "Project",
+    "current": true,
     "location": "Remote",
     "startDate": "2024-06-01",
-    "current": true,
     "description": "Standardizing deploys with containers, IaC, and a strict CI/CD recipe.",
     "achievements": [
       "Migrated 4 client apps to Azure Container Apps",
       "Cut deploy time from 14m to 3m with smarter caching",
       "Built reusable GitHub Actions composite workflows"
     ],
-    "tech": ["Azure", "Docker", "GitHub Actions", "Terraform"]
+    "organization": "Self-directed"
   }
 ]

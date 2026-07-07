@@ -2,12 +2,6 @@
   {
     "id": "prj_evoria",
     "slug": "evoria",
-    "title": "Evoria — Event Ticketing Platform",
-    "tagline": "A production event discovery and ticketing platform for Indonesia, built with Laravel + Livewire and an AI-powered search assistant.",
-    "description": "Evoria is a full-stack event ticketing platform where users can browse, search, and purchase tickets for concerts, conferences, workshops, exhibitions, and sports events. Organisers can create and manage events through a dedicated dashboard. The platform features Evoria AI, a chatbot that understands natural language queries like \"Cariin konser musik gratis bulan ini\" to help visitors discover events conversationally.",
-    "content": "## Overview\n\nEvoria brings event discovery and ticketing under one roof. Visitors land on a curated homepage with featured events, category navigation, and a conversational AI assistant that makes search feel like texting a friend.\n\n## Key Features\n\n- **Event marketplace** — browse concerts, tech conferences, workshops, sports, and art exhibitions with rich listing cards.\n- **Organiser dashboard** — register as an organiser, create events with banners, pricing, and schedules.\n- **Evoria AI** — a floating chatbot that accepts natural-language queries to surface relevant events instantly.\n- **Category and sponsor pages** — dedicated routes for each event category and sponsor information.\n- **Laravel + Livewire stack** — server-rendered Blade views with reactive Livewire components for search, filters, and modal interactions.\n\n## Technical Highlights\n\n- Docker-based reproducible builds and deployment.\n- MySQL-backed event, ticket, and user data.\n- Responsive Tailwind CSS frontend with dark-first design.\n- Real-time search powered by Livewire without a separate API layer.",
-    "thumbnail": "/evoria.jpg",
-    "liveUrl": "https://evoria.life/",
     "tech": [
       "PHP",
       "Laravel",
@@ -16,10 +10,10 @@
       "Tailwind CSS",
       "Docker"
     ],
-    "category": "Web",
-    "featured": true,
-    "githubUrl": "https://github.com/farajaahdaf/Evoria",
+    "title": "Evoria — Event Ticketing Platform",
     "status": "published",
+    "content": "## Overview\n\nEvoria brings event discovery and ticketing under one roof. Visitors land on a curated homepage with featured events, category navigation, and a conversational AI assistant that makes search feel like texting a friend.\n\n## Key Features\n\n- **Event marketplace** — browse concerts, tech conferences, workshops, sports, and art exhibitions with rich listing cards.\n- **Organiser dashboard** — register as an organiser, create events with banners, pricing, and schedules.\n- **Evoria AI** — a floating chatbot that accepts natural-language queries to surface relevant events instantly.\n- **Category and sponsor pages** — dedicated routes for each event category and sponsor information.\n- **Laravel + Livewire stack** — server-rendered Blade views with reactive Livewire components for search, filters, and modal interactions.\n\n## Technical Highlights\n\n- Docker-based reproducible builds and deployment.\n- MySQL-backed event, ticket, and user data.\n- Responsive Tailwind CSS frontend with dark-first design.\n- Real-time search powered by Livewire without a separate API layer.",
+    "liveUrl": "https://evoria.life/",
     "metrics": [
       {
         "label": "Stack",
@@ -34,18 +28,18 @@
         "value": "2026"
       }
     ],
+    "tagline": "A production event discovery and ticketing platform for Indonesia, built with Laravel + Livewire and an AI-powered search assistant.",
+    "category": "Web",
+    "featured": true,
     "createdAt": "2026-03-06T18:47:18.000Z",
-    "updatedAt": "2026-07-07T11:00:00.000Z"
+    "githubUrl": "https://github.com/farajaahdaf/Evoria",
+    "thumbnail": "/evoria.jpg",
+    "updatedAt": "2026-07-07T11:00:00.000Z",
+    "description": "Evoria is a full-stack event ticketing platform where users can browse, search, and purchase tickets for concerts, conferences, workshops, exhibitions, and sports events. Organisers can create and manage events through a dedicated dashboard. The platform features Evoria AI, a chatbot that understands natural language queries like \"Cariin konser musik gratis bulan ini\" to help visitors discover events conversationally."
   },
   {
     "id": "prj_selarasdiri",
     "slug": "selaras-diri",
-    "title": "Selaras Diri — Wellness & Counseling Platform",
-    "tagline": "A mental health and wellness community platform connecting clients with psychologists through counseling, support groups, and mindful events.",
-    "description": "Selaras Diri is a Next.js platform that bridges mental health professionals and the community. It offers individual and couple counseling sessions, art therapy, mindfulness workshops, peer counselor training, and monthly support groups — all bookable through a WhatsApp-integrated flow. A recommendation quiz helps new visitors match with the right psychologist and service.",
-    "content": "## Overview\n\nSelaras Diri (\"Harmonised Self\") is a wellness and mental health community built to make psychological support accessible and approachable. The platform combines service discovery, psychologist profiles, event calendars, and a smart recommendation system into one calm, welcoming experience.\n\n## Key Features\n\n- **Psychologist directory** — profiles of clinical and child-adolescent psychologists with specialisations and photos.\n- **Service catalog** — individual counseling, couple therapy, psychological assessment, and bundled packages with transparent pricing.\n- **Support groups & events** — monthly sharing circles, trekking, art therapy, yoga, barre, padel, and wellness workshops.\n- **Recommendation quiz** — five-question needs assessment that algorithmically matches visitors with suitable psychologists and services.\n- **WhatsApp booking** — all counseling bookings flow through WhatsApp for a low-friction, human-first intake experience.\n- **Content-rich pages** — dedicated tentang (about), layanan (services), psikolog, and event pages with consistent branding.\n\n## Technical Highlights\n\n- Next.js App Router with responsive, mobile-first design.\n- Static + ISR rendering for marketing pages with fast load times.\n- Custom recommendation engine that scores psychologist-service pairs based on user quiz responses.\n- Image-optimised psychologist headshots and event carousel.\n- Deployed on Vercel with environment-based configuration.",
-    "thumbnail": "/selaras-diri.jpg",
-    "liveUrl": "https://selaras-diri.vercel.app/",
     "tech": [
       "Next.js",
       "TypeScript",
@@ -53,9 +47,10 @@
       "Vercel",
       "WhatsApp API"
     ],
-    "category": "Web",
-    "featured": true,
+    "title": "Selaras Diri — Wellness & Counseling Platform",
     "status": "published",
+    "content": "## Overview\n\nSelaras Diri (\"Harmonised Self\") is a wellness and mental health community built to make psychological support accessible and approachable. The platform combines service discovery, psychologist profiles, event calendars, and a smart recommendation system into one calm, welcoming experience.\n\n## Key Features\n\n- **Psychologist directory** — profiles of clinical and child-adolescent psychologists with specialisations and photos.\n- **Service catalog** — individual counseling, couple therapy, psychological assessment, and bundled packages with transparent pricing.\n- **Support groups & events** — monthly sharing circles, trekking, art therapy, yoga, barre, padel, and wellness workshops.\n- **Recommendation quiz** — five-question needs assessment that algorithmically matches visitors with suitable psychologists and services.\n- **WhatsApp booking** — all counseling bookings flow through WhatsApp for a low-friction, human-first intake experience.\n- **Content-rich pages** — dedicated tentang (about), layanan (services), psikolog, and event pages with consistent branding.\n\n## Technical Highlights\n\n- Next.js App Router with responsive, mobile-first design.\n- Static + ISR rendering for marketing pages with fast load times.\n- Custom recommendation engine that scores psychologist-service pairs based on user quiz responses.\n- Image-optimised psychologist headshots and event carousel.\n- Deployed on Vercel with environment-based configuration.",
+    "liveUrl": "https://selaras-diri.vercel.app/",
     "metrics": [
       {
         "label": "Stack",
@@ -70,26 +65,25 @@
         "value": "2025"
       }
     ],
+    "tagline": "A mental health and wellness community platform connecting clients with psychologists through counseling, support groups, and mindful events.",
+    "category": "Web",
+    "featured": true,
     "createdAt": "2025-06-01T12:00:00.000Z",
-    "updatedAt": "2026-07-07T11:00:00.000Z"
+    "thumbnail": "/selaras-diri.jpg",
+    "updatedAt": "2026-07-07T11:00:00.000Z",
+    "description": "Selaras Diri is a Next.js platform that bridges mental health professionals and the community. It offers individual and couple counseling sessions, art therapy, mindfulness workshops, peer counselor training, and monthly support groups — all bookable through a WhatsApp-integrated flow. A recommendation quiz helps new visitors match with the right psychologist and service."
   },
   {
     "id": "prj_saas12factor",
     "slug": "saas-twelve-factor-app",
-    "title": "SaaS · Twelve-Factor App",
-    "tagline": "A simple SaaS demo built around the Twelve-Factor App methodology.",
-    "description": "A small SaaS application built to demonstrate the Twelve-Factor App methodology — configuration via environment, stateless processes, and a clean separation of build and run stages. The project is orchestrated with a Makefile and implemented in JavaScript, serving as a reference for cloud-native, portable software design.",
-    "content": "Full case study coming soon.",
-    "thumbnail": "https://opengraph.githubassets.com/1/farajaahdaf/SaaS-Twelve-Factor-App",
     "tech": [
       "JavaScript",
       "Node.js",
       "Makefile"
     ],
-    "category": "DevOps",
-    "featured": false,
-    "githubUrl": "https://github.com/farajaahdaf/SaaS-Twelve-Factor-App",
+    "title": "SaaS · Twelve-Factor App",
     "status": "published",
+    "content": "Full case study coming soon.",
     "metrics": [
       {
         "label": "Methodology",
@@ -104,25 +98,25 @@
         "value": "2025"
       }
     ],
+    "tagline": "A simple SaaS demo built around the Twelve-Factor App methodology.",
+    "category": "DevOps",
+    "featured": false,
     "createdAt": "2025-12-20T06:18:09.000Z",
-    "updatedAt": "2025-12-20T06:18:57.000Z"
+    "githubUrl": "https://github.com/farajaahdaf/SaaS-Twelve-Factor-App",
+    "thumbnail": "https://opengraph.githubassets.com/1/farajaahdaf/SaaS-Twelve-Factor-App",
+    "updatedAt": "2025-12-20T06:18:57.000Z",
+    "description": "A small SaaS application built to demonstrate the Twelve-Factor App methodology — configuration via environment, stateless processes, and a clean separation of build and run stages. The project is orchestrated with a Makefile and implemented in JavaScript, serving as a reference for cloud-native, portable software design."
   },
   {
     "id": "prj_tubespbo",
     "slug": "tubes-pbo",
-    "title": "TubesPBO · Object-Oriented Programming",
-    "tagline": "Object-oriented programming coursework built in Java with an HTML interface.",
-    "description": "A university course project for Object-Oriented Programming (Pemrograman Berorientasi Objek), implementing core OOP concepts — encapsulation, inheritance, and polymorphism — in Java, paired with an HTML-based interface for interacting with the application.",
-    "content": "Full case study coming soon.",
-    "thumbnail": "https://opengraph.githubassets.com/1/farajaahdaf/TubesPBO",
     "tech": [
       "Java",
       "HTML"
     ],
-    "category": "Web",
-    "featured": false,
-    "githubUrl": "https://github.com/farajaahdaf/TubesPBO",
+    "title": "TubesPBO · Object-Oriented Programming",
     "status": "published",
+    "content": "Full case study coming soon.",
     "metrics": [
       {
         "label": "Language",
@@ -137,17 +131,18 @@
         "value": "2025"
       }
     ],
+    "tagline": "Object-oriented programming coursework built in Java with an HTML interface.",
+    "category": "Web",
+    "featured": false,
     "createdAt": "2025-05-13T09:05:20.000Z",
-    "updatedAt": "2025-06-16T07:39:46.000Z"
+    "githubUrl": "https://github.com/farajaahdaf/TubesPBO",
+    "thumbnail": "https://opengraph.githubassets.com/1/farajaahdaf/TubesPBO",
+    "updatedAt": "2025-06-16T07:39:46.000Z",
+    "description": "A university course project for Object-Oriented Programming (Pemrograman Berorientasi Objek), implementing core OOP concepts — encapsulation, inheritance, and polymorphism — in Java, paired with an HTML-based interface for interacting with the application."
   },
   {
     "id": "prj_solanatoken",
     "slug": "track-solana-token-balance",
-    "title": "Solana Token Balance Tracker",
-    "tagline": "A web tool to track Solana wallet token balances in real time.",
-    "description": "A Node.js and EJS web application that queries the Solana network to track token balances for a given wallet address, rendering the results in a lightweight server-side view. A focused exploration of on-chain data and blockchain RPC integration.",
-    "content": "Full case study coming soon.",
-    "thumbnail": "https://opengraph.githubassets.com/1/farajaahdaf/track-solana-tokenBalance",
     "tech": [
       "JavaScript",
       "Node.js",
@@ -155,10 +150,9 @@
       "Solana",
       "CSS"
     ],
-    "category": "Web",
-    "featured": false,
-    "githubUrl": "https://github.com/farajaahdaf/track-solana-tokenBalance",
+    "title": "Solana Token Balance Tracker",
     "status": "published",
+    "content": "Full case study coming soon.",
     "metrics": [
       {
         "label": "Chain",
@@ -173,26 +167,26 @@
         "value": "2025"
       }
     ],
+    "tagline": "A web tool to track Solana wallet token balances in real time.",
+    "category": "Web",
+    "featured": false,
     "createdAt": "2025-01-04T14:50:11.000Z",
-    "updatedAt": "2025-01-04T15:03:03.000Z"
+    "githubUrl": "https://github.com/farajaahdaf/track-solana-tokenBalance",
+    "thumbnail": "https://opengraph.githubassets.com/1/farajaahdaf/track-solana-tokenBalance",
+    "updatedAt": "2025-01-04T15:03:03.000Z",
+    "description": "A Node.js and EJS web application that queries the Solana network to track token balances for a given wallet address, rendering the results in a lightweight server-side view. A focused exploration of on-chain data and blockchain RPC integration."
   },
   {
     "id": "prj_tubesaka",
     "slug": "tubes-aka",
-    "title": "TubesAKA · Algorithm Complexity Analysis",
-    "tagline": "Interactive browser visualization for algorithm complexity analysis.",
-    "description": "A coursework project for Algorithm Complexity Analysis (Analisis Kompleksitas Algoritma, 2024) that visualizes and compares the time complexity of algorithms directly in the browser. Built with plain HTML, CSS, and JavaScript to keep the focus on the underlying analysis.",
-    "content": "Full case study coming soon.",
-    "thumbnail": "https://opengraph.githubassets.com/1/farajaahdaf/TubesAKA",
     "tech": [
       "JavaScript",
       "HTML",
       "CSS"
     ],
-    "category": "Research",
-    "featured": false,
-    "githubUrl": "https://github.com/farajaahdaf/TubesAKA",
+    "title": "TubesAKA · Algorithm Complexity Analysis",
     "status": "published",
+    "content": "Full case study coming soon.",
     "metrics": [
       {
         "label": "Topic",
@@ -207,24 +201,24 @@
         "value": "2024"
       }
     ],
+    "tagline": "Interactive browser visualization for algorithm complexity analysis.",
+    "category": "Research",
+    "featured": false,
     "createdAt": "2024-12-23T05:09:13.000Z",
-    "updatedAt": "2024-12-23T05:13:18.000Z"
+    "githubUrl": "https://github.com/farajaahdaf/TubesAKA",
+    "thumbnail": "https://opengraph.githubassets.com/1/farajaahdaf/TubesAKA",
+    "updatedAt": "2024-12-23T05:13:18.000Z",
+    "description": "A coursework project for Algorithm Complexity Analysis (Analisis Kompleksitas Algoritma, 2024) that visualizes and compares the time complexity of algorithms directly in the browser. Built with plain HTML, CSS, and JavaScript to keep the focus on the underlying analysis."
   },
   {
     "id": "prj_alpro",
     "slug": "tugas-besar-alpro",
-    "title": "TugasBesarAlpro · Algorithms in Go",
-    "tagline": "Foundational algorithms and programming project implemented in Go.",
-    "description": "An Algorithms & Programming (Algoritma & Pemrograman) course project implemented entirely in Go, covering fundamental data structures, control flow, and problem-solving routines. A clean, dependency-free codebase focused on programming fundamentals.",
-    "content": "Full case study coming soon.",
-    "thumbnail": "https://opengraph.githubassets.com/1/farajaahdaf/TugasBesarAlpro",
     "tech": [
       "Go"
     ],
-    "category": "Research",
-    "featured": false,
-    "githubUrl": "https://github.com/farajaahdaf/TugasBesarAlpro",
+    "title": "TugasBesarAlpro · Algorithms in Go",
     "status": "published",
+    "content": "Full case study coming soon.",
     "metrics": [
       {
         "label": "Language",
@@ -239,7 +233,13 @@
         "value": "2024"
       }
     ],
+    "tagline": "Foundational algorithms and programming project implemented in Go.",
+    "category": "Research",
+    "featured": false,
     "createdAt": "2024-06-01T12:32:17.000Z",
-    "updatedAt": "2024-06-01T12:38:25.000Z"
+    "githubUrl": "https://github.com/farajaahdaf/TugasBesarAlpro",
+    "thumbnail": "https://opengraph.githubassets.com/1/farajaahdaf/TugasBesarAlpro",
+    "updatedAt": "2024-06-01T12:38:25.000Z",
+    "description": "An Algorithms & Programming (Algoritma & Pemrograman) course project implemented entirely in Go, covering fundamental data structures, control flow, and problem-solving routines. A clean, dependency-free codebase focused on programming fundamentals."
   }
 ]

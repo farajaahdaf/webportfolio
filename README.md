@@ -136,6 +136,9 @@ For Vercel: import the repo, provision Neon and Vercel Blob, set the env vars fr
 | `npm start` | Serve the production build |
 | `npm run lint` | ESLint |
 | `npm run type-check` | TypeScript noEmit check |
+| `node --env-file=.env.local scripts/seed.mjs` | Push `data/*.json` to Neon |
+| `node --env-file=.env.local scripts/pull.mjs` | Pull Neon data into `data/*.json` |
+| `node --env-file=.env.local scripts/reset-admin.mjs` | Reset admin password |
 
 ## License
 

@@ -1,16 +1,128 @@
 [
-  { "id": "skl_python", "name": "Python", "category": "AI/ML", "proficiency": 90, "years": 4, "icon": "python", "color": "3776AB" },
-  { "id": "skl_aiml", "name": "Machine Learning", "category": "AI/ML", "proficiency": 86, "years": 3, "icon": "tensorflow", "color": "FF6F00" },
-  { "id": "skl_pandas", "name": "Pandas", "category": "AI/ML", "proficiency": 84, "years": 3, "icon": "pandas", "color": "150458" },
-  { "id": "skl_numpy", "name": "NumPy", "category": "AI/ML", "proficiency": 84, "years": 3, "icon": "numpy", "color": "013243" },
-  { "id": "skl_scikit", "name": "Scikit-learn", "category": "AI/ML", "proficiency": 82, "years": 2, "icon": "scikitlearn", "color": "F7931E" },
-  { "id": "skl_transformer", "name": "Transformers", "category": "AI/ML", "proficiency": 80, "years": 1, "icon": "huggingface", "color": "FFD21E" },
-  { "id": "skl_postgres", "name": "PostgreSQL", "category": "Database", "proficiency": 82, "years": 3, "icon": "postgresql", "color": "4169E1" },
-  { "id": "skl_mysql", "name": "MySQL", "category": "Database", "proficiency": 80, "years": 3, "icon": "mysql", "color": "4479A1" },
-  { "id": "skl_dataviz", "name": "Data Visualization", "category": "AI/ML", "proficiency": 78, "years": 2, "icon": "plotly", "color": "3F4F75" },
-  { "id": "skl_laravel", "name": "Laravel", "category": "Tools", "proficiency": 82, "years": 3, "icon": "laravel", "color": "FF2D20" },
-  { "id": "skl_nextjs", "name": "Next.js", "category": "Tools", "proficiency": 80, "years": 2, "icon": "nextdotjs", "color": "FFFFFF" },
-  { "id": "skl_ts", "name": "TypeScript", "category": "Tools", "proficiency": 78, "years": 2, "icon": "typescript", "color": "3178C6" },
-  { "id": "skl_docker", "name": "Docker", "category": "Tools", "proficiency": 76, "years": 2, "icon": "docker", "color": "2496ED" },
-  { "id": "skl_tailwind", "name": "Tailwind CSS", "category": "Tools", "proficiency": 80, "years": 2, "icon": "tailwindcss", "color": "06B6D4" }
+  {
+    "id": "skl_python",
+    "icon": "python",
+    "name": "Python",
+    "color": "3776AB",
+    "years": 4,
+    "category": "AI/ML",
+    "proficiency": 90
+  },
+  {
+    "id": "skl_aiml",
+    "icon": "tensorflow",
+    "name": "Machine Learning",
+    "color": "FF6F00",
+    "years": 3,
+    "category": "AI/ML",
+    "proficiency": 86
+  },
+  {
+    "id": "skl_pandas",
+    "icon": "pandas",
+    "name": "Pandas",
+    "color": "150458",
+    "years": 3,
+    "category": "AI/ML",
+    "proficiency": 84
+  },
+  {
+    "id": "skl_numpy",
+    "icon": "numpy",
+    "name": "NumPy",
+    "color": "013243",
+    "years": 3,
+    "category": "AI/ML",
+    "proficiency": 84
+  },
+  {
+    "id": "skl_scikit",
+    "icon": "scikitlearn",
+    "name": "Scikit-learn",
+    "color": "F7931E",
+    "years": 2,
+    "category": "AI/ML",
+    "proficiency": 82
+  },
+  {
+    "id": "skl_transformer",
+    "icon": "huggingface",
+    "name": "Transformers",
+    "color": "FFD21E",
+    "years": 1,
+    "category": "AI/ML",
+    "proficiency": 80
+  },
+  {
+    "id": "skl_postgres",
+    "icon": "postgresql",
+    "name": "PostgreSQL",
+    "color": "4169E1",
+    "years": 3,
+    "category": "Database",
+    "proficiency": 82
+  },
+  {
+    "id": "skl_mysql",
+    "icon": "mysql",
+    "name": "MySQL",
+    "color": "4479A1",
+    "years": 3,
+    "category": "Database",
+    "proficiency": 80
+  },
+  {
+    "id": "skl_dataviz",
+    "icon": "plotly",
+    "name": "Data Visualization",
+    "color": "3F4F75",
+    "years": 2,
+    "category": "AI/ML",
+    "proficiency": 78
+  },
+  {
+    "id": "skl_laravel",
+    "icon": "laravel",
+    "name": "Laravel",
+    "color": "FF2D20",
+    "years": 3,
+    "category": "Tools",
+    "proficiency": 82
+  },
+  {
+    "id": "skl_nextjs",
+    "icon": "nextdotjs",
+    "name": "Next.js",
+    "color": "FFFFFF",
+    "years": 2,
+    "category": "Tools",
+    "proficiency": 80
+  },
+  {
+    "id": "skl_ts",
+    "icon": "typescript",
+    "name": "TypeScript",
+    "color": "3178C6",
+    "years": 2,
+    "category": "Tools",
+    "proficiency": 78
+  },
+  {
+    "id": "skl_docker",
+    "icon": "docker",
+    "name": "Docker",
+    "color": "2496ED",
+    "years": 2,
+    "category": "Tools",
+    "proficiency": 76
+  },
+  {
+    "id": "skl_tailwind",
+    "icon": "tailwindcss",
+    "name": "Tailwind CSS",
+    "color": "06B6D4",
+    "years": 2,
+    "category": "Tools",
+    "proficiency": 80
+  }
 ]
