@@ -1,0 +1,62 @@
+{
+  "profile": {
+    "name": "Faraja Ahdaf",
+    "title": "AI & Machine Learning · Data Analysis · Applied AI",
+    "tagline": "Exploring applied AI, machine learning, and data analysis through practical experiments and research-minded builds.",
+    "description": "I focus on understanding data, evaluating models, and turning machine learning ideas into small, useful systems. Web development is a supporting skill I use when a project needs an interface.",
+    "avatar": "",
+    "resumeUrl": "/resume.pdf",
+    "location": "Indonesia",
+    "availability": "Available for select engagements"
+  },
+  "hero": {
+    "badge": "",
+    "primaryCta": { "label": "View Projects", "href": "/#projects" },
+    "secondaryCta": { "label": "Download Resume", "href": "/resume.pdf" },
+    "tertiaryCta": { "label": "Contact Me", "href": "/#contact" },
+    "techRibbon": [
+      "Python",
+      "Machine Learning",
+      "Data Analysis",
+      "Transformers",
+      "PostgreSQL",
+      "Pandas",
+      "Scikit-learn",
+      "NLP",
+      "Visualization"
+    ]
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "Learning by measuring models and data.",
+    "description": "My strongest interest is AI, machine learning, and data analysis. I use web development as a side skill to present experiments, build small tools, and make results easier to understand.",
+    "expertise": [
+      { "icon": "Brain", "title": "Artificial Intelligence", "blurb": "Applied AI experiments focused on useful outcomes, not hype." },
+      { "icon": "Cpu", "title": "Machine Learning", "blurb": "Training, evaluating, and comparing models with clear metrics." },
+      { "icon": "Database", "title": "Data Analysis", "blurb": "Cleaning, exploring, and visualizing data to find patterns." },
+      { "icon": "Microscope", "title": "Model Evaluation", "blurb": "Looking beyond accuracy: F1, latency, errors, and tradeoffs." },
+      { "icon": "Sparkles", "title": "NLP & Transformers", "blurb": "Working with text classification, embeddings, and transformer models." },
+      { "icon": "Code2", "title": "Web as a Side Skill", "blurb": "Building simple interfaces when AI and data projects need presentation." }
+    ],
+    "stats": {
+      "yearsExperience": 0,
+      "researchCount": 0
+    }
+  },
+  "contact": {
+    "email": "faraja@example.com",
+    "blurb": "Have a project in mind, an idea worth exploring, or just want to say hi? My inbox is open."
+  },
+  "footer": {
+    "tagline": "Focused on AI, machine learning, and data analysis, with web development as a practical supporting skill."
+  },
+  "sections": {
+    "about": true,
+    "skills": true,
+    "projects": true,
+    "experience": true,
+    "certificates": true,
+    "blog": true,
+    "contact": true
+  }
+}

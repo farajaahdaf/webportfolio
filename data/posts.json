@@ -1,0 +1,49 @@
+[
+  {
+    "id": "pst_transformer",
+    "slug": "transformer-benchmark-indonesian-reviews",
+    "title": "Transformer Benchmark on Indonesian Reviews",
+    "excerpt": "A small, honest benchmark of two transformer families across the metrics that actually matter in production.",
+    "content": "## Setup\n\nWe trained several transformer-based sentiment classifiers on 180k Indonesian product reviews, split 80/10/10. Each model used identical preprocessing and the same five-fold evaluation harness.\n\n## Results\n\n- **Macro F1:** best transformer model +4.1 points vs baseline\n- **p95 latency:** optimized transformer serving at 220ms vs 310ms baseline on an A10\n- **Memory:** optimized transformer setup used ~22% less peak VRAM\n\n## Caveats\n\nResults are dataset-specific. Indonesian morphology and domain vocabulary can change model rankings significantly.\n\n## Takeaway\n\nWhen latency budgets are tight and the language is morphology-rich, transformer selection and serving strategy matter as much as raw model size.",
+    "cover": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80",
+    "tags": ["NLP", "Transformers", "Benchmarks"],
+    "category": "AI/ML",
+    "status": "published",
+    "featured": true,
+    "seoTitle": "Transformer Benchmark, Indonesian Reviews",
+    "seoDescription": "A practical comparison of transformer models on Indonesian sentiment data.",
+    "createdAt": "2026-02-10T10:00:00.000Z",
+    "updatedAt": "2026-02-10T10:00:00.000Z",
+    "publishedAt": "2026-02-10T10:00:00.000Z"
+  },
+  {
+    "id": "pst_laravelqueues",
+    "slug": "laravel-queues-in-anger",
+    "title": "Laravel Queues, In Anger",
+    "excerpt": "Field-tested patterns for Horizon, retries, and idempotency in production Laravel.",
+    "content": "## Why queues?\n\nLatency is a feature. Move anything that isn't essential to the request out.\n\n## Patterns\n\n1. **Idempotency keys** for every job that can be retried.\n2. **Dead-letter buckets** rather than swallowing failures.\n3. **Separate queues** for short, long, and bursty jobs.\n\n## Observability\n\nHorizon is great for the green path. For everything else, log structured events and stream to your favorite OLAP store.",
+    "cover": "https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=1600&q=80",
+    "tags": ["Laravel", "PHP", "Queues"],
+    "category": "Backend",
+    "status": "published",
+    "featured": true,
+    "createdAt": "2026-01-22T10:00:00.000Z",
+    "updatedAt": "2026-01-22T10:00:00.000Z",
+    "publishedAt": "2026-01-22T10:00:00.000Z"
+  },
+  {
+    "id": "pst_nextjsperf",
+    "slug": "shipping-fast-next-js-apps",
+    "title": "Shipping Fast Next.js Apps",
+    "excerpt": "Three patterns I keep reaching for: route handlers, partial prerendering, and a strict image budget.",
+    "content": "## Route handlers > pages/api\n\nFor most endpoints, App Router's route handlers are simpler and more composable.\n\n## Pre-render the obvious\n\nMarketing pages don't need to be dynamic. ISR them; you'll thank yourself later.\n\n## Image budget\n\nSet a per-page image budget in KB. Reject any commit that breaks it.",
+    "cover": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1600&q=80",
+    "tags": ["Next.js", "Performance"],
+    "category": "Frontend",
+    "status": "published",
+    "featured": false,
+    "createdAt": "2025-12-12T10:00:00.000Z",
+    "updatedAt": "2025-12-12T10:00:00.000Z",
+    "publishedAt": "2025-12-12T10:00:00.000Z"
+  }
+]

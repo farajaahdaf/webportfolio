@@ -1,0 +1,67 @@
+[
+  {
+    "id": "exp_telkomuni",
+    "role": "B.Eng., Informatics",
+    "organization": "Telkom University",
+    "type": "Education",
+    "location": "Bandung, Indonesia",
+    "startDate": "2022-08-01",
+    "endDate": "2026-07-31",
+    "current": true,
+    "description": "Concentration in software engineering and machine learning. Active in AI research lab.",
+    "achievements": [
+      "Top-decile cohort GPA",
+      "AI lab research assistant, Indonesian NLP",
+      "Mentor for first-year web development cohort"
+    ],
+    "tech": ["Python", "TensorFlow", "Laravel", "Next.js"]
+  },
+  {
+    "id": "exp_fullstack",
+    "role": "Fullstack Developer",
+    "organization": "Independent / Client work",
+    "type": "Work",
+    "location": "Remote",
+    "startDate": "2023-01-01",
+    "current": true,
+    "description": "Shipping production web platforms for SMBs and startups, from greenfield builds to admin systems and AI-augmented dashboards.",
+    "achievements": [
+      "Delivered 12+ Laravel/Next.js projects end-to-end",
+      "Built reusable admin kit shared across 5 clients",
+      "Mentored two junior developers through CI/CD onboarding"
+    ],
+    "tech": ["Laravel", "Next.js", "TypeScript", "PostgreSQL", "Docker"]
+  },
+  {
+    "id": "exp_airesearch",
+    "role": "AI Research Assistant",
+    "organization": "Telkom University · NLP Lab",
+    "type": "Research",
+    "location": "Bandung, Indonesia",
+    "startDate": "2024-03-01",
+    "current": true,
+    "description": "Applied NLP research focused on Indonesian-language understanding and benchmarking modern transformer architectures.",
+    "achievements": [
+      "Benchmarked transformer models across 5 sentiment datasets",
+      "Co-authored two internal whitepapers",
+      "Built a reproducible training harness adopted by the lab"
+    ],
+    "tech": ["Python", "PyTorch", "Transformers", "Weights & Biases"]
+  },
+  {
+    "id": "exp_devops",
+    "role": "Cloud & DevOps Practice",
+    "organization": "Self-directed",
+    "type": "Project",
+    "location": "Remote",
+    "startDate": "2024-06-01",
+    "current": true,
+    "description": "Standardizing deploys with containers, IaC, and a strict CI/CD recipe.",
+    "achievements": [
+      "Migrated 4 client apps to Azure Container Apps",
+      "Cut deploy time from 14m to 3m with smarter caching",
+      "Built reusable GitHub Actions composite workflows"
+    ],
+    "tech": ["Azure", "Docker", "GitHub Actions", "Terraform"]
+  }
+]

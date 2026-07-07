@@ -1,0 +1,6 @@
+[
+  { "id": "soc_github", "platform": "GitHub", "url": "https://github.com/farajaahdaf", "handle": "farajaahdaf", "visible": true },
+  { "id": "soc_linkedin", "platform": "LinkedIn", "url": "https://linkedin.com/in/farajaahdaf", "handle": "farajaahdaf", "visible": true },
+  { "id": "soc_email", "platform": "Email", "url": "mailto:faraja@example.com", "handle": "faraja@example.com", "visible": true },
+  { "id": "soc_instagram", "platform": "Instagram", "url": "https://instagram.com/farajaahdaf", "handle": "@farajaahdaf", "visible": true }
+]

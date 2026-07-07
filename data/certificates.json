@@ -1,0 +1,25 @@
+[
+  {
+    "id": "crt_azurefund",
+    "title": "Microsoft Azure Fundamentals",
+    "issuer": "Microsoft",
+    "issueDate": "2024-11-15",
+    "credentialUrl": "https://learn.microsoft.com/credentials/",
+    "skills": ["Azure", "Cloud Fundamentals"]
+  },
+  {
+    "id": "crt_tfdev",
+    "title": "TensorFlow Developer Certificate",
+    "issuer": "Google",
+    "issueDate": "2025-02-08",
+    "credentialUrl": "https://www.tensorflow.org/certificate",
+    "skills": ["TensorFlow", "Deep Learning"]
+  },
+  {
+    "id": "crt_laravelcert",
+    "title": "Laravel Certified Developer",
+    "issuer": "Laravel",
+    "issueDate": "2024-08-20",
+    "skills": ["Laravel", "PHP"]
+  }
+]
