@@ -132,9 +132,9 @@ export function Hero({ settings }: { settings: SiteSettings }) {
             <Magnetic>
               <Button asChild variant="outline" size="lg" className="rounded-full">
                 <Link
-                  href={hero.secondaryCta.href}
-                  target={hero.secondaryCta.href.startsWith("http") || hero.secondaryCta.href.endsWith(".pdf") ? "_blank" : undefined}
-                  rel={hero.secondaryCta.href.startsWith("http") ? "noreferrer" : undefined}
+                  href={profile.resumeUrl || hero.secondaryCta.href}
+                  target={(profile.resumeUrl || hero.secondaryCta.href).startsWith("http") || (profile.resumeUrl || hero.secondaryCta.href).endsWith(".pdf") ? "_blank" : undefined}
+                  rel={(profile.resumeUrl || hero.secondaryCta.href).startsWith("http") ? "noreferrer" : undefined}
                 >
                   <Secondary className="h-4 w-4" />
                   {hero.secondaryCta.label}
