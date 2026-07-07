@@ -87,7 +87,7 @@
       "Makefile"
     ],
     "category": "DevOps",
-    "featured": true,
+    "featured": false,
     "githubUrl": "https://github.com/farajaahdaf/SaaS-Twelve-Factor-App",
     "status": "published",
     "metrics": [
@@ -120,7 +120,7 @@
       "HTML"
     ],
     "category": "Web",
-    "featured": true,
+    "featured": false,
     "githubUrl": "https://github.com/farajaahdaf/TubesPBO",
     "status": "published",
     "metrics": [
@@ -156,7 +156,7 @@
       "CSS"
     ],
     "category": "Web",
-    "featured": true,
+    "featured": false,
     "githubUrl": "https://github.com/farajaahdaf/track-solana-tokenBalance",
     "status": "published",
     "metrics": [

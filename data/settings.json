@@ -39,13 +39,13 @@
       { "icon": "Code2", "title": "Web as a Side Skill", "blurb": "Building simple interfaces when AI and data projects need presentation." }
     ],
     "stats": {
-      "yearsExperience": 0,
-      "researchCount": 0
+      "yearsExperience": 3,
+      "researchCount": 5
     }
   },
   "contact": {
-    "email": "faraja@example.com",
-    "blurb": "Have a project in mind, an idea worth exploring, or just want to say hi? My inbox is open."
+    "email": "farajaahdaf@gmail.com",
+    "blurb": "Have a question about a project, an AI/ML idea worth exploring, or a collaboration opportunity? I read every message."
   },
   "footer": {
     "tagline": "Focused on AI, machine learning, and data analysis, with web development as a practical supporting skill."

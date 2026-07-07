@@ -18,17 +18,17 @@
   },
   {
     "id": "exp_fullstack",
-    "role": "Fullstack Developer",
+    "role": "Freelance Web Developer",
     "organization": "Independent / Client work",
     "type": "Work",
     "location": "Remote",
     "startDate": "2023-01-01",
     "current": true,
-    "description": "Shipping production web platforms for SMBs and startups, from greenfield builds to admin systems and AI-augmented dashboards.",
+    "description": "Building production web platforms as a side practice alongside university and AI research. Projects range from event ticketing to wellness platforms.",
     "achievements": [
-      "Delivered 12+ Laravel/Next.js projects end-to-end",
-      "Built reusable admin kit shared across 5 clients",
-      "Mentored two junior developers through CI/CD onboarding"
+      "Delivered Evoria (event ticketing) and Selaras Diri (wellness) to production",
+      "Built reusable admin panel shared across client projects",
+      "Ship with Docker, CI/CD, and cloud-first deployment patterns"
     ],
     "tech": ["Laravel", "Next.js", "TypeScript", "PostgreSQL", "Docker"]
   },

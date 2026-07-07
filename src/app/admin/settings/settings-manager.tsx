@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
+import { FileUpload } from "@/components/admin/file-upload";
 import { PageHeader } from "@/components/admin/page-header";
 import type { SiteSettings } from "@/lib/types";
 import { DEFAULT_SECTIONS, type SectionKey } from "@/lib/sections";
@@ -108,13 +109,15 @@ export function SettingsManager({ initial }: { initial: SiteSettings }) {
                   }
                 />
               </Field>
-              <Field label="Resume URL">
-                <Input
+              <Field label="Resume">
+                <FileUpload
                   value={s.profile.resumeUrl || ""}
-                  onChange={(e) =>
-                    setS({ ...s, profile: { ...s.profile, resumeUrl: e.target.value } })
+                  onChange={(url) =>
+                    setS({ ...s, profile: { ...s.profile, resumeUrl: url } })
                   }
-                  placeholder="/resume.pdf or https://..."
+                  accept="application/pdf"
+                  label="Upload resume PDF"
+                  hint="Upload a PDF or paste a URL. Max 20 MB."
                 />
               </Field>
               <Field label="Avatar URL (optional)">
