@@ -17,8 +17,8 @@ import { isSectionVisible } from "@/lib/sections";
 
 type Props = { params: Promise<{ slug: string }> };
 
-// ISR: refresh from Neon at most once per minute (CMS edits without redeploy).
-export const revalidate = 60;
+// Always render from Neon at request time so deployed CMS edits are visible immediately.
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   const posts = await getPublishedPosts();

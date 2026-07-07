@@ -132,10 +132,10 @@ function ProjectDialog({
 }) {
   return (
     <Dialog open={!!project} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl gap-0 overflow-hidden p-0">
+      <DialogContent className="max-h-[calc(100dvh-1rem)] w-[calc(100vw-1rem)] max-w-3xl gap-0 overflow-y-auto overflow-x-hidden p-0 sm:max-h-[calc(100dvh-3rem)] sm:w-full">
         {project && (
           <>
-            <div className="relative aspect-[16/8] w-full overflow-hidden">
+            <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden sm:aspect-[16/8]">
               <Image
                 src={project.thumbnail}
                 alt={project.title}
@@ -145,7 +145,7 @@ function ProjectDialog({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
             </div>
-            <div className="p-6 md:p-8">
+            <div className="p-5 sm:p-6 md:p-8">
               <DialogHeader>
                 <div className="flex items-center gap-2">
                   <Badge variant="glass">{project.category}</Badge>
@@ -190,7 +190,7 @@ function ProjectDialog({
 
               <div className="mt-6 flex flex-wrap items-center gap-2">
                 {isValidUrl(project.liveUrl) && (
-                  <Button asChild variant="gradient" className="rounded-full">
+                  <Button asChild variant="gradient" className="w-full rounded-full sm:w-auto">
                     <Link href={project.liveUrl!} target="_blank" rel="noreferrer">
                       <ExternalLink className="h-4 w-4" />
                       Live demo
@@ -198,14 +198,14 @@ function ProjectDialog({
                   </Button>
                 )}
                 {isValidUrl(project.githubUrl) && (
-                  <Button asChild variant="outline" className="rounded-full">
+                  <Button asChild variant="outline" className="w-full rounded-full sm:w-auto">
                     <Link href={project.githubUrl!} target="_blank" rel="noreferrer">
                       <Github className="h-4 w-4" />
                       Source code
                     </Link>
                   </Button>
                 )}
-                <Button asChild variant="ghost" className="rounded-full">
+                <Button asChild variant="ghost" className="w-full rounded-full sm:w-auto">
                   <Link href={`/projects/${project.slug}`}>
                     Read case study
                     <ArrowUpRight className="h-4 w-4" />

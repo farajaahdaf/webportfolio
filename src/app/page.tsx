@@ -20,9 +20,8 @@ import {
 import { getSettings } from "@/lib/settings";
 import { isSectionVisible } from "@/lib/sections";
 
-// ISR: regenerate from Neon at most once per minute so CMS edits appear
-// without a redeploy. New slugs render on-demand (dynamicParams default).
-export const revalidate = 60;
+// Always render from Neon at request time so deployed CMS edits are visible immediately.
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const [projects, posts, skills, experience, certificates, socials, settings] =
