@@ -1,5 +1,45 @@
 [
   {
+    "id": "prj_vibemapsai",
+    "slug": "vibemaps-ai",
+    "tech": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Express.js",
+      "Node.js",
+      "Google Gemini",
+      "Google Maps API",
+      "Vite"
+    ],
+    "title": "VibeMaps AI — B2B Lead Mining Engine",
+    "status": "published",
+    "content": "## Overview\n\nVibeMaps AI is a B2B Lead Mining Engine built for freelance web developers. It scans Google Maps in real-time to find local businesses that have an active phone number but no website — the ideal prospects for web development services. Powered by Gemini 2.0 Flash, it automatically generates personalized WhatsApp outreach messages so freelancers can send a pitch in one click.\n\n## The Problem\n\nFinding clients is the hardest part of freelance web development. The typical manual approach — browsing Google Maps for hours, checking each business profile for websites, copying contact details, and crafting outreach messages — is slow, inconsistent, and low-conversion.\n\n## The Solution\n\nVibeMaps AI automates the entire prospecting pipeline:\n\n- **Keyword Search** — enter a query like \"Klinik Gigi Surabaya\" or \"Catering Jakarta Selatan\"\n- **AI Query Expansion** — Gemini expands the query into 3 related variations for broader coverage\n- **Google Maps Text Search** — fetches real-time business listings matching all variations\n- **Place Details Enrichment** — pulls phone numbers and website info for each business\n- **Smart Filtering** — keeps only businesses with a phone number but NO website\n- **Gemini Pitch Generation** — generates a personalized WhatsApp draft in natural Indonesian, tailored per business (rating, reviews, address)\n- **One-Click Export** — download leads as CSV or open WhatsApp with a pre-filled message\n\n## Technical Highlights\n\n- React 19 + TypeScript frontend with Tailwind CSS v4\n- Express.js backend orchestrating Google Maps and Gemini API calls\n- Google Maps Text Search & Place Details API for real-time business data\n- Gemini 2.0 Flash for query expansion and personalized pitch generation\n- Vite + esbuild for fast builds and HMR\n- Clean single-page dashboard with real-time lead table",
+    "liveUrl": "https://github.com/farajaahdaf/VibeMapsAI",
+    "metrics": [
+      {
+        "label": "Stack",
+        "value": "React + Express"
+      },
+      {
+        "label": "AI",
+        "value": "Gemini 2.0 Flash"
+      },
+      {
+        "label": "Year",
+        "value": "2026"
+      }
+    ],
+    "tagline": "AI-powered B2B lead mining engine that scans Google Maps to find businesses without websites and generates personalized WhatsApp outreach pitches.",
+    "category": "AI/ML",
+    "featured": true,
+    "createdAt": "2026-05-29T05:05:23.000Z",
+    "githubUrl": "https://github.com/farajaahdaf/VibeMapsAI",
+    "thumbnail": "/vibemaps-ai.png",
+    "updatedAt": "2026-07-07T06:16:33.000Z",
+    "description": "VibeMaps AI is a B2B Lead Mining Engine that helps freelance web developers find clients effortlessly. Enter a keyword, and the AI scans Google Maps in real-time to identify local businesses with a phone number but no website — your perfect prospects. Gemini 2.0 Flash then generates personalized WhatsApp outreach drafts so you can send a pitch in one click. Export leads to CSV for offline follow-up."
+  },
+  {
     "id": "prj_evoria",
     "slug": "evoria",
     "tech": [
