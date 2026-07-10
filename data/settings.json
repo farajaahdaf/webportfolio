@@ -84,7 +84,7 @@
     "availability": "Available for select engagements"
   },
   "sections": {
-    "blog": true,
+    "blog": false,
     "about": true,
     "skills": true,
     "contact": true,
