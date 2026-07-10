@@ -184,37 +184,45 @@
     "id": "prj_solanatoken",
     "slug": "track-solana-token-balance",
     "tech": [
-      "JavaScript",
-      "Node.js",
-      "EJS",
-      "Solana",
-      "CSS"
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "TanStack Query",
+      "Zustand",
+      "Recharts",
+      "Solana Web3.js",
+      "Helius RPC",
+      "Dexscreener API",
+      "CoinGecko API",
+      "Zod",
+      "shadcn/ui"
     ],
-    "title": "Solana Token Balance Tracker",
+    "title": "Solana Portfolio Radar — SPL Token Scanner",
     "status": "published",
-    "content": "Full case study coming soon.",
+    "content": "## Overview\n\nSolana Portfolio Radar is a Next.js dashboard that scans SPL token holdings for any Solana wallet and calculates estimated net worth in both USD and IDR. It queries on-chain data, enriches it with real-time prices from Dexscreener, and visualizes the portfolio with interactive charts.\n\n## How It Works\n\n1. **Enter a wallet address** — the client sends a request via TanStack Query to the `/api/portfolio` route.\n2. **On-chain scan** — the API fetches all SPL token accounts from Solana mainnet using Helius RPC for reliability.\n3. **Price enrichment** — token prices are fetched from Dexscreener API and USD-to-IDR conversion from CoinGecko.\n4. **Zod validation** — every payload is validated before reaching the UI to prevent runtime errors.\n5. **Interactive dashboard** — Zustand manages wallet input state, Recharts renders portfolio distribution charts, and shadcn/ui components provide a consistent, accessible interface.\n\n## Technical Highlights\n\n- Next.js App Router with API routes that proxy on-chain data\n- TanStack Query for server state, caching, and automatic refetch\n- Zustand for lightweight client-side wallet state\n- Solana Web3.js + @solana/react-hooks for direct on-chain interaction\n- Helius RPC for stable, high-throughput mainnet queries\n- Dexscreener API for real-time SPL token prices\n- CoinGecko API for accurate USD → IDR exchange rates\n- Recharts for interactive token distribution pie charts\n- Zod schemas that validate API responses end-to-end\n- shadcn/ui component system for dark-themed dashboard UI",
     "metrics": [
       {
         "label": "Chain",
         "value": "Solana"
       },
       {
-        "label": "Languages",
-        "value": "3"
+        "label": "Real-time",
+        "value": "Yes"
       },
       {
         "label": "Year",
         "value": "2025"
       }
     ],
-    "tagline": "A web tool to track Solana wallet token balances in real time.",
+    "tagline": "A Next.js dashboard that scans SPL tokens for any Solana wallet and calculates estimated net worth in USD and IDR with real-time price data.",
     "category": "Web",
-    "featured": false,
+    "featured": true,
     "createdAt": "2025-01-04T14:50:11.000Z",
     "githubUrl": "https://github.com/farajaahdaf/track-solana-tokenBalance",
-    "thumbnail": "https://opengraph.githubassets.com/1/farajaahdaf/track-solana-tokenBalance",
-    "updatedAt": "2025-01-04T15:03:03.000Z",
-    "description": "A Node.js and EJS web application that queries the Solana network to track token balances for a given wallet address, rendering the results in a lightweight server-side view. A focused exploration of on-chain data and blockchain RPC integration."
+    "liveUrl": "https://track-solana-token-balance.vercel.app/",
+    "thumbnail": "/solana-portfolio-radar.png",
+    "updatedAt": "2026-07-07T06:16:33.000Z",
+    "description": "Solana Portfolio Radar is a Next.js dashboard for scanning SPL token holdings on any Solana wallet address. It queries on-chain data via Helius RPC, fetches real-time prices from Dexscreener and CoinGecko, and visualizes the portfolio with interactive Recharts — all in a clean, dark-themed shadcn/ui interface."
   },
   {
     "id": "prj_tubesaka",
