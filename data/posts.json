@@ -1,1 +1,61 @@
-[{"id": "pst_transformer", "slug": "transformer-benchmark-indonesian-reviews", "tags": ["NLP", "Transformers", "Benchmarks"], "cover": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80", "title": "Transformer Benchmark on Indonesian Reviews", "status": "published", "content": "## Setup\n\nWe trained several transformer-based sentiment classifiers on 180k Indonesian product reviews, split 80/10/10. Each model used identical preprocessing and the same five-fold evaluation harness.\n\n## Results\n\n- **Macro F1:** best transformer model +4.1 points vs baseline\n- **p95 latency:** optimized transformer serving at 220ms vs 310ms baseline on an A10\n- **Memory:** optimized transformer setup used ~22% less peak VRAM\n\n## Caveats\n\nResults are dataset-specific. Indonesian morphology and domain vocabulary can change model rankings significantly.\n\n## Takeaway\n\nWhen latency budgets are tight and the language is morphology-rich, transformer selection and serving strategy matter as much as raw model size.", "excerpt": "A small, honest benchmark of two transformer families across the metrics that actually matter in production.", "category": "AI/ML", "featured": true, "seoTitle": "Transformer Benchmark, Indonesian Reviews", "createdAt": "2026-02-10T10:00:00.000Z", "updatedAt": "2026-02-10T10:00:00.000Z", "publishedAt": "2026-02-10T10:00:00.000Z", "seoDescription": "A practical comparison of transformer models on Indonesian sentiment data."}, {"id": "pst_dataanalysis", "slug": "pandas-workflow-for-ml-prep", "tags": ["Python", "Pandas", "Data Preparation"], "cover": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80", "title": "A Pragmatic Pandas Workflow for ML Data Prep", "status": "published", "content": "## Step 1: Load and profile\n\n```python\nimport pandas as pd\ndf = pd.read_csv(\"data.csv\")\ndf.info()\ndf.describe(include=\"all\")\n```\n\nRun these three lines before you do anything else. They'll tell you column types, null counts, distributions, and whether your categorical columns have reasonable cardinality.\n\n## Step 2: Clean and impute\n\nNull values are a signal, not an error. Check if a column's null rate is above 30% before deciding to drop it. For numericals, median imputation works well in production. For categoricals, create an explicit \"MISSING\" category.\n\n## Step 3: Feature engineering\n\nDate columns hide the most features. Extract day of week, month, quarter, and days-since-last-event. For NLP pipelines, an additional length column often carries more signal than the tokenized text itself.\n\n## Step 4: Leakage check\n\nBefore splitting, ask: does any feature contain future information? A common trap is computing aggregates on the full dataset then splitting — that leaks test labels into training.\n\n## Step 5: Reproducibility\n\nSeeding `np.random` and `train_test_split` is table stakes. Better yet: write a preprocessing pipfile that another team member can run on a fresh pull without guessing parameters.", "excerpt": "The five patterns I reach for every time I start a new modeling notebook, from loading to feature engineering.", "category": "Data", "featured": true, "createdAt": "2026-01-22T10:00:00.000Z", "updatedAt": "2026-01-22T10:00:00.000Z", "publishedAt": "2026-01-22T10:00:00.000Z"}, {"id": "pst_evals", "slug": "beyond-accuracy-evaluating-models", "tags": ["Evaluation", "Metrics", "MLOps"], "cover": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1600&q=80", "title": "Beyond Accuracy: Evaluating Models That Actually Ship", "status": "published", "content": "## Accuracy is the beginning, not the end\n\nA 94% accurate model on balanced data can be useless if the 6% it misses are the high-stakes cases. This is the first lesson you learn when moving from Kaggle notebooks to production pipelines.\n\n## The three-metric minimum\n\nFor every model I ship, I report at least three numbers:\n1. **Macro F1** — handles class imbalance better than accuracy.\n2. **p95 latency** — the 95th percentile prediction time. p50 means nothing to API consumers.\n3. **Confusion breakdown** — a raw count of which classes get confused with which.\n\n## Error analysis is where the real work happens\n\nOnce you have a model that meets thresholds, create false-positive and false-negative slices. Read the actual misclassified examples. You'll find mislabeled data, domain vocabulary your tokenizer doesn't handle, and edge cases you never considered.\n\n## Latency budgets\n\nIf your model takes 300ms to predict and your API SLA is 500ms, you have 200ms for preprocessing, orchestration, and network. Profile end-to-end before optimising the model.\n\n## Stakeholder communication\n\nEngineers care about F1 and latency. Product teams care about precision at top-k and recall for safety-critical categories. The evaluation dashboard should show both — ideally on the same page.", "excerpt": "A practical framework for model evaluation that includes the metrics engineers and stakeholders actually care about.", "category": "AI/ML", "featured": false, "createdAt": "2025-12-12T10:00:00.000Z", "updatedAt": "2025-12-12T10:00:00.000Z", "publishedAt": "2025-12-12T10:00:00.000Z"}]
+[
+  {
+    "id": "pst_transformer",
+    "slug": "transformer-benchmark-indonesian-reviews",
+    "tags": [
+      "NLP",
+      "Transformers",
+      "Benchmarks"
+    ],
+    "cover": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80",
+    "title": "Transformer Benchmark on Indonesian Reviews",
+    "status": "published",
+    "content": "## Setup\n\nWe trained several transformer-based sentiment classifiers on 180k Indonesian product reviews, split 80/10/10. Each model used identical preprocessing and the same five-fold evaluation harness.\n\n## Results\n\n- **Macro F1:** best transformer model +4.1 points vs baseline\n- **p95 latency:** optimized transformer serving at 220ms vs 310ms baseline on an A10\n- **Memory:** optimized transformer setup used ~22% less peak VRAM\n\n## Caveats\n\nResults are dataset-specific. Indonesian morphology and domain vocabulary can change model rankings significantly.\n\n## Takeaway\n\nWhen latency budgets are tight and the language is morphology-rich, transformer selection and serving strategy matter as much as raw model size.",
+    "excerpt": "A small, honest benchmark of two transformer families across the metrics that actually matter in production.",
+    "category": "AI/ML",
+    "featured": true,
+    "seoTitle": "Transformer Benchmark, Indonesian Reviews",
+    "createdAt": "2026-02-10T10:00:00.000Z",
+    "updatedAt": "2026-02-10T10:00:00.000Z",
+    "publishedAt": "2026-02-10T10:00:00.000Z",
+    "seoDescription": "A practical comparison of transformer models on Indonesian sentiment data."
+  },
+  {
+    "id": "pst_dataanalysis",
+    "slug": "pandas-workflow-for-ml-prep",
+    "tags": [
+      "Python",
+      "Pandas",
+      "Data Preparation"
+    ],
+    "cover": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
+    "title": "A Pragmatic Pandas Workflow for ML Data Prep",
+    "status": "published",
+    "content": "## Step 1: Load and profile\n\n```python\nimport pandas as pd\ndf = pd.read_csv(\"data.csv\")\ndf.info()\ndf.describe(include=\"all\")\n```\n\nRun these three lines before you do anything else. They'll tell you column types, null counts, distributions, and whether your categorical columns have reasonable cardinality.\n\n## Step 2: Clean and impute\n\nNull values are a signal, not an error. Check if a column's null rate is above 30% before deciding to drop it. For numericals, median imputation works well in production. For categoricals, create an explicit \"MISSING\" category.\n\n## Step 3: Feature engineering\n\nDate columns hide the most features. Extract day of week, month, quarter, and days-since-last-event. For NLP pipelines, an additional length column often carries more signal than the tokenized text itself.\n\n## Step 4: Leakage check\n\nBefore splitting, ask: does any feature contain future information? A common trap is computing aggregates on the full dataset then splitting — that leaks test labels into training.\n\n## Step 5: Reproducibility\n\nSeeding `np.random` and `train_test_split` is table stakes. Better yet: write a preprocessing pipfile that another team member can run on a fresh pull without guessing parameters.",
+    "excerpt": "The five patterns I reach for every time I start a new modeling notebook, from loading to feature engineering.",
+    "category": "Data",
+    "featured": true,
+    "createdAt": "2026-01-22T10:00:00.000Z",
+    "updatedAt": "2026-01-22T10:00:00.000Z",
+    "publishedAt": "2026-01-22T10:00:00.000Z"
+  },
+  {
+    "id": "pst_evals",
+    "slug": "beyond-accuracy-evaluating-models",
+    "tags": [
+      "Evaluation",
+      "Metrics",
+      "MLOps"
+    ],
+    "cover": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1600&q=80",
+    "title": "Beyond Accuracy: Evaluating Models That Actually Ship",
+    "status": "published",
+    "content": "## Accuracy is the beginning, not the end\n\nA 94% accurate model on balanced data can be useless if the 6% it misses are the high-stakes cases. This is the first lesson you learn when moving from Kaggle notebooks to production pipelines.\n\n## The three-metric minimum\n\nFor every model I ship, I report at least three numbers:\n1. **Macro F1** — handles class imbalance better than accuracy.\n2. **p95 latency** — the 95th percentile prediction time. p50 means nothing to API consumers.\n3. **Confusion breakdown** — a raw count of which classes get confused with which.\n\n## Error analysis is where the real work happens\n\nOnce you have a model that meets thresholds, create false-positive and false-negative slices. Read the actual misclassified examples. You'll find mislabeled data, domain vocabulary your tokenizer doesn't handle, and edge cases you never considered.\n\n## Latency budgets\n\nIf your model takes 300ms to predict and your API SLA is 500ms, you have 200ms for preprocessing, orchestration, and network. Profile end-to-end before optimising the model.\n\n## Stakeholder communication\n\nEngineers care about F1 and latency. Product teams care about precision at top-k and recall for safety-critical categories. The evaluation dashboard should show both — ideally on the same page.",
+    "excerpt": "A practical framework for model evaluation that includes the metrics engineers and stakeholders actually care about.",
+    "category": "AI/ML",
+    "featured": false,
+    "createdAt": "2025-12-12T10:00:00.000Z",
+    "updatedAt": "2025-12-12T10:00:00.000Z",
+    "publishedAt": "2025-12-12T10:00:00.000Z"
+  }
+]

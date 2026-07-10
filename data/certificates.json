@@ -1,1 +1,36 @@
-[{"id": "crt_tfdev", "title": "TensorFlow Developer Certificate", "issuer": "Google", "skills": ["TensorFlow", "Deep Learning"], "issueDate": "2025-02-08", "credentialUrl": "https://www.tensorflow.org/certificate"}, {"id": "crt_azurefund", "title": "Microsoft Azure Fundamentals", "issuer": "Microsoft", "skills": ["Azure", "Cloud Infrastructure"], "issueDate": "2024-11-15", "credentialUrl": "https://learn.microsoft.com/credentials/"}, {"id": "crt_datacamp", "title": "Data Scientist with Python Track", "issuer": "DataCamp", "skills": ["Python", "Pandas", "Scikit-learn", "Data Analysis"], "issueDate": "2025-06-10"}]
+[
+  {
+    "id": "crt_tfdev",
+    "title": "TensorFlow Developer Certificate",
+    "issuer": "Google",
+    "skills": [
+      "TensorFlow",
+      "Deep Learning"
+    ],
+    "issueDate": "2025-02-08",
+    "credentialUrl": "https://www.tensorflow.org/certificate"
+  },
+  {
+    "id": "crt_azurefund",
+    "title": "Microsoft Azure Fundamentals",
+    "issuer": "Microsoft",
+    "skills": [
+      "Azure",
+      "Cloud Infrastructure"
+    ],
+    "issueDate": "2024-11-15",
+    "credentialUrl": "https://learn.microsoft.com/credentials/"
+  },
+  {
+    "id": "crt_datacamp",
+    "title": "Data Scientist with Python Track",
+    "issuer": "DataCamp",
+    "skills": [
+      "Python",
+      "Pandas",
+      "Scikit-learn",
+      "Data Analysis"
+    ],
+    "issueDate": "2025-06-10"
+  }
+]
