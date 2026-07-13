@@ -235,46 +235,6 @@ type DeepPartial<T> = T extends Array<infer U>
     ? { [K in keyof T]?: DeepPartial<T[K]> }
     : T;
 
-const indonesianSettingsFallback: DeepPartial<SiteSettings> = {
-  profile: {
-    name: "Faraja Ahdaf",
-    title: "AI & Machine Learning · Analisis Data · Applied AI",
-    tagline:
-      "Mengeksplorasi applied AI, machine learning, dan analisis data melalui eksperimen praktis dan build berbasis riset.",
-    description:
-      "Saya berfokus pada pemahaman data, evaluasi model, dan mengubah ide machine learning menjadi sistem kecil yang bermanfaat. Pengembangan web saya gunakan sebagai keterampilan pendukung ketika sebuah proyek membutuhkan antarmuka.",
-    availability: "Terbuka untuk kolaborasi terpilih",
-  },
-  hero: {
-    primaryCta: { label: "Lihat Proyek", href: "/#projects" },
-    secondaryCta: { label: "Unduh Resume", href: "/resume.pdf" },
-    tertiaryCta: { label: "Hubungi Saya", href: "/#contact" },
-  },
-  about: {
-    eyebrow: "Tentang",
-    title: "Belajar lewat pengukuran model dan data.",
-    description:
-      "Minat utama saya berada di AI, machine learning, dan analisis data. Pengembangan web saya gunakan sebagai keterampilan pendukung—untuk mempresentasikan eksperimen, membangun perkakas kecil, dan membuat hasil lebih mudah dipahami.",
-    expertise: [
-      { icon: "Brain", title: "Artificial Intelligence", blurb: "Eksperimen applied AI yang berfokus pada hasil nyata, bukan sekadar tren." },
-      { icon: "Cpu", title: "Machine Learning", blurb: "Melatih, mengevaluasi, dan membandingkan model dengan metrik yang terukur." },
-      { icon: "Database", title: "Analisis Data", blurb: "Membersihkan, menelusuri, dan memvisualisasikan data untuk menemukan pola." },
-      { icon: "Microscope", title: "Evaluasi Model", blurb: "Melihat melampaui akurasi: F1, latensi, galat, dan trade-off." },
-      { icon: "Sparkles", title: "NLP & Transformers", blurb: "Berkutat dengan klasifikasi teks, embeddings, dan model transformer." },
-      { icon: "Code2", title: "Web sebagai Keterampilan Pendukung", blurb: "Membangun antarmuka sederhana saat proyek AI dan data membutuhkan presentasi." },
-    ],
-  },
-  contact: {
-    email: "faraja@example.com",
-    blurb:
-      "Punya proyek, ide yang ingin dieksplorasi, atau sekadar ingin menyapa? Kotak masuk saya selalu terbuka.",
-  },
-  footer: {
-    tagline:
-      "Berfokus pada AI, machine learning, dan analisis data—dengan pengembangan web sebagai keterampilan pendukung yang praktis.",
-  },
-};
-
 type WithTranslations<T> = T & {
   translations?: Partial<Record<Locale, DeepPartial<Omit<T, "translations">>>>;
 };
@@ -307,8 +267,7 @@ export function localizeRecord<T>(item: WithTranslations<T>, locale: Locale): T 
 }
 
 export function localizeSettings(settings: SiteSettings, locale: Locale): SiteSettings {
-  const withFallback = locale === "id" ? deepMerge(settings, indonesianSettingsFallback) : settings;
-  return localizeRecord(withFallback, locale);
+  return localizeRecord(settings, locale);
 }
 
 export function localizeProject(project: Project, locale: Locale): Project {

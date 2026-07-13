@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isSectionVisible } from "@/lib/sections";
 
-// Always render from Neon at request time so deployed CMS edits are visible immediately.
+// Always render from the database so deployed CMS edits are visible immediately.
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {

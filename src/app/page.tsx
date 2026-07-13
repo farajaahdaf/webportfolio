@@ -29,7 +29,7 @@ import {
   localizeSkill,
 } from "@/lib/i18n";
 
-// Always render from Neon at request time so deployed CMS edits are visible immediately.
+// Always render from the database so deployed CMS edits are visible immediately.
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {

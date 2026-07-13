@@ -10,7 +10,6 @@ const eslintConfig = [
       "agent-skills/**",
       "node_modules/**",
       "next-env.d.ts",
-      "public/uploads/**",
     ],
   },
   {

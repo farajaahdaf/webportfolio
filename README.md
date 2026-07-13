@@ -2,7 +2,7 @@
 
 A premium personal portfolio for a Fullstack Developer & AI Engineer, plus a built-in admin CMS for managing projects, posts, skills, experience, certificates, and social links.
 
-Built with **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, and **shadcn-style UI**. Content is persisted in a small Neon/Postgres JSONB key-value table.
+Built with **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, and **shadcn-style UI**. Content is persisted in a private Supabase Postgres JSONB key-value table.
 
 ## Highlights
 
@@ -23,7 +23,9 @@ npm install
 
 # 2. Configure environment
 cp .env.example .env.local
-# Edit AUTH_SECRET, ADMIN_EMAIL, ADMIN_PASSWORD, DATABASE_URL, and BLOB_READ_WRITE_TOKEN
+# Edit AUTH_SECRET, ADMIN_EMAIL, ADMIN_PASSWORD, DATABASE_URL, and BLOB_READ_WRITE_TOKEN.
+# DATABASE_URL must use the Supabase transaction pooler on port 6543.
+# Set CONTACT_WRITES_ENABLED=true only in the Production environment.
 
 # 3. Run dev server
 npm run dev
@@ -47,7 +49,8 @@ To enter the CMS go to <http://localhost:3000/admin>. The first admin user is bo
 | Icons | Lucide |
 | Markdown | react-markdown, remark-gfm, rehype-highlight |
 | Auth | jose (JWT) + bcryptjs |
-| Storage | Neon/Postgres JSONB KV table |
+| Database | Supabase Postgres 17 via the transaction pooler |
+| Upload storage | Vercel Blob |
 | Theming | next-themes |
 | Toast | sonner |
 
@@ -55,15 +58,10 @@ To enter the CMS go to <http://localhost:3000/admin>. The first admin user is bo
 
 ```
 .
-├── data/                      # Seed data for Neon/Postgres
-│   ├── projects.json
-│   ├── posts.json
-│   ├── skills.json
-│   ├── experience.json
-│   ├── certificates.json
-│   ├── socials.json
-│   └── users.json             # empty by default; admin bootstraps from env
 ├── public/                    # static assets
+├── supabase/
+│   ├── config.toml            # local Supabase CLI configuration
+│   └── migrations/            # versioned database schema
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx
@@ -94,12 +92,14 @@ To enter the CMS go to <http://localhost:3000/admin>. The first admin user is bo
 
 ## Content model
 
-Each collection has a TypeScript type in `src/lib/types.ts` and seed JSON in `data/`. The CMS reads and writes Neon/Postgres through REST routes (`/api/projects`, `/api/posts`, etc.). All CRUD routes require an authenticated admin cookie.
+Each collection has a TypeScript type in `src/lib/types.ts`. The CMS reads and writes Supabase Postgres through REST routes (`/api/projects`, `/api/posts`, etc.). All CRUD routes require an authenticated admin cookie. Portfolio content exists only in Supabase and is managed through `/admin`.
 
-Seed Neon from local JSON data with:
+The schema migration creates an empty `kv` table. A fresh environment must restore or migrate its CMS data before the app starts because the `settings` row is required at runtime; production content is intentionally not stored in Git.
+
+Apply pending schema migrations with:
 
 ```bash
-node --env-file=.env.local scripts/seed.mjs
+npx supabase db push --linked
 ```
 
 Reset the admin user with:
@@ -110,7 +110,7 @@ ADMIN_EMAIL=you@example.com ADMIN_PASSWORD='strong-password' node --env-file=.en
 
 ## Customizing
 
-- **Replace placeholder content** in the CMS at `/admin`, or update `data/*.json` and re-run the seed script.
+- **Manage portfolio content** in the CMS at `/admin`.
 - **Swap accent colors** by editing `--primary` / `--accent` HSL values in `src/app/globals.css`.
 - **Change fonts** in `src/app/layout.tsx` (`Inter`, `Sora`, `JetBrains_Mono`).
 - **Add /resume.pdf** at `public/resume.pdf` so the "Download Resume" CTA works.
@@ -125,7 +125,12 @@ npm run build
 npm start
 ```
 
-For Vercel: import the repo, provision Neon and Vercel Blob, set the env vars from `.env.example`, seed content, and ship.
+For Vercel: link the project, set the environment variables from `.env.example`, and deploy. Use the Supabase shared transaction pooler URL on port `6543`; `vercel.json` keeps Functions in Singapore near the database. Keep `CONTACT_WRITES_ENABLED` disabled outside Production when environments share one database.
+
+```bash
+vercel env run -e production -- npm run build
+vercel deploy --prod
+```
 
 ## Scripts
 
@@ -136,8 +141,7 @@ For Vercel: import the repo, provision Neon and Vercel Blob, set the env vars fr
 | `npm start` | Serve the production build |
 | `npm run lint` | ESLint |
 | `npm run type-check` | TypeScript noEmit check |
-| `node --env-file=.env.local scripts/seed.mjs` | Push `data/*.json` to Neon |
-| `node --env-file=.env.local scripts/pull.mjs` | Pull Neon data into `data/*.json` |
+| `npx supabase db push --linked` | Apply pending Supabase migrations |
 | `node --env-file=.env.local scripts/reset-admin.mjs` | Reset admin password |
 
 ## License

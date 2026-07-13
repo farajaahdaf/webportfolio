@@ -1,11 +1,13 @@
-// Reset the admin user's credentials in Neon (kv 'users' row).
+// Reset the admin user's credentials in the Supabase kv 'users' row.
 //
 // Usage:
 //   ADMIN_EMAIL=... ADMIN_PASSWORD=... node --env-file=.env.local scripts/reset-admin.mjs
-import { neon } from "@neondatabase/serverless";
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import postgres from "postgres";
 import bcrypt from "bcryptjs";
 
-const connectionString = process.env.DATABASE_URL || process.env.POSTGRES_URL;
+const connectionString = process.env.DATABASE_URL;
 const email = process.env.ADMIN_EMAIL;
 const password = process.env.ADMIN_PASSWORD;
 
@@ -14,7 +16,14 @@ if (!connectionString || !email || !password) {
   process.exit(1);
 }
 
-const sql = neon(connectionString);
+const sql = postgres(connectionString, {
+  ssl: {
+    ca: readFileSync(path.join(process.cwd(), "certs/supabase-ca.crt"), "utf8"),
+    rejectUnauthorized: true,
+  },
+  max: 1,
+  prepare: false,
+});
 
 function generateId(prefix = "usr") {
   const r = Math.random().toString(36).slice(2, 8);
@@ -22,7 +31,7 @@ function generateId(prefix = "usr") {
   return `${prefix}_${t}${r}`;
 }
 
-const rows = await sql`SELECT data FROM kv WHERE key = 'users'`;
+const rows = await sql`select data from public.kv where key = 'users'`;
 const users = rows.length ? rows[0].data : [];
 const passwordHash = await bcrypt.hash(password, 10);
 
@@ -37,9 +46,10 @@ if (user) {
 }
 
 await sql`
-  INSERT INTO kv (key, data)
-  VALUES ('users', ${JSON.stringify(users)}::jsonb)
-  ON CONFLICT (key) DO UPDATE SET data = EXCLUDED.data
+  insert into public.kv (key, data)
+  values ('users', ${sql.json(users)})
+  on conflict (key) do update set data = excluded.data
 `;
 
 console.log(`Admin reset: ${email}`);
+await sql.end();

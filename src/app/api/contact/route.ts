@@ -15,6 +15,13 @@ type ContactMessage = {
 };
 
 export async function POST(req: Request) {
+  if (process.env.CONTACT_WRITES_ENABLED !== "true") {
+    return NextResponse.json(
+      { error: "Contact form is unavailable in this environment" },
+      { status: 503 }
+    );
+  }
+
   try {
     const limit = checkRateLimit(`contact:${clientIp(req)}`, {
       limit: 5,

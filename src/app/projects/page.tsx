@@ -12,7 +12,7 @@ import { getLocale } from "@/lib/locale";
 import { dictionary, localizeProject, localizeSettings } from "@/lib/i18n";
 import type { Metadata } from "next";
 
-// Always render from Neon at request time so deployed CMS edits are visible immediately.
+// Always render from the database so deployed CMS edits are visible immediately.
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {

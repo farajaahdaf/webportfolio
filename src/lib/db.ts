@@ -1,60 +1,43 @@
 import "server-only";
-import { neon } from "@neondatabase/serverless";
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import postgres from "postgres";
 import type { DbSchema } from "./types";
 
-// Neon serverless driver (HTTP). Works in Vercel Functions / Fluid Compute.
-const connectionString =
-  process.env.DATABASE_URL || process.env.POSTGRES_URL || "";
+const connectionString = process.env.DATABASE_URL || "";
 
 if (!connectionString) {
-  // Fail fast in a clear way instead of a cryptic driver error at query time.
   throw new Error(
-    "Missing DATABASE_URL. Provision Neon (Vercel Marketplace) and run `vercel env pull .env.local`."
+    "Missing DATABASE_URL. Configure the Supabase transaction pooler connection string."
   );
 }
 
-const sql = neon(connectionString);
-
-// All persisted state lives in a single JSONB key-value table. Each collection
-// (projects, posts, ...) and singleton (settings, contact) is one row whose
-// `data` column holds the full JSON value — mirroring the old read-whole-file /
-// write-whole-file semantics so the rest of the app is unchanged.
-let schemaReady: Promise<void> | null = null;
-function ensureSchema(): Promise<void> {
-  if (!schemaReady) {
-    schemaReady = (async () => {
-      await sql`
-        CREATE TABLE IF NOT EXISTS kv (
-          key  TEXT PRIMARY KEY,
-          data JSONB NOT NULL DEFAULT '[]'::jsonb
-        )
-      `;
-    })().catch((err) => {
-      // Reset so a transient failure can be retried on the next call.
-      schemaReady = null;
-      throw err;
-    });
-  }
-  return schemaReady;
-}
+const sql = postgres(connectionString, {
+  ssl: {
+    ca: readFileSync(path.join(process.cwd(), "certs/supabase-ca.crt"), "utf8"),
+    rejectUnauthorized: true,
+  },
+  max: 1,
+  idle_timeout: 20,
+  connect_timeout: 10,
+  prepare: false,
+});
 
 /** Read a JSON value by key, returning `fallback` when the row is absent. */
 export async function readKV<T>(key: string, fallback: T): Promise<T> {
-  await ensureSchema();
-  const rows = (await sql`SELECT data FROM kv WHERE key = ${key}`) as Array<{
-    data: T;
-  }>;
+  const rows = await sql<{ data: T }[]>`
+    select data from public.kv where key = ${key}
+  `;
   if (rows.length === 0) return fallback;
   return rows[0].data;
 }
 
 /** Upsert a JSON value under key. */
 export async function writeKV<T>(key: string, data: T): Promise<void> {
-  await ensureSchema();
   await sql`
-    INSERT INTO kv (key, data)
-    VALUES (${key}, ${JSON.stringify(data)}::jsonb)
-    ON CONFLICT (key) DO UPDATE SET data = EXCLUDED.data
+    insert into public.kv (key, data)
+    values (${key}, ${sql.json(data as postgres.JSONValue)})
+    on conflict (key) do update set data = excluded.data
   `;
 }
 

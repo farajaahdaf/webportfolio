@@ -6,8 +6,7 @@ out
 *.log
 .vercel
 next-env.d.ts
-public/uploads/*
-!public/uploads/.gitkeep
 .env*
+!.env.example
 agent-skills/
 tsconfig.tsbuildinfo
