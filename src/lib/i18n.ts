@@ -39,7 +39,7 @@ export const dictionary = {
       scroll: "Scroll",
     },
     about: {
-      yearsExperience: "Years experience",
+      yearsExperience: "Years of experience",
       projectsCompleted: "Projects completed",
       technologiesMastered: "Technologies mastered",
       researchExperiments: "Research & experiments",
@@ -77,7 +77,7 @@ export const dictionary = {
     certificates: {
       eyebrow: "Certificates",
       title: "Verified credentials.",
-      description: "Issued certificates and credentials, with downloadable PDFs.",
+      description: "Credentials I've earned, each downloadable as a PDF.",
       viewPdf: "View PDF",
       verify: "Verify",
       noPublicLink: "No public link",
@@ -85,7 +85,7 @@ export const dictionary = {
     blog: {
       eyebrow: "Writing",
       title: "Notes from the field.",
-      description: "Field notes on engineering, AI research, and craft.",
+      description: "Thoughts on engineering, AI research, and craft.",
       indexTitle: "Field notes.",
       allPosts: "All posts",
       searchPlaceholder: "Search posts, tags, ideas...",
@@ -162,7 +162,7 @@ export const dictionary = {
       allEyebrow: "Semua proyek",
       allTitle: "Indeks lengkap.",
       allDescription:
-        "Seluruh proyek yang sudah dipublikasikan, diurutkan dari yang terbaru. Arahkan kursor untuk sorotan, klik untuk studi kasus.",
+        "Seluruh proyek yang sudah dipublikasikan, diurutkan dari yang terbaru. Arahkan kursor untuk melihat sorotan, klik untuk membaca studi kasus.",
       featured: "Pilihan",
       liveDemo: "Demo langsung",
       sourceCode: "Kode sumber",
@@ -171,8 +171,8 @@ export const dictionary = {
     },
     experience: {
       eyebrow: "Pengalaman",
-      title: "Lintasan kerja yang terukur.",
-      description: "Tempat saya membangun, mengajar, meneliti, dan menghasilkan.",
+      title: "Lintasan kerja yang nyata.",
+      description: "Tempat saya membangun, mengajar, meneliti, dan merilis.",
       present: "Sekarang",
     },
     certificates: {
@@ -190,14 +190,14 @@ export const dictionary = {
       indexTitle: "Catatan lapangan.",
       allPosts: "Semua tulisan",
       searchPlaceholder: "Cari tulisan, tag, atau ide...",
-      empty: "Tidak ada tulisan yang cocok dengan pencarian tersebut.",
+      empty: "Tidak ada tulisan yang cocok dengan pencarian ini.",
       minRead: "menit baca",
       min: "menit",
       back: "Semua tulisan",
     },
     contact: {
       eyebrow: "Kontak",
-      title: "Mari berbincang.",
+      title: "Mari membangun sesuatu.",
       fallbackBlurb:
         "Punya proyek, ide yang ingin dieksplorasi, atau sekadar ingin menyapa? Kotak masuk saya selalu terbuka.",
       basedIn: "Berbasis di",
