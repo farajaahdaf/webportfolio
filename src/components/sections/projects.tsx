@@ -70,7 +70,7 @@ export function Projects({
                       alt={p.title}
                       fill
                       sizes="(min-width: 1024px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      className="motion-hover-project-image object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
                     <div className="absolute left-4 top-4 flex items-center gap-2">
@@ -84,7 +84,7 @@ export function Projects({
                         </Badge>
                       )}
                     </div>
-                    <div className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white text-foreground shadow-sm transition-transform duration-300 group-hover:rotate-45 group-hover:scale-110">
+                    <div className="motion-hover-project-arrow absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white text-foreground shadow-sm">
                       <ArrowUpRight className="h-4 w-4 text-foreground" />
                     </div>
                   </div>

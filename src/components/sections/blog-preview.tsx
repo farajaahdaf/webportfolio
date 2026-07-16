@@ -50,7 +50,7 @@ export function BlogPreview({ posts, locale = "en" }: { posts: Post[]; locale?: 
             <motion.article
               key={p.id}
               variants={fadeUp}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:border-foreground/25 hover:shadow-md"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
             >
               <Link href={`/blog/${p.slug}`} className="block">
                 {p.cover && (
@@ -60,7 +60,7 @@ export function BlogPreview({ posts, locale = "en" }: { posts: Post[]; locale?: 
                       alt={p.title}
                       fill
                       sizes="(min-width: 1024px) 33vw, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+                      className="motion-hover-blog-image object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
                     <Badge variant="glass" className="absolute left-4 top-4">

@@ -10,3 +10,5 @@ next-env.d.ts
 !.env.example
 agent-skills/
 tsconfig.tsbuildinfo
+.claude
+.CLAUDE.md

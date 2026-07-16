@@ -76,13 +76,13 @@ export function About({
           viewport={{ once: true, margin: "-100px" }}
           className="mt-16 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {about.expertise.map((e) => {
+          {about.expertise.map((e, i) => {
             const Icon = iconMap[e.icon] || Sparkles;
             return (
               <motion.div
-                key={e.title}
+                key={i}
                 variants={fadeUp}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-foreground/25 hover:shadow-md"
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
               >
                 <div className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="relative flex items-start gap-4">
@@ -104,10 +104,10 @@ export function About({
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translateY(12px)" }}
+          whileInView={{ opacity: 1, transform: "translateY(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.42, ease: [0.23, 1, 0.32, 1] }}
           className="mt-16 grid grid-cols-2 gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm md:grid-cols-4 md:p-10"
         >
           {stats.map((s, i) => (

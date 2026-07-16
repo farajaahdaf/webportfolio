@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SectionHeader } from "@/components/site/section-header";
 import { TechIcon } from "@/components/site/tech-icon";
@@ -63,6 +63,8 @@ export function Skills({ skills, locale = "en" }: Props) {
 }
 
 function SkillGrid({ items, emptyLabel = dictionary.en.skills.empty }: { items: Skill[]; emptyLabel?: string }) {
+  const shouldReduceMotion = useReducedMotion();
+
   if (!items?.length) {
     return (
       <p className="py-16 text-center text-sm text-muted-foreground">
@@ -82,7 +84,7 @@ function SkillGrid({ items, emptyLabel = dictionary.en.skills.empty }: { items: 
         <motion.div
           key={s.id}
           variants={fadeUp}
-          className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:border-foreground/25 hover:shadow-md"
+          className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -107,12 +109,20 @@ function SkillGrid({ items, emptyLabel = dictionary.en.skills.empty }: { items: 
           </div>
           <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-secondary">
             <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: `${s.proficiency}%` }}
+              initial={{ transform: shouldReduceMotion ? "scaleX(1)" : "scaleX(0)" }}
+              whileInView={{ transform: "scaleX(1)" }}
               viewport={{ once: true }}
-              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }
+              }
               className="h-full rounded-full bg-primary"
-              style={{ backgroundSize: "200% 100%" }}
+              style={{
+                width: `${s.proficiency}%`,
+                transformOrigin: "left",
+                backgroundSize: "200% 100%",
+              }}
             />
           </div>
         </motion.div>

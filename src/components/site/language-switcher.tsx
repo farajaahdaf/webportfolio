@@ -83,18 +83,15 @@ export function LanguageSwitcher({
       </div>
 
       {isLoading && (
-        <div className="pointer-events-none fixed inset-0 z-[100] flex items-start justify-center bg-background/12 backdrop-blur-[2px]">
-          <div className="absolute inset-x-0 top-0 h-1 overflow-hidden bg-secondary">
-            <div className="h-full w-1/2 animate-[language-progress_1s_ease-in-out_infinite] bg-primary" />
-          </div>
-          <div
-            role="status"
-            aria-live="polite"
-            className="mt-24 inline-flex items-center gap-3 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-lg"
-          >
-            <span className="h-4 w-4 animate-spin rounded-full border-2 border-primary/25 border-t-primary" />
+        <div
+          role="status"
+          aria-live="polite"
+          className="pointer-events-none fixed inset-x-0 top-0 z-[100] h-1 overflow-hidden bg-secondary"
+        >
+          <div className="language-progress h-full w-1/2 animate-[language-progress_1s_linear_infinite] bg-primary" />
+          <span className="sr-only">
             Switching to {loadingLocale ? localeNames[loadingLocale] : localeNames[locale]}...
-          </div>
+          </span>
         </div>
       )}
     </>

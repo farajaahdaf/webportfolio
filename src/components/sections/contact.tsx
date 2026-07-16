@@ -89,10 +89,10 @@ export function Contact({
 
         <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-5">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, transform: "translateX(-12px)" }}
+            whileInView={{ opacity: 1, transform: "translateX(0px)" }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.42, ease: [0.23, 1, 0.32, 1] }}
             className="lg:col-span-2"
           >
             <div className="space-y-3">
@@ -105,7 +105,7 @@ export function Contact({
                     href={c.url}
                     target={isHttp ? "_blank" : undefined}
                     rel={isHttp ? "noreferrer" : undefined}
-                    className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-4 shadow-sm transition-all hover:border-foreground/25 hover:shadow-md"
+                    className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-4 shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
                   >
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-secondary text-primary transition-colors group-hover:border-foreground/30">
                       <Icon className="h-5 w-5" />
@@ -116,7 +116,7 @@ export function Contact({
                       </p>
                       <p className="truncate text-sm font-medium">{c.handle || c.url}</p>
                     </div>
-                    <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                    <ArrowUpRight className="motion-hover-diagonal-arrow h-4 w-4 text-muted-foreground group-hover:text-primary" />
                   </a>
                 );
               })}
@@ -140,10 +140,10 @@ export function Contact({
           </motion.div>
 
           <motion.form
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, transform: "translateX(12px)" }}
+            whileInView={{ opacity: 1, transform: "translateX(0px)" }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.42, ease: [0.23, 1, 0.32, 1] }}
             onSubmit={onSubmit}
             className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8 lg:col-span-3"
           >

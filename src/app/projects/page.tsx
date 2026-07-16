@@ -48,7 +48,7 @@ export default async function ProjectsIndex() {
               <Link
                 key={p.id}
                 href={`/projects/${p.slug}`}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:border-foreground/25 hover:shadow-md"
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
@@ -56,7 +56,7 @@ export default async function ProjectsIndex() {
                     alt={p.title}
                     fill
                     sizes="(min-width: 1024px) 33vw, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    className="motion-hover-project-image object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
                   <Badge variant="glass" className="absolute left-4 top-4">
@@ -68,7 +68,7 @@ export default async function ProjectsIndex() {
                     <h3 className="font-display text-lg font-semibold tracking-tight transition-colors group-hover:text-primary">
                       {p.title}
                     </h3>
-                    <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                    <ArrowUpRight className="motion-hover-diagonal-arrow mt-1 h-4 w-4 shrink-0 text-muted-foreground group-hover:text-primary" />
                   </div>
                   <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
                     {p.tagline}

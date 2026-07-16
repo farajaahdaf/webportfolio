@@ -50,18 +50,15 @@ export function Navbar({
 
   return (
     <>
-      <motion.header
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      <header
         className={cn(
-          "fixed inset-x-0 top-4 z-50 mx-auto flex justify-center px-4 transition-all duration-300",
-          scrolled && "top-2"
+          "fixed inset-x-0 top-2 z-50 mx-auto flex translate-y-2 justify-center px-4 transition-transform duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)]",
+          scrolled && "translate-y-0"
         )}
       >
         <nav
           className={cn(
-            "flex w-full max-w-5xl items-center justify-between rounded-full border border-border bg-card px-4 py-2 shadow-sm transition-all duration-300",
+            "flex w-full max-w-5xl items-center justify-between rounded-full border border-border bg-card px-4 py-2 shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)]",
             scrolled && "border-foreground/20 shadow-md"
           )}
         >
@@ -70,7 +67,7 @@ export function Navbar({
             className="flex items-center gap-2 px-2 py-1 group"
             aria-label={`${name}, Home`}
           >
-            <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-lg bg-foreground transition-transform group-hover:scale-105">
+            <span className="motion-hover-logo relative inline-flex h-8 w-8 items-center justify-center rounded-lg bg-foreground">
               <span className="font-display text-sm font-bold text-primary-foreground">
                 {initial}
               </span>
@@ -120,15 +117,15 @@ export function Navbar({
             </button>
           </div>
         </nav>
-      </motion.header>
+      </header>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
+            initial={{ opacity: 0, transform: "translateY(-10px)" }}
+            animate={{ opacity: 1, transform: "translateY(0px)" }}
+            exit={{ opacity: 0, transform: "translateY(-10px)" }}
+            transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
             className="fixed inset-x-4 top-20 z-40 rounded-2xl border border-border bg-card p-4 shadow-xl lg:hidden"
           >
             <ul className="flex flex-col gap-1">

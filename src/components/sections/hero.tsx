@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowDownToLine,
   ArrowRight,
@@ -41,6 +41,7 @@ export function Hero({
 }) {
   const { profile, hero } = settings;
   const t = dictionary[locale];
+  const shouldReduceMotion = useReducedMotion();
   const titleSegments = profile.title.split("·").map((s) => s.trim()).filter(Boolean);
   const Primary = iconForCta(hero.primaryCta.label);
   const Secondary = iconForCta(hero.secondaryCta.label);
@@ -53,19 +54,40 @@ export function Hero({
         {techIcons.map(({ Icon, label, style, delay }) => (
           <motion.div
             key={label}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: delay + 0.6 }}
+            initial={{
+              opacity: 0,
+              transform: shouldReduceMotion ? "scale(1)" : "scale(0.95)",
+            }}
+            animate={{ opacity: 1, transform: "scale(1)" }}
+            transition={{
+              duration: shouldReduceMotion ? 0.2 : 0.48,
+              delay: shouldReduceMotion ? 0 : delay + 0.6,
+              ease: [0.23, 1, 0.32, 1],
+            }}
             className={`absolute ${style}`}
           >
             <motion.div
-              animate={{ y: [0, -14, 0] }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay,
-              }}
+              animate={
+                shouldReduceMotion
+                  ? { transform: "translateY(0px)" }
+                  : {
+                      transform: [
+                        "translateY(0px)",
+                        "translateY(-14px)",
+                        "translateY(0px)",
+                      ],
+                    }
+              }
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : {
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay,
+                    }
+              }
               className="glass-panel flex items-center gap-2 rounded-full px-3 py-1.5"
             >
               <Icon className="h-3.5 w-3.5 text-primary" />
@@ -80,9 +102,18 @@ export function Hero({
       <div className="container-prose relative">
         <div className="mx-auto max-w-4xl text-center">
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            initial={{
+              opacity: 0,
+              transform: shouldReduceMotion
+                ? "translateY(0px)"
+                : "translateY(12px)",
+            }}
+            animate={{ opacity: 1, transform: "translateY(0px)" }}
+            transition={{
+              duration: shouldReduceMotion ? 0.2 : 0.42,
+              delay: shouldReduceMotion ? 0 : 0.1,
+              ease: [0.23, 1, 0.32, 1],
+            }}
             className="mt-6 whitespace-nowrap font-display text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-[88px]"
           >
             {profile.name}
@@ -90,9 +121,18 @@ export function Hero({
 
           {titleSegments.length > 0 && (
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.25 }}
+              initial={{
+                opacity: 0,
+                transform: shouldReduceMotion
+                  ? "translateY(0px)"
+                  : "translateY(12px)",
+              }}
+              animate={{ opacity: 1, transform: "translateY(0px)" }}
+              transition={{
+                duration: shouldReduceMotion ? 0.2 : 0.42,
+                delay: shouldReduceMotion ? 0 : 0.25,
+                ease: [0.23, 1, 0.32, 1],
+              }}
               className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-x-2 gap-y-1 text-balance"
             >
               {titleSegments.map((seg, i) => (
@@ -115,18 +155,36 @@ export function Hero({
           )}
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            initial={{
+              opacity: 0,
+              transform: shouldReduceMotion
+                ? "translateY(0px)"
+                : "translateY(12px)",
+            }}
+            animate={{ opacity: 1, transform: "translateY(0px)" }}
+            transition={{
+              duration: shouldReduceMotion ? 0.2 : 0.42,
+              delay: shouldReduceMotion ? 0 : 0.4,
+              ease: [0.23, 1, 0.32, 1],
+            }}
             className="mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-muted-foreground md:text-lg"
           >
             {profile.tagline}
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.55 }}
+            initial={{
+              opacity: 0,
+              transform: shouldReduceMotion
+                ? "translateY(0px)"
+                : "translateY(12px)",
+            }}
+            animate={{ opacity: 1, transform: "translateY(0px)" }}
+            transition={{
+              duration: shouldReduceMotion ? 0.2 : 0.42,
+              delay: shouldReduceMotion ? 0 : 0.55,
+              ease: [0.23, 1, 0.32, 1],
+            }}
             className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
           >
             <Magnetic>
@@ -163,7 +221,11 @@ export function Hero({
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{
+                duration: shouldReduceMotion ? 0.2 : 0.42,
+                delay: shouldReduceMotion ? 0 : 0.8,
+                ease: [0.23, 1, 0.32, 1],
+              }}
               className="relative mx-auto mt-20 max-w-3xl"
             >
               <p className="mb-4 text-center text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">
@@ -188,7 +250,11 @@ export function Hero({
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
+          transition={{
+            duration: shouldReduceMotion ? 0.2 : 0.42,
+            delay: shouldReduceMotion ? 0 : 1.2,
+            ease: [0.23, 1, 0.32, 1],
+          }}
           className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 md:flex flex-col items-center gap-2"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
@@ -196,8 +262,18 @@ export function Hero({
           </span>
           <div className="h-10 w-px overflow-hidden bg-border">
             <motion.div
-              animate={{ y: ["-100%", "100%"] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              animate={
+                shouldReduceMotion
+                  ? { transform: "translateY(0%)" }
+                  : {
+                      transform: ["translateY(-100%)", "translateY(100%)"],
+                    }
+              }
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : { duration: 1.6, repeat: Infinity, ease: "easeInOut" }
+              }
               className="h-full w-full bg-gradient-to-b from-transparent via-primary to-transparent"
             />
           </div>

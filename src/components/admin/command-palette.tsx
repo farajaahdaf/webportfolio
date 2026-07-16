@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
 import {
   Search,
   Loader2,
@@ -143,21 +142,13 @@ export function CommandPalette({
   let runningIdx = -1;
 
   return (
-    <AnimatePresence>
+    <>
       {open && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.15 }}
+        <div
           className="fixed inset-0 z-[100] flex items-start justify-center bg-foreground/20 backdrop-blur-md p-4 pt-[12vh]"
           onClick={() => onOpenChange(false)}
         >
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.98 }}
-            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          <div
             onClick={(e) => e.stopPropagation()}
             className="w-full max-w-2xl overflow-hidden rounded-2xl border border-border bg-card shadow-2xl"
           >
@@ -274,9 +265,9 @@ export function CommandPalette({
               </div>
               <span>{hits.length} result{hits.length === 1 ? "" : "s"}</span>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

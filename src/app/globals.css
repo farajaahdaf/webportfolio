@@ -156,6 +156,42 @@
   .perspective-1000 {
     perspective: 1000px;
   }
+  .motion-hover-project-image,
+  .motion-hover-blog-image,
+  .motion-hover-logo,
+  .motion-hover-diagonal-arrow,
+  .motion-hover-project-arrow {
+    transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .motion-hover-arrow-reveal {
+    opacity: 0;
+    transform: translateY(-1px);
+    transition:
+      transform 160ms cubic-bezier(0.23, 1, 0.32, 1),
+      opacity 160ms cubic-bezier(0.23, 1, 0.32, 1),
+      color 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover .motion-hover-project-image {
+      transform: scale(1.04);
+    }
+    .group:hover .motion-hover-blog-image {
+      transform: scale(1.05);
+    }
+    .group:hover .motion-hover-logo {
+      transform: scale(1.05);
+    }
+    .group:hover .motion-hover-diagonal-arrow {
+      transform: translate(0.125rem, -0.125rem);
+    }
+    .group:hover .motion-hover-arrow-reveal {
+      opacity: 1;
+      transform: translate(1px, -1px);
+    }
+    .group:hover .motion-hover-project-arrow {
+      transform: rotate(45deg) scale(1.1);
+    }
+  }
 }
 
 @keyframes language-progress {
@@ -168,13 +204,22 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+    transition-duration: 200ms !important;
+    transition-property: color, background-color, border-color, opacity !important;
+  }
+
+  .language-progress {
+    animation: none !important;
+    transform: none !important;
   }
 }
 

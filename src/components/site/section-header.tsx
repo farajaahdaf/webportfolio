@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function SectionHeader({
@@ -16,12 +16,20 @@ export function SectionHeader({
   align?: "left" | "center";
   className?: string;
 }) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{
+        opacity: 0,
+        transform: shouldReduceMotion ? "translateY(0px)" : "translateY(12px)",
+      }}
+      whileInView={{ opacity: 1, transform: "translateY(0px)" }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        duration: shouldReduceMotion ? 0.2 : 0.42,
+        ease: [0.23, 1, 0.32, 1],
+      }}
       className={cn(
         "max-w-3xl",
         align === "center" && "mx-auto text-center",
