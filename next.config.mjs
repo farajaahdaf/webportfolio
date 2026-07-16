@@ -9,7 +9,7 @@ const nextConfig = {
       { protocol: "https", hostname: "raw.githubusercontent.com" },
       { protocol: "https", hostname: "opengraph.githubassets.com" },
       { protocol: "https", hostname: "cdn.simpleicons.org" },
-      { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
+      { protocol: "https", hostname: "wcgoudxovqosaualhqjf.supabase.co" },
     ],
   },
   experimental: {

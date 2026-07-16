@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { put } from "@vercel/blob";
+import { uploadFile } from "@/lib/storage";
 import { requireAdmin } from "@/lib/auth";
 
 const MAX_SIZE = 20 * 1024 * 1024; // 20 MB
@@ -59,13 +59,10 @@ export async function POST(req: Request) {
   const base = slug(file.name) || "file";
   const filename = `${base}-${stamp}${rand}.${ext}`;
 
-  const blob = await put(`uploads/${filename}`, file, {
-    access: "public",
-    contentType: file.type,
-  });
+  const url = await uploadFile(filename, file, file.type);
 
   return NextResponse.json({
-    url: blob.url,
+    url,
     name: file.name,
     size: file.size,
     type: file.type,
