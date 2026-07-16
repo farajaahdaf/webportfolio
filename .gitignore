@@ -11,4 +11,4 @@ next-env.d.ts
 agent-skills/
 tsconfig.tsbuildinfo
 .claude
-.CLAUDE.md
+CLAUDE.md
