@@ -52,13 +52,13 @@ export function Navbar({
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-2 z-50 mx-auto flex translate-y-2 justify-center px-4 transition-transform duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)]",
+          "fixed inset-x-0 top-2 z-50 mx-auto flex translate-y-2 justify-center px-4 transition-transform [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)]",
           scrolled && "translate-y-0"
         )}
       >
         <nav
           className={cn(
-            "flex w-full max-w-5xl items-center justify-between rounded-full border border-border bg-card px-4 py-2 shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)]",
+            "flex w-full max-w-5xl items-center justify-between rounded-full border border-border bg-card px-4 py-2 shadow-sm transition-[border-color,box-shadow] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)]",
             scrolled && "border-foreground/20 shadow-md"
           )}
         >

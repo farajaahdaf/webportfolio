@@ -94,7 +94,7 @@ export function BlogSearch({
             <motion.li key={p.id} variants={fadeUp}>
               <Link
                 href={`/blog/${p.slug}`}
-                className="group block overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
+                className="group block overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
               >
                 {p.cover && (
                   <div className="relative aspect-[16/10] overflow-hidden">

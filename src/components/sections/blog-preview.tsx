@@ -50,7 +50,7 @@ export function BlogPreview({ posts, locale = "en" }: { posts: Post[]; locale?: 
             <motion.article
               key={p.id}
               variants={fadeUp}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
             >
               <Link href={`/blog/${p.slug}`} className="block">
                 {p.cover && (

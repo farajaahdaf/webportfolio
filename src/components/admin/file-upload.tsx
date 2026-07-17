@@ -90,7 +90,7 @@ export function FileUpload({
         disabled={busy}
         aria-describedby={hintId}
         className={cn(
-          "group relative flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-card px-4 py-6 text-center shadow-sm transition-[background-color,border-color] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/30 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-wait disabled:opacity-70",
+          "group relative flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-card px-4 py-6 text-center shadow-sm transition-[background-color,border-color] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/30 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-wait disabled:opacity-70",
           drag && "border-primary bg-secondary"
         )}
       >

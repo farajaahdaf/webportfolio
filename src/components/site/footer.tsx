@@ -99,7 +99,7 @@ export function Footer({
                       target={s.url.startsWith("/") ? undefined : "_blank"}
                       rel={s.url.startsWith("/") ? undefined : "noreferrer"}
                       aria-label={s.platform}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-sm transition-[color,background-color,border-color] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/30 hover:bg-secondary hover:text-foreground"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-sm transition-[color,background-color,border-color] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/30 hover:bg-secondary hover:text-foreground"
                     >
                       <Icon className="h-4 w-4" />
                     </a>

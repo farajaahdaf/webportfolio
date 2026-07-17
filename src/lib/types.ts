@@ -129,7 +129,6 @@ export type SiteSettings = {
     expertise: { title: string; blurb: string; icon: string }[];
     stats: {
       yearsExperience: number;
-      researchCount: number;
     };
   };
   contact: {

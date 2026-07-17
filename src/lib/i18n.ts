@@ -42,7 +42,6 @@ export const dictionary = {
       yearsExperience: "Years of experience",
       projectsCompleted: "Projects completed",
       technologiesMastered: "Technologies mastered",
-      researchExperiments: "Research & experiments",
     },
     skills: {
       eyebrow: "Skills",
@@ -143,7 +142,6 @@ export const dictionary = {
       yearsExperience: "Tahun pengalaman",
       projectsCompleted: "Proyek diselesaikan",
       technologiesMastered: "Teknologi dikuasai",
-      researchExperiments: "Riset & eksperimen",
     },
     skills: {
       eyebrow: "Keahlian",

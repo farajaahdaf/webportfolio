@@ -57,7 +57,6 @@ export function About({
     { label: t.about.yearsExperience, value: about.stats.yearsExperience, suffix: "+" },
     { label: t.about.projectsCompleted, value: completedProjectsCount, suffix: "" },
     { label: t.about.technologiesMastered, value: technologiesCount, suffix: "" },
-    { label: t.about.researchExperiments, value: about.stats.researchCount, suffix: "" },
   ];
 
   return (
@@ -82,7 +81,7 @@ export function About({
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-[border-color,box-shadow] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
               >
                 <div className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="relative flex items-start gap-4">
@@ -108,12 +107,12 @@ export function About({
           whileInView={{ opacity: 1, transform: "translateY(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.42, ease: [0.23, 1, 0.32, 1] }}
-          className="mt-16 grid grid-cols-2 gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm md:grid-cols-4 md:p-10"
+          className="mt-16 grid grid-cols-1 gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm sm:grid-cols-3 md:p-10"
         >
           {stats.map((s, i) => (
             <div
               key={s.label}
-              className={`relative ${i > 0 ? "md:border-l md:border-border md:pl-8" : ""}`}
+              className={`relative ${i > 0 ? "sm:border-l sm:border-border sm:pl-8" : ""}`}
             >
               <div className="font-display text-4xl font-semibold tracking-tight text-gradient-static md:text-5xl">
                 <Counter value={s.value} suffix={s.suffix} />

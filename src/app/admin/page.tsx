@@ -123,7 +123,7 @@ export default async function AdminHome() {
           <Link
             key={s.label}
             href={s.href}
-            className="group relative overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
+            className="group relative overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-sm transition-[border-color,box-shadow] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
           >
             <div className="flex items-start justify-between">
               <s.icon className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />

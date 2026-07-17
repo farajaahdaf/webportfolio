@@ -84,7 +84,7 @@ function SkillGrid({ items, emptyLabel = dictionary.en.skills.empty }: { items: 
         <motion.div
           key={s.id}
           variants={fadeUp}
-          className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
+          className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-sm transition-[border-color,box-shadow] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">

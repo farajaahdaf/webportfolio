@@ -312,9 +312,9 @@ export function SettingsManager({ initial }: { initial: SiteSettings }) {
         <TabsContent value="stats" className="mt-6">
           <Card title="Stats row">
             <p className="mb-4 text-xs text-muted-foreground">
-              Projects completed and Technologies mastered are computed automatically from published projects and skills. Edit the manual stats below.
+              Projects completed and Technologies mastered are computed automatically from published projects and skills. Edit the manual stat below.
             </p>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4">
               <Field label="Years of experience">
                 <Input
                   type="number"
@@ -328,25 +328,6 @@ export function SettingsManager({ initial }: { initial: SiteSettings }) {
                         stats: {
                           ...s.about.stats,
                           yearsExperience: Number(e.target.value) || 0,
-                        },
-                      },
-                    })
-                  }
-                />
-              </Field>
-              <Field label="Research & experiments">
-                <Input
-                  type="number"
-                  min={0}
-                  value={s.about.stats.researchCount}
-                  onChange={(e) =>
-                    setS({
-                      ...s,
-                      about: {
-                        ...s.about,
-                        stats: {
-                          ...s.about.stats,
-                          researchCount: Number(e.target.value) || 0,
                         },
                       },
                     })

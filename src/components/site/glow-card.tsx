@@ -42,12 +42,12 @@ export function GlowCard({
       onPointerEnter={(e) => setActive(e.pointerType === "mouse")}
       onPointerLeave={() => setActive(false)}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md dark:bg-card dark:shadow-sm",
+        "group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md dark:bg-card dark:shadow-sm",
         className
       )}
     >
       <motion.div
-        className="pointer-events-none absolute -inset-px transition-opacity duration-[200ms] ease-[cubic-bezier(0.23,1,0.32,1)]"
+        className="pointer-events-none absolute -inset-px transition-opacity [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)]"
         style={{
           opacity: active ? 1 : 0,
           background,
