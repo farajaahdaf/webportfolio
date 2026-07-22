@@ -1,19 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeader } from "@/components/site/section-header";
-import { Briefcase, GraduationCap, FlaskConical, FolderGit2 } from "lucide-react";
+import { Reveal } from "@/components/site/reveal";
+import { experienceTypeIcons } from "@/lib/icons";
 import type { Experience as Exp } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 import { dictionary, type Locale } from "@/lib/i18n";
-
-const typeIcon = {
-  Work: Briefcase,
-  Education: GraduationCap,
-  Research: FlaskConical,
-  Project: FolderGit2,
-} as const;
 
 export function Experience({ items, locale = "en" }: { items: Exp[]; locale?: Locale }) {
   const t = dictionary[locale];
@@ -36,16 +29,15 @@ export function Experience({ items, locale = "en" }: { items: Exp[]; locale?: Lo
 
           <ul className="space-y-10">
             {sorted.map((exp, i) => {
-              const Icon = typeIcon[exp.type];
+              const Icon = experienceTypeIcons[exp.type];
               const flip = i % 2 === 1;
               return (
-                <motion.li
+                <Reveal
+                  as="li"
                   key={exp.id}
-                  initial={{ opacity: 0, transform: "translateY(12px)" }}
-                  whileInView={{ opacity: 1, transform: "translateY(0px)" }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.42, delay: 0.05 * i, ease: [0.23, 1, 0.32, 1] }}
-                  className={`relative grid grid-cols-1 gap-6 md:grid-cols-2`}
+                  delay={0.05 * i}
+                  viewportMargin="-80px"
+                  className="relative grid grid-cols-1 gap-6 md:grid-cols-2"
                 >
                   {/* Dot */}
                   <div className="absolute left-4 top-2 z-10 -translate-x-1/2 md:left-1/2">
@@ -108,7 +100,7 @@ export function Experience({ items, locale = "en" }: { items: Exp[]; locale?: Lo
                       )}
                     </div>
                   </div>
-                </motion.li>
+                </Reveal>
               );
             })}
           </ul>

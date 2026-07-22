@@ -1,43 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Code2,
-  Brain,
-  Cpu,
-  Server,
-  Layers,
-  Cloud,
-  Microscope,
-  type LucideIcon,
-  Sparkles,
-  Award,
-  Briefcase,
-  FlaskConical,
-  Database,
-  Rocket,
-} from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { SectionHeader } from "@/components/site/section-header";
+import { Reveal } from "@/components/site/reveal";
+import { CardShell } from "@/components/site/card-shell";
 import { Counter } from "@/components/site/counter";
 import { fadeUp, stagger } from "@/lib/motion";
+import { expertiseIcons, iconFor } from "@/lib/icons";
 import type { SiteSettings } from "@/lib/types";
 import { dictionary, type Locale } from "@/lib/i18n";
-
-const iconMap: Record<string, LucideIcon> = {
-  Code2,
-  Brain,
-  Cpu,
-  Server,
-  Layers,
-  Cloud,
-  Microscope,
-  Sparkles,
-  Award,
-  Briefcase,
-  FlaskConical,
-  Database,
-  Rocket,
-};
 
 export function About({
   settings,
@@ -76,14 +48,9 @@ export function About({
           className="mt-16 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
         >
           {about.expertise.map((e, i) => {
-            const Icon = iconMap[e.icon] || Sparkles;
+            const Icon = iconFor(expertiseIcons, e.icon, Sparkles);
             return (
-              <motion.div
-                key={i}
-                variants={fadeUp}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-[border-color,box-shadow] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
-              >
-                <div className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <CardShell key={i} variants={fadeUp} padding="p-6" className="relative overflow-hidden" accent>
                 <div className="relative flex items-start gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-secondary transition-colors group-hover:border-foreground/30 group-hover:text-primary">
                     <Icon className="h-5 w-5" />
@@ -97,18 +64,12 @@ export function About({
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </CardShell>
             );
           })}
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, transform: "translateY(12px)" }}
-          whileInView={{ opacity: 1, transform: "translateY(0px)" }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.42, ease: [0.23, 1, 0.32, 1] }}
-          className="mt-16 grid grid-cols-1 gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm sm:grid-cols-3 md:p-10"
-        >
+        <Reveal className="mt-16 grid grid-cols-1 gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm sm:grid-cols-3 md:p-10">
           {stats.map((s, i) => (
             <div
               key={s.label}
@@ -122,7 +83,7 @@ export function About({
               </p>
             </div>
           ))}
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

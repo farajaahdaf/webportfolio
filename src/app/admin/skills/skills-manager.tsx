@@ -13,6 +13,7 @@ import {
 import { DataList, type ColumnDef } from "@/components/admin/data-list";
 import { PageHeader } from "@/components/admin/page-header";
 import { TechIcon } from "@/components/site/tech-icon";
+import { bindField, bindNumberField } from "@/lib/admin-form";
 import type { Skill } from "@/lib/types";
 
 const categories: Skill["category"][] = [
@@ -90,12 +91,7 @@ export function SkillsManager() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>Name</Label>
-                <Input
-                  value={state.name || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, name: e.target.value }))
-                  }
-                />
+                <Input value={state.name || ""} onChange={bindField(setState, "name")} />
               </div>
               <div className="space-y-1.5">
                 <Label>Category</Label>
@@ -124,12 +120,7 @@ export function SkillsManager() {
                   min={0}
                   max={100}
                   value={state.proficiency || 0}
-                  onChange={(e) =>
-                    setState((s) => ({
-                      ...s,
-                      proficiency: Number(e.target.value),
-                    }))
-                  }
+                  onChange={bindNumberField(setState, "proficiency")}
                   className="cursor-pointer"
                 />
               </div>
@@ -139,12 +130,7 @@ export function SkillsManager() {
                   type="number"
                   min={0}
                   value={state.years ?? 0}
-                  onChange={(e) =>
-                    setState((s) => ({
-                      ...s,
-                      years: Number(e.target.value),
-                    }))
-                  }
+                  onChange={bindNumberField(setState, "years")}
                 />
               </div>
               <div className="space-y-1.5">

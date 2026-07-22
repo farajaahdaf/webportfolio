@@ -7,6 +7,7 @@ import { ArrowUpRight, Calendar, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/site/section-header";
+import { CardShell } from "@/components/site/card-shell";
 import { fadeUp, stagger } from "@/lib/motion";
 import { formatDate, readingTime } from "@/lib/utils";
 import type { Post } from "@/lib/types";
@@ -47,11 +48,7 @@ export function BlogPreview({ posts, locale = "en" }: { posts: Post[]; locale?: 
           className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3"
         >
           {published.map((p) => (
-            <motion.article
-              key={p.id}
-              variants={fadeUp}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
-            >
+            <CardShell as="article" key={p.id} variants={fadeUp} className="relative overflow-hidden">
               <Link href={`/blog/${p.slug}`} className="block">
                 {p.cover && (
                   <div className="relative aspect-[16/10] overflow-hidden">
@@ -87,7 +84,7 @@ export function BlogPreview({ posts, locale = "en" }: { posts: Post[]; locale?: 
                   </div>
                 </div>
               </Link>
-            </motion.article>
+            </CardShell>
           ))}
         </motion.div>
       </div>

@@ -9,6 +9,16 @@ import { DataList, type ColumnDef } from "@/components/admin/data-list";
 import { MarkdownEditor } from "@/components/admin/markdown-editor";
 import { PageHeader } from "@/components/admin/page-header";
 import { FileUpload } from "@/components/admin/file-upload";
+import { TranslationCard } from "@/components/admin/translation-card";
+import {
+  bindChecked,
+  bindField,
+  bindIdTranslation,
+  bindIdTranslationValue,
+  bindListField,
+  idTranslation,
+  joinList,
+} from "@/lib/admin-form";
 import type { Post } from "@/lib/types";
 
 const columns: ColumnDef<Post>[] = [
@@ -93,20 +103,13 @@ export function PostsManager() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>Title</Label>
-                <Input
-                  value={state.title || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, title: e.target.value }))
-                  }
-                />
+                <Input value={state.title || ""} onChange={bindField(setState, "title")} />
               </div>
               <div className="space-y-1.5">
                 <Label>Slug</Label>
                 <Input
                   value={state.slug || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, slug: e.target.value }))
-                  }
+                  onChange={bindField(setState, "slug")}
                   placeholder="auto-from-title"
                 />
               </div>
@@ -114,13 +117,7 @@ export function PostsManager() {
 
             <div className="space-y-1.5">
               <Label>Excerpt</Label>
-              <Textarea
-                rows={2}
-                value={state.excerpt || ""}
-                onChange={(e) =>
-                  setState((s) => ({ ...s, excerpt: e.target.value }))
-                }
-              />
+              <Textarea rows={2} value={state.excerpt || ""} onChange={bindField(setState, "excerpt")} />
             </div>
 
             <MarkdownEditor
@@ -128,85 +125,44 @@ export function PostsManager() {
               onChange={(v) => setState((s) => ({ ...s, content: v }))}
             />
 
-            <div className="rounded-2xl border border-border bg-secondary/40 p-4">
-              <div className="mb-4">
-                <h3 className="font-display text-sm font-semibold tracking-tight">
-                  Indonesian translation
-                </h3>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Optional. Used when visitors choose Bahasa Indonesia. Empty fields fall back to the default content.
-                </p>
-              </div>
+            <TranslationCard>
               <div className="space-y-1.5">
                 <Label>Title ID</Label>
                 <Input
-                  value={state.translations?.id?.title || ""}
-                  onChange={(e) =>
-                    setState((s) => ({
-                      ...s,
-                      translations: {
-                        ...s.translations,
-                        id: { ...s.translations?.id, title: e.target.value },
-                      },
-                    }))
-                  }
+                  value={idTranslation(state, "title")}
+                  onChange={bindIdTranslation(setState, "title")}
                   placeholder="Judul tulisan"
                 />
               </div>
-              <div className="mt-4 space-y-1.5">
+              <div className="space-y-1.5">
                 <Label>Excerpt ID</Label>
                 <Textarea
                   rows={2}
-                  value={state.translations?.id?.excerpt || ""}
-                  onChange={(e) =>
-                    setState((s) => ({
-                      ...s,
-                      translations: {
-                        ...s.translations,
-                        id: { ...s.translations?.id, excerpt: e.target.value },
-                      },
-                    }))
-                  }
+                  value={idTranslation(state, "excerpt")}
+                  onChange={bindIdTranslation(setState, "excerpt")}
                 />
               </div>
-              <div className="mt-4">
-                <MarkdownEditor
-                  label="Content ID"
-                  value={state.translations?.id?.content || ""}
-                  onChange={(v) =>
-                    setState((s) => ({
-                      ...s,
-                      translations: {
-                        ...s.translations,
-                        id: { ...s.translations?.id, content: v },
-                      },
-                    }))
-                  }
-                />
-              </div>
-            </div>
+              <MarkdownEditor
+                label="Content ID"
+                value={idTranslation(state, "content")}
+                onChange={bindIdTranslationValue(setState, "content")}
+              />
+            </TranslationCard>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>Category</Label>
                 <Input
                   value={state.category || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, category: e.target.value }))
-                  }
+                  onChange={bindField(setState, "category")}
                   placeholder="Engineering, AI/ML, etc."
                 />
               </div>
               <div className="space-y-1.5">
                 <Label>Tags (comma separated)</Label>
                 <Input
-                  value={(state.tags || []).join(", ")}
-                  onChange={(e) =>
-                    setState((s) => ({
-                      ...s,
-                      tags: e.target.value.split(",").map((t) => t.trim()).filter(Boolean),
-                    }))
-                  }
+                  value={joinList(state.tags)}
+                  onChange={bindListField(setState, "tags")}
                   placeholder="NLP, Next.js, ..."
                 />
               </div>
@@ -226,33 +182,17 @@ export function PostsManager() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>SEO title</Label>
-                <Input
-                  value={state.seoTitle || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, seoTitle: e.target.value }))
-                  }
-                />
+                <Input value={state.seoTitle || ""} onChange={bindField(setState, "seoTitle")} />
               </div>
               <div className="space-y-1.5">
                 <Label>SEO description</Label>
-                <Input
-                  value={state.seoDescription || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, seoDescription: e.target.value }))
-                  }
-                />
+                <Input value={state.seoDescription || ""} onChange={bindField(setState, "seoDescription")} />
               </div>
             </div>
 
             <div className="flex flex-wrap items-center gap-6 pt-2">
               <div className="flex items-center gap-2">
-                <Switch
-                  id="featured"
-                  checked={!!state.featured}
-                  onCheckedChange={(v) =>
-                    setState((s) => ({ ...s, featured: !!v }))
-                  }
-                />
+                <Switch id="featured" checked={!!state.featured} onCheckedChange={bindChecked(setState, "featured")} />
                 <Label htmlFor="featured">Featured</Label>
               </div>
               <div className="flex items-center gap-2">

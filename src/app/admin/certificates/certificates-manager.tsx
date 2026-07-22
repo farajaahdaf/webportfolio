@@ -7,6 +7,7 @@ import { DataList, type ColumnDef } from "@/components/admin/data-list";
 import { PageHeader } from "@/components/admin/page-header";
 import { FileUpload } from "@/components/admin/file-upload";
 import { FileText, ImageIcon } from "lucide-react";
+import { bindField, bindListField, joinList } from "@/lib/admin-form";
 import type { Certificate } from "@/lib/types";
 
 const columns: ColumnDef<Certificate>[] = [
@@ -104,39 +105,25 @@ export function CertificatesManager() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>Title</Label>
-                <Input
-                  value={state.title || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, title: e.target.value }))
-                  }
-                />
+                <Input value={state.title || ""} onChange={bindField(setState, "title")} />
               </div>
               <div className="space-y-1.5">
                 <Label>Issuer</Label>
-                <Input
-                  value={state.issuer || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, issuer: e.target.value }))
-                  }
-                />
+                <Input value={state.issuer || ""} onChange={bindField(setState, "issuer")} />
               </div>
               <div className="space-y-1.5">
                 <Label>Issue date</Label>
                 <Input
                   type="date"
                   value={state.issueDate ? state.issueDate.slice(0, 10) : ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, issueDate: e.target.value }))
-                  }
+                  onChange={bindField(setState, "issueDate")}
                 />
               </div>
               <div className="space-y-1.5">
                 <Label>Credential verification URL</Label>
                 <Input
                   value={state.credentialUrl || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, credentialUrl: e.target.value }))
-                  }
+                  onChange={bindField(setState, "credentialUrl")}
                   placeholder="https://issuer.example/verify/..."
                 />
               </div>
@@ -144,18 +131,7 @@ export function CertificatesManager() {
 
             <div className="space-y-1.5">
               <Label>Skills (comma separated)</Label>
-              <Input
-                value={(state.skills || []).join(", ")}
-                onChange={(e) =>
-                  setState((s) => ({
-                    ...s,
-                    skills: e.target.value
-                      .split(",")
-                      .map((t) => t.trim())
-                      .filter(Boolean),
-                  }))
-                }
-              />
+              <Input value={joinList(state.skills)} onChange={bindListField(setState, "skills")} />
             </div>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

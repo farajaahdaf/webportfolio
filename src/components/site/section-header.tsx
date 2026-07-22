@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { Reveal } from "@/components/site/reveal";
 import { cn } from "@/lib/utils";
 
 export function SectionHeader({
@@ -16,20 +16,8 @@ export function SectionHeader({
   align?: "left" | "center";
   className?: string;
 }) {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        transform: shouldReduceMotion ? "translateY(0px)" : "translateY(12px)",
-      }}
-      whileInView={{ opacity: 1, transform: "translateY(0px)" }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{
-        duration: shouldReduceMotion ? 0.2 : 0.42,
-        ease: [0.23, 1, 0.32, 1],
-      }}
+    <Reveal
       className={cn(
         "max-w-3xl",
         align === "center" && "mx-auto text-center",
@@ -68,6 +56,6 @@ export function SectionHeader({
           {description}
         </p>
       )}
-    </motion.div>
+    </Reveal>
   );
 }

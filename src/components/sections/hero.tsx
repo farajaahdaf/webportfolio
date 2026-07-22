@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/site/magnetic";
+import { Reveal } from "@/components/site/reveal";
 import type { SiteSettings } from "@/lib/types";
 import { dictionary, type Locale } from "@/lib/i18n";
 
@@ -101,38 +102,20 @@ export function Hero({
 
       <div className="container-prose relative">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.h1
-            initial={{
-              opacity: 0,
-              transform: shouldReduceMotion
-                ? "translateY(0px)"
-                : "translateY(12px)",
-            }}
-            animate={{ opacity: 1, transform: "translateY(0px)" }}
-            transition={{
-              duration: shouldReduceMotion ? 0.2 : 0.42,
-              delay: shouldReduceMotion ? 0 : 0.1,
-              ease: [0.23, 1, 0.32, 1],
-            }}
+          <Reveal
+            as="h1"
+            trigger="mount"
+            delay={0.1}
             className="mt-6 whitespace-nowrap font-display text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-[88px]"
           >
             {profile.name}
-          </motion.h1>
+          </Reveal>
 
           {titleSegments.length > 0 && (
-            <motion.p
-              initial={{
-                opacity: 0,
-                transform: shouldReduceMotion
-                  ? "translateY(0px)"
-                  : "translateY(12px)",
-              }}
-              animate={{ opacity: 1, transform: "translateY(0px)" }}
-              transition={{
-                duration: shouldReduceMotion ? 0.2 : 0.42,
-                delay: shouldReduceMotion ? 0 : 0.25,
-                ease: [0.23, 1, 0.32, 1],
-              }}
+            <Reveal
+              as="p"
+              trigger="mount"
+              delay={0.25}
               className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-x-2 gap-y-1 text-balance"
             >
               {titleSegments.map((seg, i) => (
@@ -151,40 +134,21 @@ export function Hero({
                   </span>
                 </span>
               ))}
-            </motion.p>
+            </Reveal>
           )}
 
-          <motion.p
-            initial={{
-              opacity: 0,
-              transform: shouldReduceMotion
-                ? "translateY(0px)"
-                : "translateY(12px)",
-            }}
-            animate={{ opacity: 1, transform: "translateY(0px)" }}
-            transition={{
-              duration: shouldReduceMotion ? 0.2 : 0.42,
-              delay: shouldReduceMotion ? 0 : 0.4,
-              ease: [0.23, 1, 0.32, 1],
-            }}
+          <Reveal
+            as="p"
+            trigger="mount"
+            delay={0.4}
             className="mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-muted-foreground md:text-lg"
           >
             {profile.tagline}
-          </motion.p>
+          </Reveal>
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              transform: shouldReduceMotion
-                ? "translateY(0px)"
-                : "translateY(12px)",
-            }}
-            animate={{ opacity: 1, transform: "translateY(0px)" }}
-            transition={{
-              duration: shouldReduceMotion ? 0.2 : 0.42,
-              delay: shouldReduceMotion ? 0 : 0.55,
-              ease: [0.23, 1, 0.32, 1],
-            }}
+          <Reveal
+            trigger="mount"
+            delay={0.55}
             className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
           >
             <Magnetic>
@@ -215,17 +179,13 @@ export function Hero({
                 </Link>
               </Button>
             </Magnetic>
-          </motion.div>
+          </Reveal>
 
           {hero.techRibbon.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                duration: shouldReduceMotion ? 0.2 : 0.42,
-                delay: shouldReduceMotion ? 0 : 0.8,
-                ease: [0.23, 1, 0.32, 1],
-              }}
+            <Reveal
+              trigger="mount"
+              delay={0.8}
+              y={0}
               className="relative mx-auto mt-20 max-w-3xl"
             >
               <p className="mb-4 text-center text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">
@@ -243,18 +203,14 @@ export function Hero({
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </Reveal>
           )}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: shouldReduceMotion ? 0.2 : 0.42,
-            delay: shouldReduceMotion ? 0 : 1.2,
-            ease: [0.23, 1, 0.32, 1],
-          }}
+        <Reveal
+          trigger="mount"
+          delay={1.2}
+          y={0}
           className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 md:flex flex-col items-center gap-2"
         >
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
@@ -277,7 +233,7 @@ export function Hero({
               className="h-full w-full bg-gradient-to-b from-transparent via-primary to-transparent"
             />
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

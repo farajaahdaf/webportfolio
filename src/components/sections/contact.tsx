@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -8,36 +7,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SectionHeader } from "@/components/site/section-header";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  Instagram,
-  Twitter,
-  Youtube,
-  Globe,
-  Send,
-  ArrowUpRight,
-  Loader2,
-  type LucideIcon,
-} from "lucide-react";
+import { Reveal } from "@/components/site/reveal";
+import { CardShell } from "@/components/site/card-shell";
+import { Globe, Send, ArrowUpRight, Loader2 } from "lucide-react";
+import { socialIcons, iconFor } from "@/lib/icons";
 import type { SiteSettings, Social } from "@/lib/types";
 import { dictionary, type Locale } from "@/lib/i18n";
-
-const iconMap: Record<string, LucideIcon> = {
-  github: Github,
-  linkedin: Linkedin,
-  email: Mail,
-  mail: Mail,
-  instagram: Instagram,
-  twitter: Twitter,
-  x: Twitter,
-  youtube: Youtube,
-};
-
-function iconFor(platform: string): LucideIcon {
-  return iconMap[platform.toLowerCase()] || Globe;
-}
 
 export function Contact({
   settings,
@@ -88,24 +63,20 @@ export function Contact({
         />
 
         <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-5">
-          <motion.div
-            initial={{ opacity: 0, transform: "translateX(-12px)" }}
-            whileInView={{ opacity: 1, transform: "translateX(0px)" }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.42, ease: [0.23, 1, 0.32, 1] }}
-            className="lg:col-span-2"
-          >
+          <Reveal x={-12} y={0} className="lg:col-span-2">
             <div className="space-y-3">
               {channels.map((c) => {
-                const Icon = iconFor(c.platform);
+                const Icon = iconFor(socialIcons, c.platform.toLowerCase(), Globe);
                 const isHttp = c.url.startsWith("http");
                 return (
-                  <a
+                  <CardShell
+                    as="a"
                     key={c.id}
                     href={c.url}
                     target={isHttp ? "_blank" : undefined}
                     rel={isHttp ? "noreferrer" : undefined}
-                    className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-4 shadow-sm transition-[border-color,box-shadow] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
+                    padding="p-4"
+                    className="flex items-center gap-4"
                   >
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-secondary text-primary transition-colors group-hover:border-foreground/30">
                       <Icon className="h-5 w-5" />
@@ -117,7 +88,7 @@ export function Contact({
                       <p className="truncate text-sm font-medium">{c.handle || c.url}</p>
                     </div>
                     <ArrowUpRight className="motion-hover-diagonal-arrow h-4 w-4 text-muted-foreground group-hover:text-primary" />
-                  </a>
+                  </CardShell>
                 );
               })}
             </div>
@@ -137,13 +108,12 @@ export function Contact({
                 )}
               </div>
             )}
-          </motion.div>
+          </Reveal>
 
-          <motion.form
-            initial={{ opacity: 0, transform: "translateX(12px)" }}
-            whileInView={{ opacity: 1, transform: "translateX(0px)" }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.42, ease: [0.23, 1, 0.32, 1] }}
+          <Reveal
+            as="form"
+            x={12}
+            y={0}
             onSubmit={onSubmit}
             className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8 lg:col-span-3"
           >
@@ -206,7 +176,7 @@ export function Contact({
                 )}
               </Button>
             </div>
-          </motion.form>
+          </Reveal>
         </div>
       </div>
     </section>

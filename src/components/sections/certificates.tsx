@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeader } from "@/components/site/section-header";
+import { CardShell } from "@/components/site/card-shell";
 import { fadeUp, stagger } from "@/lib/motion";
 import { formatDate, isValidUrl } from "@/lib/utils";
 import type { Certificate } from "@/lib/types";
@@ -40,12 +41,14 @@ export function Certificates({ items, locale = "en" }: { items: Certificate[]; l
           className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
         >
           {sorted.map((c) => (
-            <motion.article
+            <CardShell
+              as="article"
               key={c.id}
               variants={fadeUp}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-sm transition-[border-color,box-shadow] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
+              padding="p-5"
+              className="relative overflow-hidden"
+              accent
             >
-              <div className="absolute inset-x-0 top-0 h-1 bg-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="relative">
                 <div className="flex items-start justify-between">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-secondary text-primary">
@@ -110,7 +113,7 @@ export function Certificates({ items, locale = "en" }: { items: Certificate[]; l
                   )}
                 </div>
               </div>
-            </motion.article>
+            </CardShell>
           ))}
         </motion.div>
       </div>

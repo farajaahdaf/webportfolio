@@ -16,6 +16,16 @@ import { DataList, type ColumnDef } from "@/components/admin/data-list";
 import { MarkdownEditor } from "@/components/admin/markdown-editor";
 import { PageHeader } from "@/components/admin/page-header";
 import { FileUpload } from "@/components/admin/file-upload";
+import { TranslationCard } from "@/components/admin/translation-card";
+import {
+  bindChecked,
+  bindField,
+  bindIdTranslation,
+  bindIdTranslationValue,
+  bindListField,
+  idTranslation,
+  joinList,
+} from "@/lib/admin-form";
 import type { Project } from "@/lib/types";
 
 const categories: Project["category"][] = [
@@ -109,9 +119,7 @@ export function ProjectsManager() {
                 <Label>Title</Label>
                 <Input
                   value={state.title || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, title: e.target.value }))
-                  }
+                  onChange={bindField(setState, "title")}
                   placeholder="Project title"
                 />
               </div>
@@ -119,9 +127,7 @@ export function ProjectsManager() {
                 <Label>Slug (optional)</Label>
                 <Input
                   value={state.slug || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, slug: e.target.value }))
-                  }
+                  onChange={bindField(setState, "slug")}
                   placeholder="auto-from-title"
                 />
               </div>
@@ -131,9 +137,7 @@ export function ProjectsManager() {
               <Label>Tagline</Label>
               <Input
                 value={state.tagline || ""}
-                onChange={(e) =>
-                  setState((s) => ({ ...s, tagline: e.target.value }))
-                }
+                onChange={bindField(setState, "tagline")}
                 placeholder="One-line description"
               />
             </div>
@@ -143,9 +147,7 @@ export function ProjectsManager() {
               <Textarea
                 rows={3}
                 value={state.description || ""}
-                onChange={(e) =>
-                  setState((s) => ({ ...s, description: e.target.value }))
-                }
+                onChange={bindField(setState, "description")}
               />
             </div>
 
@@ -155,81 +157,39 @@ export function ProjectsManager() {
               onChange={(v) => setState((s) => ({ ...s, content: v }))}
             />
 
-            <div className="rounded-2xl border border-border bg-secondary/40 p-4">
-              <div className="mb-4">
-                <h3 className="font-display text-sm font-semibold tracking-tight">
-                  Indonesian translation
-                </h3>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Optional. Used when visitors choose Bahasa Indonesia. Empty fields fall back to the default content.
-                </p>
-              </div>
+            <TranslationCard>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div className="space-y-1.5">
                   <Label>Title ID</Label>
                   <Input
-                    value={state.translations?.id?.title || ""}
-                    onChange={(e) =>
-                      setState((s) => ({
-                        ...s,
-                        translations: {
-                          ...s.translations,
-                          id: { ...s.translations?.id, title: e.target.value },
-                        },
-                      }))
-                    }
+                    value={idTranslation(state, "title")}
+                    onChange={bindIdTranslation(setState, "title")}
                     placeholder="Judul proyek"
                   />
                 </div>
                 <div className="space-y-1.5">
                   <Label>Tagline ID</Label>
                   <Input
-                    value={state.translations?.id?.tagline || ""}
-                    onChange={(e) =>
-                      setState((s) => ({
-                        ...s,
-                        translations: {
-                          ...s.translations,
-                          id: { ...s.translations?.id, tagline: e.target.value },
-                        },
-                      }))
-                    }
+                    value={idTranslation(state, "tagline")}
+                    onChange={bindIdTranslation(setState, "tagline")}
                     placeholder="Deskripsi satu baris"
                   />
                 </div>
               </div>
-              <div className="mt-4 space-y-1.5">
+              <div className="space-y-1.5">
                 <Label>Short description ID</Label>
                 <Textarea
                   rows={3}
-                  value={state.translations?.id?.description || ""}
-                  onChange={(e) =>
-                    setState((s) => ({
-                      ...s,
-                      translations: {
-                        ...s.translations,
-                        id: { ...s.translations?.id, description: e.target.value },
-                      },
-                    }))
-                  }
+                  value={idTranslation(state, "description")}
+                  onChange={bindIdTranslation(setState, "description")}
                 />
               </div>
-              <div className="mt-4">
-                <MarkdownEditor
-                  label="Case study ID"
-                  value={state.translations?.id?.content || ""}
-                  onChange={(v) =>
-                    setState((s) => ({
-                      ...s,
-                      translations: {
-                        ...s.translations,
-                        id: { ...s.translations?.id, content: v },
-                      },
-                    }))
-                  }
-                />
-              </div>
-            </div>
+              <MarkdownEditor
+                label="Case study ID"
+                value={idTranslation(state, "content")}
+                onChange={bindIdTranslationValue(setState, "content")}
+              />
+            </TranslationCard>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               <div className="space-y-1.5">
@@ -254,21 +214,11 @@ export function ProjectsManager() {
               </div>
               <div className="space-y-1.5">
                 <Label>GitHub URL</Label>
-                <Input
-                  value={state.githubUrl || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, githubUrl: e.target.value }))
-                  }
-                />
+                <Input value={state.githubUrl || ""} onChange={bindField(setState, "githubUrl")} />
               </div>
               <div className="space-y-1.5">
                 <Label>Live URL</Label>
-                <Input
-                  value={state.liveUrl || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, liveUrl: e.target.value }))
-                  }
-                />
+                <Input value={state.liveUrl || ""} onChange={bindField(setState, "liveUrl")} />
               </div>
             </div>
 
@@ -286,26 +236,15 @@ export function ProjectsManager() {
             <div className="space-y-1.5">
               <Label>Tech (comma separated)</Label>
               <Input
-                value={(state.tech || []).join(", ")}
-                onChange={(e) =>
-                  setState((s) => ({
-                    ...s,
-                    tech: e.target.value.split(",").map((t) => t.trim()).filter(Boolean),
-                  }))
-                }
+                value={joinList(state.tech)}
+                onChange={bindListField(setState, "tech")}
                 placeholder="Next.js, Tailwind, Python"
               />
             </div>
 
             <div className="flex flex-wrap items-center gap-6 pt-2">
               <div className="flex items-center gap-2">
-                <Switch
-                  id="featured"
-                  checked={!!state.featured}
-                  onCheckedChange={(v) =>
-                    setState((s) => ({ ...s, featured: !!v }))
-                  }
-                />
+                <Switch id="featured" checked={!!state.featured} onCheckedChange={bindChecked(setState, "featured")} />
                 <Label htmlFor="featured">Featured</Label>
               </div>
               <div className="flex items-center gap-2">

@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { DataList, type ColumnDef } from "@/components/admin/data-list";
 import { PageHeader } from "@/components/admin/page-header";
+import { bindField, bindListField, joinList } from "@/lib/admin-form";
 import type { Experience } from "@/lib/types";
 
 const types: Experience["type"][] = ["Work", "Education", "Research", "Project"];
@@ -75,21 +76,11 @@ export function ExperienceManager() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>Role</Label>
-                <Input
-                  value={state.role || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, role: e.target.value }))
-                  }
-                />
+                <Input value={state.role || ""} onChange={bindField(setState, "role")} />
               </div>
               <div className="space-y-1.5">
                 <Label>Organization</Label>
-                <Input
-                  value={state.organization || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, organization: e.target.value }))
-                  }
-                />
+                <Input value={state.organization || ""} onChange={bindField(setState, "organization")} />
               </div>
               <div className="space-y-1.5">
                 <Label>Type</Label>
@@ -113,23 +104,14 @@ export function ExperienceManager() {
               </div>
               <div className="space-y-1.5">
                 <Label>Location</Label>
-                <Input
-                  value={state.location || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, location: e.target.value }))
-                  }
-                />
+                <Input value={state.location || ""} onChange={bindField(setState, "location")} />
               </div>
               <div className="space-y-1.5">
                 <Label>Start date</Label>
                 <Input
                   type="date"
-                  value={
-                    state.startDate ? state.startDate.slice(0, 10) : ""
-                  }
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, startDate: e.target.value }))
-                  }
+                  value={state.startDate ? state.startDate.slice(0, 10) : ""}
+                  onChange={bindField(setState, "startDate")}
                 />
               </div>
               <div className="space-y-1.5">
@@ -138,9 +120,7 @@ export function ExperienceManager() {
                   type="date"
                   value={state.endDate ? state.endDate.slice(0, 10) : ""}
                   disabled={state.current}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, endDate: e.target.value }))
-                  }
+                  onChange={bindField(setState, "endDate")}
                 />
               </div>
             </div>
@@ -161,43 +141,21 @@ export function ExperienceManager() {
 
             <div className="space-y-1.5">
               <Label>Description</Label>
-              <Textarea
-                rows={3}
-                value={state.description || ""}
-                onChange={(e) =>
-                  setState((s) => ({ ...s, description: e.target.value }))
-                }
-              />
+              <Textarea rows={3} value={state.description || ""} onChange={bindField(setState, "description")} />
             </div>
 
             <div className="space-y-1.5">
               <Label>Achievements (one per line)</Label>
               <Textarea
                 rows={4}
-                value={(state.achievements || []).join("\n")}
-                onChange={(e) =>
-                  setState((s) => ({
-                    ...s,
-                    achievements: e.target.value
-                      .split("\n")
-                      .map((t) => t.trim())
-                      .filter(Boolean),
-                  }))
-                }
+                value={joinList(state.achievements, "\n")}
+                onChange={bindListField(setState, "achievements", "\n")}
               />
             </div>
 
             <div className="space-y-1.5">
               <Label>Tech (comma separated)</Label>
-              <Input
-                value={(state.tech || []).join(", ")}
-                onChange={(e) =>
-                  setState((s) => ({
-                    ...s,
-                    tech: e.target.value.split(",").map((t) => t.trim()).filter(Boolean),
-                  }))
-                }
-              />
+              <Input value={joinList(state.tech)} onChange={bindListField(setState, "tech")} />
             </div>
           </>
         )}

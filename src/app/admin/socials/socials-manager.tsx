@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { DataList, type ColumnDef } from "@/components/admin/data-list";
 import { PageHeader } from "@/components/admin/page-header";
+import { bindChecked, bindField } from "@/lib/admin-form";
 import type { Social } from "@/lib/types";
 
 const columns: ColumnDef<Social>[] = [
@@ -75,40 +76,21 @@ export function SocialsManager() {
                 <Label>Platform</Label>
                 <Input
                   value={state.platform || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, platform: e.target.value }))
-                  }
+                  onChange={bindField(setState, "platform")}
                   placeholder="GitHub, LinkedIn…"
                 />
               </div>
               <div className="space-y-1.5">
                 <Label>Handle (optional)</Label>
-                <Input
-                  value={state.handle || ""}
-                  onChange={(e) =>
-                    setState((s) => ({ ...s, handle: e.target.value }))
-                  }
-                />
+                <Input value={state.handle || ""} onChange={bindField(setState, "handle")} />
               </div>
             </div>
             <div className="space-y-1.5">
               <Label>URL</Label>
-              <Input
-                value={state.url || ""}
-                onChange={(e) =>
-                  setState((s) => ({ ...s, url: e.target.value }))
-                }
-                placeholder="https://…"
-              />
+              <Input value={state.url || ""} onChange={bindField(setState, "url")} placeholder="https://…" />
             </div>
             <div className="flex items-center gap-2 pt-1">
-              <Switch
-                id="visible"
-                checked={!!state.visible}
-                onCheckedChange={(v) =>
-                  setState((s) => ({ ...s, visible: !!v }))
-                }
-              />
+              <Switch id="visible" checked={!!state.visible} onCheckedChange={bindChecked(setState, "visible")} />
               <Label htmlFor="visible">Show on public site</Label>
             </div>
           </>

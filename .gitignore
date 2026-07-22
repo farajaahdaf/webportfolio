@@ -12,3 +12,4 @@ agent-skills/
 tsconfig.tsbuildinfo
 .claude
 CLAUDE.md
+/graphify-out

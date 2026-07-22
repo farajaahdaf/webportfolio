@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SectionHeader } from "@/components/site/section-header";
 import { TechIcon } from "@/components/site/tech-icon";
+import { CardShell } from "@/components/site/card-shell";
 import { fadeUp, stagger } from "@/lib/motion";
 import type { Skill } from "@/lib/types";
 import { dictionary, type Locale } from "@/lib/i18n";
@@ -81,11 +82,7 @@ function SkillGrid({ items, emptyLabel = dictionary.en.skills.empty }: { items: 
       className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
     >
       {items.map((s) => (
-        <motion.div
-          key={s.id}
-          variants={fadeUp}
-          className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-sm transition-[border-color,box-shadow] [transition-duration:200ms] [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-foreground/25 hover:shadow-md"
-        >
+        <CardShell key={s.id} variants={fadeUp} padding="p-5" className="relative overflow-hidden">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <TechIcon
@@ -109,14 +106,15 @@ function SkillGrid({ items, emptyLabel = dictionary.en.skills.empty }: { items: 
           </div>
           <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-secondary">
             <motion.div
-              initial={{ transform: shouldReduceMotion ? "scaleX(1)" : "scaleX(0)" }}
-              whileInView={{ transform: "scaleX(1)" }}
-              viewport={{ once: true }}
-              transition={
-                shouldReduceMotion
-                  ? { duration: 0 }
-                  : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }
-              }
+              variants={{
+                hidden: { transform: shouldReduceMotion ? "scaleX(1)" : "scaleX(0)" },
+                show: {
+                  transform: "scaleX(1)",
+                  transition: shouldReduceMotion
+                    ? { duration: 0 }
+                    : { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
+                },
+              }}
               className="h-full rounded-full bg-primary"
               style={{
                 width: `${s.proficiency}%`,
@@ -125,7 +123,7 @@ function SkillGrid({ items, emptyLabel = dictionary.en.skills.empty }: { items: 
               }}
             />
           </div>
-        </motion.div>
+        </CardShell>
       ))}
     </motion.div>
   );
